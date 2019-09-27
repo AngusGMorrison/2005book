@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2019_09_27_142118) do
     t.string "name"
     t.string "description"
     t.integer "admin_id"
-    t.integer "photo_id"
+    t.string "photo_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -43,12 +43,6 @@ ActiveRecord::Schema.define(version: 2019_09_27_142118) do
 
   create_table "mods", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "photos", force: :cascade do |t|
-    t.string "img_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -71,7 +65,7 @@ ActiveRecord::Schema.define(version: 2019_09_27_142118) do
     t.string "music"
     t.string "websites"
     t.string "about_me"
-    t.integer "photo_id"
+    t.string "photo_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
