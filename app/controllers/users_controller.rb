@@ -4,4 +4,7 @@ class UsersController < ApplicationController
     @user = User.new
     @mods = Mod.all
   end
+
+  def create
+  end
 end
