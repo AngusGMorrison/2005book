@@ -4,10 +4,13 @@ Rails.application.routes.draw do
   # Sessions
   post "/sessions", to: "sessions#create"
 
+  # Users
+  get "/register", to: "sessions#new", as: "register"
+
   resources :groups
   resources :mods
   resources :messages
   resources :photos
-  resources :users
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
