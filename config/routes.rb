@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  root "static#index"
+
+  # Sessions
+  post "/sessions", to: "sessions#create"
+
   resources :groups
   resources :mods
   resources :messages
