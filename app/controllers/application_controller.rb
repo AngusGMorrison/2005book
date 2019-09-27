@@ -10,5 +10,4 @@ class ApplicationController < ActionController::Base
     head(:forbidden) unless authenticated_user_id
   end
 
-
 end
