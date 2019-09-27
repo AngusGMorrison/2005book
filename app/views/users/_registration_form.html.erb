@@ -1,0 +1,20 @@
+<%= form_with model: user do |registration_form| %>
+  <%= registration_form.label :name, "Name:" %>
+  <%= registration_form.text_field :name %>
+
+  <%= registration_form.label :mod, "Mod:" %>
+  <%= registration_form.collection_select :mod_id, @mods, :id, :name %>
+
+  <%= registration_form.label :email, "Email:" %>
+  <%= registration_form.text_field :email %>
+
+  <%= registration_form.label :password "Password*: (choose)" %>
+  <%= registration_form.password_field :password %>
+
+  <%= registration_form.label :terms, "I have read and understood the Terms of Use, and I agree to them." %>
+  <%= registration_form.check_box :terms %>
+
+  <p>* You can choose any password. It should not be your school password.</p>
+
+  <%= registration_form.submit "Register Now!" %>
+<% end %>
