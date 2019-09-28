@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    include Validations
+
     belongs_to :mod
 
     has_many :sent_messages, foreign_key: :sender_id, class_name: :Message
@@ -12,33 +14,32 @@ class User < ApplicationRecord
 
     has_secure_password
 
+    # validates :mod, :email, :password, {
+    #             presence: true
+    #           }
 
-    validates :mod, :email, :password, {
-                presence: true
-              }
+    # validates :name, {
+    #             presence: {
+    #               message: "must be at least 2 characters"
+    #             },
+    #             length: {
+    #               in: 2..30,
+    #               message: "must be 2-30 characters long"
+    #             }
+    #           }
 
-    validates :name, {
-                presence: {
-                  message: "must be at least 2 characters"
-                },
-                length: {
-                  in: 2..30,
-                  message: "must be 2-30 characters long"
-                }
-              }
+    # validates :email, {
+    #             uniqueness: {
+    #               message: "is already in use"
+    #             },
+    #             format: {
+    #               with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
+    #               message: "format is invalid"
+    #             }
+    #           }
 
-    validates :email, {
-                uniqueness: {
-                  message: "is already in use"
-                },
-                format: {
-                  with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
-                  message: "format is invalid"
-                }
-              }
-
-    validates :accepted_terms, {
-                acceptance: true
-              }
+    # validates :accepted_terms, {
+    #             acceptance: true
+    #           }
 
 end
