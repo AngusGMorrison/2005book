@@ -13,11 +13,8 @@ class UsersController < ApplicationController
     if @user.valid?
       begin_session(@user.id)
     else
-      @mods = Mod.all
-      @errors = @user.errors
-      render "new"
+      render_registration_form_with_errors
     end
-
   end
 
   def show
@@ -35,6 +32,12 @@ class UsersController < ApplicationController
       :password,
       :accepted_terms
     )
+  end
+
+  def render_registration_form_with_errors
+    @mods = Mod.all
+    @errors = @user.errors
+    render "new"
   end
 
 end
