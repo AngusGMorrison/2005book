@@ -6,6 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Mod.delete_all
+User.delete_all
+Group.delete_all
+Friendship.delete_all
+Message.delete_all
+GroupUser.delete_all
+
 require 'faker'
 
 Mod.create(name: "GitPushGitPaid")
@@ -30,13 +37,14 @@ photo_urls = [
 
 50.times do 
     User.create(
+
         name: Faker::Name.unique.name,
         email: Faker::Internet.unique.email,
-        password_digest: nil,
+        password: "123456",
         mod_id: Mod.all.sample.id,
         sex: Faker::Gender.binary_type,
         studies: Faker::Lorem.sentence(word_count: 2),
-        phone_number: Faker::PhoneNumber.unique.phone_number ,
+        phone_number: Faker::PhoneNumber.phone_number ,
         screenname: Faker::Lorem.sentence(word_count: 1),
         looking_for: Faker::Lorem.sentence(word_count: 1),
         interested_in: Faker::Lorem.sentence(word_count: 2),
@@ -47,7 +55,8 @@ photo_urls = [
         music: Faker::Music.band,
         websites: Faker::Internet.url,
         about_me: Faker::Lorem.sentence(word_count: 10),
-        photo_url: photo_urls.sample(1)
+        photo_url: photo_urls.sample, 
+        accepted_terms: true
     )
 end
 
