@@ -6,7 +6,7 @@
   </ul>
 <% end %>
 
-<%= form_with url: "/register",
+<%= form_with url: create_user_path,
               model: user,
               local: true do |registration_form| %>
               
@@ -22,8 +22,8 @@
   <%= registration_form.label :password, "Password*: (choose)" %>
   <%= registration_form.password_field :password %>
 
-<!--  <%= registration_form.label :terms, "I have read and understood the Terms of Use, and I agree to them." %>
-  <%= registration_form.check_box :terms %> -->
+  <%= registration_form.label :accepted_terms, "I have read and understood the Terms of Use, and I agree to them." %>
+  <%= registration_form.check_box :accepted_terms %>
 
   <p>* You can choose any password. It should not be your school password.</p>
 

@@ -28,7 +28,17 @@ class User < ApplicationRecord
               }
 
     validates :email, {
-                uniqueness: { message: "is already in use." }
+                uniqueness: {
+                  message: "is already in use"
+                },
+                format: {
+                  with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
+                  message: "format is invalid"
+                }
+              }
+
+    validates :accepted_terms, {
+                acceptance: true
               }
 
 end
