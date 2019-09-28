@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
+  before_action :require_logged_in, only: :show
 
   def new
-    @user = User.new
+    @user = current_user
     @mods = Mod.all
   end
 
@@ -9,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
 
     if @user.valid?
-      # Create session
+      session[:user_id] = @user.id
       redirect_to profile_path
     else
       @mods = Mod.all
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.last
+    @user = current_user
   end
 
 

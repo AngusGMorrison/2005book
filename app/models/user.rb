@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    include Validations
+    include User::Validations
 
     belongs_to :mod
 
@@ -13,33 +13,5 @@ class User < ApplicationRecord
 
 
     has_secure_password
-
-    # validates :mod, :email, :password, {
-    #             presence: true
-    #           }
-
-    # validates :name, {
-    #             presence: {
-    #               message: "must be at least 2 characters"
-    #             },
-    #             length: {
-    #               in: 2..30,
-    #               message: "must be 2-30 characters long"
-    #             }
-    #           }
-
-    # validates :email, {
-    #             uniqueness: {
-    #               message: "is already in use"
-    #             },
-    #             format: {
-    #               with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
-    #               message: "format is invalid"
-    #             }
-    #           }
-
-    # validates :accepted_terms, {
-    #             acceptance: true
-    #           }
 
 end
