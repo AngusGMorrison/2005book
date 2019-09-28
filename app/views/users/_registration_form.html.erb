@@ -1,12 +1,15 @@
 <% if errors %>
   <ul>
-    <%= errors.full_messages.each do |message| %>
+    <% errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
   </ul>
 <% end %>
 
-<%= form_with url: "/register", scope: :user, local: true do |registration_form| %>
+<%= form_with url: "/register",
+              scope: :user,
+              local: true do |registration_form| %>
+              
   <%= registration_form.label :name, "Name:" %>
   <%= registration_form.text_field :name %>
 
