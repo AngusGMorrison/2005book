@@ -6,22 +6,28 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = user.create(users_params)
+    @user = User.create(user_params)
 
     if @user.valid?
       # Create session
-      redirect_to user_path
+      redirect_to profile_path
     else
-      render :new
+      @mods = Mod.all
+      @errors = @user.errors
+      render "new"
     end
 
+  end
+
+  def show
+    @user = User.last
   end
 
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :mod, :email, :password)
+    params.require(:user).permit(:name, :mod_id, :email, :password)
   end
 
 end

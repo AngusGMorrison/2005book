@@ -14,15 +14,14 @@ class User < ApplicationRecord
 
 
     validates :name, :mod, :email, :password, {
-                presence: true,
-                message: "%{attribute} is required."
+                presence: { message: "%{attribute} is required." }
               }
 
     validates :name, {
-                exclusion: { 
-                  in: "Mark Zuckerberg",
-                  message: "%{attribute} can't be Mark Zuckerberg."
-                },
+                # exclusion: { 
+                #   in: "Mark Zuckerberg",
+                #   message: "%{attribute} can't be Mark Zuckerberg."
+                # },
                 length: {
                   in: 2..30,
                   message: "%{attribute} must be 2-30 characters long."
@@ -30,8 +29,7 @@ class User < ApplicationRecord
               }
 
     validates :email, {
-                uniqueness: true,
-                message: "%{email} is already in use."
+                uniqueness: { message: "%{email} is already in use." }
               }
 
 end
