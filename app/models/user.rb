@@ -11,7 +11,6 @@ class User < ApplicationRecord
 
     has_many :groups, foreign_key: :admin_id
 
-
     has_secure_password
 
     def sent_messages

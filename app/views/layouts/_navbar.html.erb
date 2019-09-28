@@ -2,7 +2,7 @@
 
 <div> Currently logged in as: <%= current_user.name %></div>
 
-<div>My Profile</div>
+<div><%= link_to "My Profile", profile_path %></div>
 
 <div>My Friends</div>
 
@@ -10,7 +10,7 @@
 
 <div>My Parties</div>
 
-<div>My Messages</div>
+<div><%= link_to "My Messages", user_messages_path %></div>
 
 <div>My Account</div>
 

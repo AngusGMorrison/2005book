@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   post "/register", to: "users#create", as: "create_user"
   get "/profile", to: "users#show", as: "profile"
 
+  # Messages
+  get "/messages", to: "messages#user_messages", as: "user_messages"
+
+
   resources :groups
   resources :mods
   resources :messages
