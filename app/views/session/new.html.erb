@@ -1,0 +1,19 @@
+<h1>[ Login ]</h1>
+
+<% if flash[:login_error] %>
+  <%= flash[:login_error] %>
+<% end %>
+
+
+<%= form_with scope: :user, url: "/login", local: true do |login_form| %>
+
+  <%= login_form.label :email, "Email:" %>
+  <%= login_form.text_field :email%>
+
+  <%= login_form.label :password, "Password:" %>
+  <%= login_form.password_field :password %>
+
+  <%= login_form.submit "Login" %>
+  <%= link_to "Register", register_path %>
+  
+<% end %>

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_logged_in, only: :show
+  before_action :require_logged_out, only: [:new, :create]
 
   def new
     @user = current_user
@@ -10,8 +11,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
 
     if @user.valid?
-      session[:user_id] = @user.id
-      redirect_to profile_path
+      begin_session(@user.id)
     else
       @mods = Mod.all
       @errors = @user.errors

@@ -1,17 +1,16 @@
 class SessionController < ApplicationController
+  before_action :require_logged_out, only: [:new, :create]
 
   def new
   end
 
   def create
     user = User.find_by(email: params[:user][:email])
-
-    if @user.authenticate(params[:user][:password])
-      SessionController.begin_session(user.id)
+    if user.try(:authenticate, params[:user][:password])
+      begin_session(user.id)
     else
-      SessionController.reject_credentials
+      reject_credentials
     end
-
   end
 
   def destroy
@@ -21,13 +20,8 @@ class SessionController < ApplicationController
 
   private
 
-  def self.begin_session(user_id)
-    session[:user_id] = user_id
-    redirect_to profile_path
-  end
-
-  def self.reject_credentials
-    flash[:error] = "Email or password not recognized"
+  def reject_credentials
+    flash[:login_error] = "Email or password not recognized"
     redirect_to login_path
   end
 

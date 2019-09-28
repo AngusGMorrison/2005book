@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # Sessions
   get "/login", to: "session#new", as: "login"
   get "/logout", to: "session#destroy", as: "logout"
-  post "/session", to: "session#create"
+  post "/login", to: "session#create"
 
   # Users
   get "/register", to: "users#new", as: "register"
