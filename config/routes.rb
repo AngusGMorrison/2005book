@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   root "static#index"
 
   # Sessions
-  post "/session", to: "session#create"
+  get "/login", to: "session#new", as: "login"
   get "/logout", to: "session#destroy", as: "logout"
+  post "/session", to: "session#create"
 
   # Users
   get "/register", to: "users#new", as: "register"
