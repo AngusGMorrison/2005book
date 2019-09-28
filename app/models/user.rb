@@ -13,23 +13,22 @@ class User < ApplicationRecord
     has_secure_password
 
 
-    validates :name, :mod, :email, :password, {
-                presence: { message: "%{attribute} is required." }
+    validates :mod, :email, :password, {
+                presence: true
               }
 
     validates :name, {
-                # exclusion: { 
-                #   in: "Mark Zuckerberg",
-                #   message: "%{attribute} can't be Mark Zuckerberg."
-                # },
+                presence: {
+                  message: "must be at least 2 characters"
+                },
                 length: {
                   in: 2..30,
-                  message: "%{attribute} must be 2-30 characters long."
+                  message: "must be 2-30 characters long"
                 }
               }
 
     validates :email, {
-                uniqueness: { message: "%{email} is already in use." }
+                uniqueness: { message: "is already in use." }
               }
 
 end
