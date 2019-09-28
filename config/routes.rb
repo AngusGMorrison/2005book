@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   # Users
   get "/register", to: "users#new", as: "register"
-  post "/users", to: "users#create", as: "new_user"
+  post "/register", to: "users#create", as: "new_user"
   get "/profile", to: "users#show", as: "profile"
 
   resources :groups

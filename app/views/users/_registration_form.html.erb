@@ -1,6 +1,4 @@
 <% if errors %>
-  <% byebug %>
-  <h2>ERRORS</h2>
   <ul>
     <%= errors.full_messages.each do |message| %>
       <li><%= message %></li>
@@ -8,7 +6,7 @@
   </ul>
 <% end %>
 
-<%= form_with model: user, url: new_user_path do |registration_form| %>
+<%= form_with model: @user, url: new_user_path, local: true do |registration_form| %>
   <%= registration_form.label :name, "Name:" %>
   <%= registration_form.text_field :name %>
 
