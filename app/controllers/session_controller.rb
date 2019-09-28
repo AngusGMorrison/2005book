@@ -6,11 +6,11 @@ class SessionController < ApplicationController
 
   def create
     user = User.find_by(email: params[:user][:email])
-    
+
     if user.try(:authenticate, params[:user][:password])
       begin_session(user.id)
     else
-      reject_credentials
+      reject_login
     end
   end
 
@@ -21,7 +21,7 @@ class SessionController < ApplicationController
 
   private
 
-  def reject_credentials
+  def reject_login
     flash[:login_error] = "Email or password not recognized"
     redirect_to login_path
   end
