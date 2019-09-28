@@ -1,10 +1,4 @@
-<% if errors %>
-  <ul>
-    <% errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render partial: "form_errors", locals: { errors: errors } %>
 
 <%= form_with url: create_user_path,
               model: user,
@@ -14,7 +8,7 @@
   <%= registration_form.text_field :name %>
 
   <%= registration_form.label :mod_id, "Mod:" %>
-  <%= registration_form.collection_select :mod_id, @mods, :id, :name %>
+  <%= registration_form.collection_select :mod_id, mods, :id, :name %>
 
   <%= registration_form.label :email, "Email:" %>
   <%= registration_form.text_field :email %>
