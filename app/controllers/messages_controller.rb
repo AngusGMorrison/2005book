@@ -1,2 +1,25 @@
 class MessagesController < ApplicationController
+
+    def index
+        @messages = Message.all
+    end
+    
+    def new
+
+    end
+
+    def create
+
+    end
+
+    def show 
+
+    end
+
+    # returns all messages for the user currently logged in
+    def user_messages
+        @messages = Message.all.select{ |message| message.sender_id == current_user.id || message.receiver_id == current_user.id }
+    end
+
+
 end
