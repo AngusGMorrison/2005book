@@ -14,4 +14,12 @@ class User < ApplicationRecord
 
     has_secure_password
 
+    def sent_messages
+        Message.all.select{ |message| message.sender_id == self.id }
+    end
+
+    def received_messages
+        Message.all.select{ |message| message.receiver_id == self.id }
+    end
+
 end
