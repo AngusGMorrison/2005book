@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   # Sessions
   post "/session", to: "session#create"
+  get "/logout", to: "session#destroy", as: "logout"
 
   # Users
   get "/register", to: "users#new", as: "register"

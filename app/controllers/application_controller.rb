@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user
-    User.find(session[:user_id]) || User.new
+    session[:user_id] ? User.find(session[:user_id]) : User.new
   end
 
   def require_logged_in
