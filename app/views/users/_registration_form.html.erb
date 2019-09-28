@@ -7,7 +7,7 @@
 <% end %>
 
 <%= form_with url: "/register",
-              scope: :user,
+              model: user,
               local: true do |registration_form| %>
               
   <%= registration_form.label :name, "Name:" %>
