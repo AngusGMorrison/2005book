@@ -7,16 +7,6 @@ RSpec.describe "Users", type: :feature do
   let(:fill_password) { fill_in "user_password", with: "password" }
   let(:check_terms) { check "user_accepted_terms" }
   let(:submit) { click_on "Register Now!" } 
-  let(:create_user) {
-    User.create(
-      name: "Test User",
-      mod_id: 1,
-      email: "test2@test.com",
-      password: "password",
-      accepted_terms: true
-    )
-  }
-  let(:create_profile) { Profile.create(user_id: User.first.id) }
 
   before do
     Mod.create(name: "Test Mod")
