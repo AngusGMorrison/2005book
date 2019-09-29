@@ -22,7 +22,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
-
+gem 'rails-i18n', '~> 6.0.0' # For 6.0.0 or higher
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

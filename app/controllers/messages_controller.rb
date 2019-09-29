@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
     end
     
     def new
-
+        @message = Message.new
     end
 
     def create
@@ -16,9 +16,9 @@ class MessagesController < ApplicationController
 
     end
 
-    # returns all messages for the user currently logged in
+
     def user_messages
-        @messages = Message.all.select{ |message| message.sender_id == current_user.id || message.receiver_id == current_user.id }
+        @messages = Message.all.select{ |message| message.sender_id == current_user.id || message.receiver_id == current_user.id }.sort_by{ |message| message.created_at}
     end
 
 
