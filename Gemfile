@@ -48,6 +48,7 @@ end
 group :test do
   # Use rspec for test suites
   gem 'rspec-rails'
+  gem 'capybara'
   # Configure rspec to clean the database between each test suite
   gem 'database_cleaner'
 end
