@@ -1,0 +1,36 @@
+<%# If an instance of Friendship has already been initiated by the current user...%>
+<% if @friendship = Friendship.find_by(user_id: current_user.id, friend_id: user.id) %>
+    
+    <% if @friendship.status == "Accepted" %>
+        <%= button_to "View Profile" %>
+    <% elsif @friendship.status == "Pending" %>
+        <button type="button">Friend Request Pending</button>
+    <% else %>
+        <%= form_tag("/friendships", method: "post") %> 
+        <%= hidden_field_tag(:user_id, current_user.id) %> 
+        <%= hidden_field_tag(:friend_id, user.id) %> 
+        <%= submit_tag("Send Friend Request") %> 
+    <% end %>
+
+<%# If an instance of Friendship has already been initiated by ANOTHER user...%>
+<% elsif @friendship = Friendship.find_by(user_id: user.id, friend_id: current_user.id) %>
+    
+    <% if @friendship.status == "Accepted" %>
+        <%= button_to "View Profile" %>
+    <% elsif @friendship.status == "Pending" %>
+        <%= button_to "Respond to Friend Request" %>
+    <% else %>
+        <%= form_tag("/friendships", method: "post") %> 
+        <%= hidden_field_tag(:user_id, current_user.id) %> 
+        <%= hidden_field_tag(:friend_id, user.id) %> 
+        <%= submit_tag("Send Friend Request") %> 
+    <% end %>
+
+<% else %>
+
+    <%= form_tag("/friendships", method: "post") %> 
+    <%= hidden_field_tag(:user_id, current_user.id) %> 
+    <%= hidden_field_tag(:friend_id, user.id) %> 
+    <%= submit_tag("Send Friend Request") %> 
+
+<% end %>
