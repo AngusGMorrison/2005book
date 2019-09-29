@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   # Users
   get "/register", to: "users#new", as: "register"
   post "/register", to: "users#create", as: "create_user"
-  get "/profile", to: "users#show", as: "profile"
+
+  #Profile
+  get "/:slug", to: "profile#show", as: "profile"
 
   resources :groups
   resources :mods
