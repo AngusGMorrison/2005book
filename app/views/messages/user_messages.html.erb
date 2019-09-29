@@ -1,8 +1,12 @@
-<%= @messages.each do |message| %>
+<h1>My Messages</h1>
+
+<% @messages.each do |message| %>
 <div>
-Sender: <%= message.sender_id %>
-Receiver: <%= message.receiver_id %>
-Subject: <%= message.subject %>
-Content: <%= message.content %>
+Sender: <%= message.sender_name %> <br>
+Receiver: <%= message.receiver_name %> <br>
+Date: <%= I18n.l(message.created_at, format: :long, locale: :'en-US') %> <br>
+Subject: <%= message.subject %> <br>
+Content: <%= message.content %> <br>
+<br> <br>
 </div>
 <% end %>
