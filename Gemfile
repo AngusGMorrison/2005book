@@ -21,6 +21,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+# Generate random seed data
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 gem 'rails-i18n', '~> 6.0.0' # For 6.0.0 or higher
 
@@ -31,7 +32,6 @@ gem 'rails-i18n', '~> 6.0.0' # For 6.0.0 or higher
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
-  gem 'rspec-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
@@ -43,6 +43,13 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :test do
+  # Use rspec for test suites
+  gem 'rspec-rails'
+  # Configure rspec to clean the database between each test suite
+  gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
