@@ -5,10 +5,10 @@ class SessionController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:user][:email])
+    @user = User.find_by(email: params[:user][:email])
 
-    if user.try(:authenticate, params[:user][:password])
-      begin_session(user.id)
+    if @user.try(:authenticate, params[:user][:password])
+      begin_session
     else
       reject_login
     end

@@ -12,12 +12,15 @@ class ApplicationController < ActionController::Base
   end
 
   def require_logged_out
-    redirect_to profile_path if session[:user_id]
+    if session[:user_id]
+      @profile = Profile.find_by(user_id: session[:user_id])
+      redirect_to profile_path(@profile.slug)
+    end
   end
 
-  def begin_session(user_id)
-    session[:user_id] = user_id
-    redirect_to profile_path
+  def begin_session
+    session[:user_id] = @user.id
+    redirect_to profile_path(@user.profile.slug)
   end
 
 end

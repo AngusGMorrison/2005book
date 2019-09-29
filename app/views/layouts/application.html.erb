@@ -10,8 +10,9 @@
   </head>
 
   <body>
-
-    <%= render partial: "layouts/navbar"%>
+    <% if current_user.id %>
+      <%= render partial: "layouts/navbar"%>
+    <% end %>
 
     <%= yield %>
   </body>

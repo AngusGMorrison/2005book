@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   # Users
   get "/register", to: "users#new", as: "register"
   post "/register", to: "users#create", as: "create_user"
-  get "/profile", to: "users#show", as: "profile"
+
+  #Profile
+  get "/profiles/:slug", to: "profiles#show", as: "profile"
 
   # Messages
   get "/messages", to: "messages#user_messages", as: "user_messages"

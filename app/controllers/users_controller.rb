@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
 
     if @user.valid?
-      begin_session(@user.id)
+      begin_first_session
     else
       render_registration_form_with_errors
     end
@@ -31,6 +31,17 @@ class UsersController < ApplicationController
       :password,
       :accepted_terms
     )
+  end
+
+  def begin_first_session
+    create_profile
+    begin_session
+  end
+
+
+  def create_profile
+    profile = Profile.create(user_id: @user.id)
+    profile.generate_slug
   end
 
   def render_registration_form_with_errors
