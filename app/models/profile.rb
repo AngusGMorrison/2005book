@@ -5,7 +5,8 @@ class Profile < ApplicationRecord
 
   def generate_slug
     unique_url_safe_name = get_unique_url_safe_name   
-    self.slug = unique_url_safe_name.join(".")
+    self.slug = unique_url_safe_name.join("-")
+    self.save
   end
 
   private

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   post "/register", to: "users#create", as: "create_user"
 
   #Profile
-  get "/:slug", to: "profile#show", as: "profile"
+  get "/profiles/:slug", to: "profiles#show", as: "profile"
 
   resources :groups
   resources :mods
