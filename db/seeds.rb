@@ -99,3 +99,53 @@ puts "#{Friendship.all.length} friendships created"
 end
 
 puts "#{Message.all.length} messages shared"
+
+#TEST PROFILE
+
+mark = User.create(
+    name: "Mark Zuckerburg",
+    email: "mark@facebook.com",
+    password: "password1",
+    mod_id: 1,
+    accepted_terms: true
+)
+
+mark_profile = Profile.create(
+  user_id: mark.id,
+  sex: "Male",
+  studies: Faker::Lorem.sentence(word_count: 2),
+  phone_number: Faker::PhoneNumber.phone_number ,
+  screenname: Faker::Lorem.sentence(word_count: 1),
+  looking_for: Faker::Lorem.sentence(word_count: 1),
+  interested_in: Faker::Lorem.sentence(word_count: 2),
+  relationship_status: Faker::Lorem.sentence(word_count: 2),
+  political_views: Faker::Lorem.sentence(word_count: 1),
+  interests: Faker::Lorem.sentence(word_count: 5),
+  movies: Faker::Lorem.sentence(word_count: 3),
+  music: Faker::Music.band,
+  websites: Faker::Internet.url,
+  about_me: Faker::Lorem.sentence(word_count: 10),
+  photo_url: PHOTO_URLS.sample
+)
+
+mark_profile.generate_slug
+
+#Give Mark 10 friends
+10.times do 
+    Friendship.create(status: "Accepted", user_id: mark.id, friend_id: User.all.sample.id)
+end
+
+#Create 10 messages which Mark has sent
+10.times do 
+    Message.create(sender_id: mark.id, receiver_id: mark.friends.sample.id, subject: Faker::Lorem.sentence(word_count: 2), content: Faker::Lorem.sentence(word_count: 15))
+end
+
+#Create 10 messages which Mark has received
+10.times do 
+    Message.create(sender_id: mark.friends.sample.id, receiver_id: mark.id, subject: Faker::Lorem.sentence(word_count: 2), content: Faker::Lorem.sentence(word_count: 15))
+end
+
+puts "#{mark.name} has been created with #{mark.friends.length} friends. He has sent #{mark.sent_messages.length} messages and received #{mark.received_messages.length} messages."
+
+
+

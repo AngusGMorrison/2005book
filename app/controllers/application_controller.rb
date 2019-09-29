@@ -1,10 +1,11 @@
 class ApplicationController < ActionController::Base
-
-  private
-
+  helper_method :current_user
+  
   def current_user
     session[:user_id] ? User.find(session[:user_id]) : User.new
   end
+
+  private
 
   def require_logged_in
     redirect_to login_path unless session[:user_id]
@@ -19,7 +20,6 @@ class ApplicationController < ActionController::Base
 
   def begin_session
     session[:user_id] = @user.id
-    byebug
     redirect_to profile_path(@user.profile.slug)
   end
 

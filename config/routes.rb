@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   #Profile
   get "/profiles/:slug", to: "profiles#show", as: "profile"
 
+  # Messages
+  get "/messages", to: "messages#user_messages", as: "user_messages"
+
+
   resources :groups
   resources :mods
   resources :messages

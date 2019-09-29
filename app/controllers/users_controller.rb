@@ -21,7 +21,6 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-
   private
 
   def user_params
@@ -43,7 +42,6 @@ class UsersController < ApplicationController
   def create_profile
     profile = Profile.create(user_id: @user.id)
     profile.generate_slug
-    byebug
   end
 
   def render_registration_form_with_errors

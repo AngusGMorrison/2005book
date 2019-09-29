@@ -1,0 +1,19 @@
+<nav>
+
+<div> Currently logged in as: <%= current_user.name %></div>
+
+<div><%= link_to "My Profile", profile_path(current_user.profile) %></div>
+
+<div>My Friends</div>
+
+<div>My Groups</div>
+
+<div>My Parties</div>
+
+<div><%= link_to "My Messages", user_messages_path %></div>
+
+<div>My Account</div>
+
+<div>My Privacy</div>
+
+</nav>
