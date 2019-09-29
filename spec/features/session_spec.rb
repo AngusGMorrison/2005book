@@ -64,7 +64,7 @@ RSpec.describe "Sessions", type: :feature do
     expect(current_path).to eq(login_path)
   end
 
-  it "prevents users from accessing account pages if not logged in" do
+  it "prevents users from accessing profile pages if not logged in" do
     visit profile_path(@profile.slug)
     expect(current_path).to eq(login_path)
   end
@@ -73,6 +73,13 @@ RSpec.describe "Sessions", type: :feature do
     login
     visit register_path
     expect(current_path).to eq(profile_path(@profile.slug))
+  end
+
+  it "allows users to log out" do
+    login
+    visit logout_path
+    visit profile_path(@profile.slug)
+    expect(current_path).to eq(login_path)
   end
 
 end
