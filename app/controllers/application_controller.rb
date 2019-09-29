@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
     redirect_to profile_path if session[:user_id]
   end
 
-  def begin_session(user_id)
-    session[:user_id] = user_id
+  def begin_session
+    session[:user_id] = @user.id
     redirect_to profile_path
   end
 
