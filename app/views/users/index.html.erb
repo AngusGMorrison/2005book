@@ -1,0 +1,9 @@
+<h1>All Users</h1>
+
+<% @users.each do |user| %>
+
+<%= user.name %>
+<%= render partial: "/friendships/friend_request_button", locals: {user: user, current_user: current_user} %>
+<br><br>
+
+<% end %>

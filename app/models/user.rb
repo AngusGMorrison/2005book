@@ -23,4 +23,10 @@ class User < ApplicationRecord
         Message.all.select{ |message| message.receiver_id == self.id }
     end
 
+    def mod_name
+        Mod.find(self.mod_id).name
+    end
+
+    
+
 end
