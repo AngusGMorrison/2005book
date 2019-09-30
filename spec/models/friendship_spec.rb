@@ -29,17 +29,13 @@ RSpec.describe Friendship, type: :model do
     end
 
     it "doesn't accept status attributes other than 'Accepted' and 'Pending' " do 
-        Friendship.create(status: "Pending", user_id: User.first.id, friend_id: User.second.id)
         Friendship.create(status: "Request Sent", user_id: User.third.id, friend_id: User.fourth.id)
-        expect(Friendship.all.length).to eq(1)
+        expect(Friendship.all.length).to eq(0)
     end
 
     it "doesn't let a user send a friend request to themselves" do 
         Friendship.create(status: "Pending", user_id: User.first.id, friend_id: User.first.id)
         expect(Friendship.all.length).to eq(0)
     end
-
-
-
 
 end
