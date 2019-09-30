@@ -16,7 +16,7 @@ module User::Validations
                 },
                 format: {
                   with: /\A([a-zA-Z]+[ \-']?)+[a-zA-Z]+\z/,
-                  message: "should only contain letters, - or '"
+                  message: "should start and end with a letter and contain only letters, - or '"
                 }
               }
 
