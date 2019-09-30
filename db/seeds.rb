@@ -14,7 +14,6 @@ PHOTO_URLS = [
   "https://laurelsprings.com/wp-content/uploads/2017/11/val-2-1032x1024.jpg"
 ]
 
-
 # Clear database
 Mod.delete_all
 User.delete_all
@@ -22,6 +21,7 @@ Group.delete_all
 Friendship.delete_all
 Message.delete_all
 GroupUser.delete_all
+Chain.delete_all
 
 
 # Create mods
@@ -93,14 +93,27 @@ end
 puts "#{Friendship.all.length} friendships created"
 
 
+# Create threads
+10.times do 
+  Chain.create(subject: Faker::Lorem.sentence(word_count: 2))
+end
+
+puts "#{Chain.all.length} chains started"
+
 # Create messages
-100.times do 
-    Message.create(sender_id: User.all.sample.id, receiver_id: User.all.sample.id, subject: Faker::Lorem.sentence(word_count: 2), content: Faker::Lorem.sentence(word_count: 15))
+Chain.all.each do |chain|
+  u1 = User.all.sample
+  u2 = User.all.sample
+
+  2.times do 
+    Message.create(chain_id: chain.id, sender_id: u1.id, receiver_id: u2.id, content: Faker::Lorem.sentence(word_count: 5))
+    Message.create(chain_id: chain.id, sender_id: u2.id, receiver_id: u1.id, content: Faker::Lorem.sentence(word_count: 5))
+  end
 end
 
 puts "#{Message.all.length} messages shared"
 
-#TEST PROFILE NO.1 FOR MARK
+#Test Profile No. 1 - Mark
 
 mark = User.create(
     name: "Mark Zuckerburg",
@@ -130,22 +143,27 @@ mark_profile = Profile.create(
 
 mark_profile.generate_slug
 
-#Give Mark 10 friends
+# Give Mark 10 friends
 10.times do 
     Friendship.create(status: "Accepted", user_id: mark.id, friend_id: User.all.sample.id)
 end
 
-#Create 10 messages which Mark has sent
-10.times do 
-    Message.create(sender_id: mark.id, receiver_id: mark.friends.sample.id, subject: Faker::Lorem.sentence(word_count: 2), content: Faker::Lorem.sentence(word_count: 15))
+# Give Mark message chains with messages
+mark_chains = []
+5.times do 
+  mark_chains << Chain.create(subject: Faker::Lorem.sentence(word_count: 2))
 end
 
-#Create 10 messages which Mark has received
-10.times do 
-    Message.create(sender_id: mark.friends.sample.id, receiver_id: mark.id, subject: Faker::Lorem.sentence(word_count: 2), content: Faker::Lorem.sentence(word_count: 15))
+mark_chains.each do |chain|
+  friend = mark.friends.sample
+  # give each chain four messages
+  2.times do 
+    Message.create(chain_id: chain.id, sender_id: mark.id, receiver_id: friend.id, content: Faker::Lorem.sentence(word_count: 5))
+    Message.create(chain_id: chain.id, sender_id: friend.id, receiver_id: mark.id, content: Faker::Lorem.sentence(word_count: 5))
+  end
 end
 
-puts "#{mark.name} has been created with #{mark.friends.length} friends. He has sent #{mark.sent_messages.length} messages and received #{mark.received_messages.length} messages."
+puts "#{mark.name} has been created with #{mark.friends.length} friends. He has sent #{mark.sent_messages.length} messages and received #{mark.received_messages.length} messages within #{mark.chains.length} chains."
 
 
 #TEST PROFILE NO.2 FOR EDUARDO
