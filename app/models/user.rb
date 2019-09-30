@@ -27,6 +27,16 @@ class User < ApplicationRecord
         Mod.find(self.mod_id).name
     end
 
+    # returns an array of a user's friend requests
+    def friend_requests
+        Friendship.all.select{ |friendship| friendship.status == "Pending" && friendship.friend_id == self.id }
+    end
+
+    # returns an array of all of the user's friend requests which they have sent
+    def pending_requests
+        Friendship.all.select{ |friendship| friendship.status == "Pending" && friendship.user_id == self.id }
+    end
+
     
 
 end

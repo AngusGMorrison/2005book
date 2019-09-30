@@ -6,10 +6,8 @@
     <% elsif @friendship.status == "Pending" %>
         <button type="button">Friend Request Pending</button>
     <% else %>
-        <%= form_tag("/friendships", method: "post") %> 
-        <%= hidden_field_tag(:user_id, current_user.id) %> 
-        <%= hidden_field_tag(:friend_id, user.id) %> 
-        <%= submit_tag("Send Friend Request") %> 
+        <% @friendship = Friendship.new %>
+        <%= render partial: "/friendships/form", locals: { user: current_user, friend: user, friendship: @friendship } %>
     <% end %>
 
 <%# If an instance of Friendship has already been initiated by ANOTHER user...%>
@@ -18,19 +16,16 @@
     <% if @friendship.status == "Accepted" %>
         <%= button_to "View Profile" %>
     <% elsif @friendship.status == "Pending" %>
-        <%= button_to "Respond to Friend Request" %>
+        <%= render partial: "/friendships/form", locals: { user: user, friend: current_user, friendship: @friendship } %>
+        <button type="button">Delete Request</button>
     <% else %>
-        <%= form_tag("/friendships", method: "post") %> 
-        <%= hidden_field_tag(:user_id, current_user.id) %> 
-        <%= hidden_field_tag(:friend_id, user.id) %> 
-        <%= submit_tag("Send Friend Request") %> 
+        <% @friendship = Friendship.new %>
+        <%= render partial: "/friendships/form", locals: { user: current_user, friend: user, friendship: @friendship } %>
     <% end %>
 
 <% else %>
 
-    <%= form_tag("/friendships", method: "post") %> 
-    <%= hidden_field_tag(:user_id, current_user.id) %> 
-    <%= hidden_field_tag(:friend_id, user.id) %> 
-    <%= submit_tag("Send Friend Request") %> 
+    <% @friendship = Friendship.new %>
+    <%= render partial: "/friendships/form", locals: { user: current_user, friend: user, friendship: @friendship } %>
 
 <% end %>
