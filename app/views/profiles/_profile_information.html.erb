@@ -1,11 +1,15 @@
 <div>
   <h2>Information</h2>
-  <%= link_to edit_user_path %>
+  <% if user == profile_owner %>
+    <%# link_to edit_profile_path %>
+  <% end %>
 </div>
 
 <div>
   <h3>Account Info:</h3>
   <ul>
-    <li><%= user.name %></li>
+    <li>Name: <%= profile_owner.name %></li>
+    <li>Member Since: <%= profile_owner.member_since %></li>
+    <li>Last Update: <%= profile.last_update %></li>
   </ul>
 </div>

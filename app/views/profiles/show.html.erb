@@ -1,4 +1,9 @@
 <h1><%= @profile_owner.name %></h1>
 <%= @profile_owner.mod.name %>
 
-<!-- <%# render partial: "profile_information", locals: { user: @user } %> -->
+<%= render partial: "profile_information",
+          locals: {
+            user: @user,
+            profile_owner: @profile_owner,
+            profile: @profile
+          } %>

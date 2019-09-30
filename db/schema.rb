@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 2019_09_29_072432) do
     t.string "websites"
     t.string "about_me"
     t.string "photo_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

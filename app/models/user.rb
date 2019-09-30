@@ -44,6 +44,11 @@ class User < ApplicationRecord
         friends_2 = accepted_friendships.map{ |friendship| User.find(friendship.friend_id) }.reject{ |friend| friend == self.id }
         all_friends = (friends_1 << friends_2).flatten!
     end
+
+    def member_since
+      self.created_at.strftime("%B %e, %Y")
+    end
+
         
 
     
