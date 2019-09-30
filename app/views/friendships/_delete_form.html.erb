@@ -1,8 +1,8 @@
 <%= form_for friendship, url: "/friendships/#{friendship.id}", html: {method: "delete"} do |f| %>
     <% if friendship.status == "Accepted" %>
-        <%= f.submit "Remove Friend" %>
+        <%= f.submit "Remove Friend", id: "remove_#{friendship.id}" %>
     <% elsif friendship.status == "Pending" && friendship.friend_id == current_user %>
-        <%= f.submit "Delete Friend Request" %>
+        <%= f.submit "Delete Friend Request", id: "delete_request_#{friendship.id}" %>
     <% else %>
         <%# Show nothing%>
     <% end %>
