@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_29_072432) do
+ActiveRecord::Schema.define(version: 2019_09_30_144123) do
 
   create_table "friendships", force: :cascade do |t|
     t.string "status"
@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(version: 2019_09_29_072432) do
     t.string "photo_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "hometown"
+    t.string "books"
   end
 
   create_table "users", force: :cascade do |t|
@@ -76,6 +78,7 @@ ActiveRecord::Schema.define(version: 2019_09_29_072432) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "accepted_terms", default: false
+    t.datetime "birthday"
   end
 
 end
