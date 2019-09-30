@@ -12,8 +12,13 @@ class FriendshipsController < ApplicationController
     # sending a friend request initialises a new instance of Friendship with a status of "Pending"
     def create
         @friend_request = Friendship.find_or_create_by(friendship_params)
-        current_user #resets current user to update current user's request statuses
-        redirect_to "/users/index"
+        if @friend_request.valid?
+            current_user #resets current user to update current user's request statuses
+            @profile = Profile.find_by(user_id: @friend_request.friend_id)
+            redirect_to profile_path(@profile.slug)
+        else    
+            render :users_path
+        end
     end
 
     # friendship status is updated to "Accepted" when the friend accepts the request

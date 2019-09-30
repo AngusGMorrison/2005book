@@ -42,7 +42,7 @@ class User < ApplicationRecord
         accepted_friendships = Friendship.all.select{ |friendship| friendship.status == "Accepted" }
         friends_1 = accepted_friendships.map{ |friendship| User.find(friendship.user_id) }.reject{ |user| user == self }
         friends_2 = accepted_friendships.map{ |friendship| User.find(friendship.friend_id) }.reject{ |friend| friend == self.id }
-        all_friends = (friends_1 << friends_2).flatten!
+        all_friends = (friends_1 << friends_2).flatten.uniq
     end
         
 
