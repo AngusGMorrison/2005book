@@ -33,7 +33,7 @@ class FriendshipsController < ApplicationController
     def destroy
         @friendship = Friendship.find(params[:id])
         @friendship.destroy
-        redirect_to "/users/index"
+        redirect_to friends_path
     end
 
     def requests
