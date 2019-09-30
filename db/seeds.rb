@@ -32,6 +32,24 @@ Mod.create(name: "!false")
 puts "#{Mod.all.length} mods created"
 
 
+#Create looking_for_options
+LookingForOption.create(name: "Friendship")
+LookingForOption.create(name: "Dating")
+LookingForOption.create(name: "A Relationship")
+LookingForOption.create(name: "Random play")
+LookingForOption.create(name: "Whatever I can get")
+
+puts "#{LookingForOption.all.length} looking_for_options created"
+
+#Create political views
+PoliticalView.create(name: "Very Conservative")
+PoliticalView.create(name: "Conservative")
+PoliticalView.create(name: "Moderate")
+PoliticalView.create(name: "Liberal")
+PoliticalView.create(name: "Very Liberal")
+
+puts "#{PoliticalView.all.length} political views created"
+
 # Create users
 50.times do 
     User.create(

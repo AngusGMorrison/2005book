@@ -1,7 +1,18 @@
 class Profile < ApplicationRecord
   belongs_to :user
+  has_many :profile_looking_for_options
+  has_many :looking_for_options, through: :profile_looking_for_options
+
+  belongs_to :political_view, optional: true
 
   URL_UNSAFE_CHARS = /[\/&\$\+\,\:\;=\?@# <>\[\]\{\}\|\\\^\%]/
+  LOOKING_FOR_OPTIONS = [
+                          "Friendship",
+                          "Dating",
+                          "A Relationship",
+                          "Random play",
+                          "Whatever I can get"
+                        ]
 
   def self.create_profile_with_slug(user_id)
     profile = Profile.create(user_id: user_id)

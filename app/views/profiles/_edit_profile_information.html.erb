@@ -1,0 +1,89 @@
+<%= form_with model: profile,
+              url: profile_path(profile.slug),
+              method: :patch,
+              local: true do |edit_form| %>
+
+<div>
+  <h3>Account Info:</h3>
+
+  <%= edit_form.fields_for :user do |user_form| %>
+    <%= user_form.label :name, "Name:" %>
+    <%= user_form.text_field :name %>
+  <% end %>
+
+
+  <h3>Basic Info:</h3>
+
+  <%= edit_form.fields_for :user do |user_form| %>
+    <%= user_form.label :mod, "Mod:" %>
+    <%= user_form.collection_select :mod, mods, :id, :name %> <br>
+  <% end %>
+
+  <%= edit_form.label :studies, "Studies:" %>
+  <%= edit_form.text_field :studies %> <br>
+
+  <%= edit_form.label :sex, "Sex:" %>
+  <%= edit_form.text_field :sex %> <br>
+
+  <%= edit_form.fields_for :user do |user_form| %>
+    <%= user_form.label :birthday, "Birthday:" %>
+    <%= user_form.date_select :birthday, { 
+      start_year: 1930,
+      end_year: 2001,
+      order: [:month, :day, :year],
+      prompt: true
+    } %> <br>
+  <% end %>
+
+  <%= edit_form.label :hometown, "Home Town:" %>
+  <%= edit_form.text_field :hometown %> <br>
+  
+
+  <h3>Contact Info:</h3>
+
+  <%= edit_form.fields_for :user do |user_form| %>
+    <%= edit_form.label :email, "Email:" %>
+    <%= edit_form.email_field :email %> <br>
+  <% end %>
+
+  <%= edit_form.label :screenname, "Screenname:" %>
+  <%= edit_form.text_field :screenname %> <br>
+  
+  <%= edit_form.label :phone_number, "Phone number:" %>
+  <%= edit_form.text_field :phone_number %> <br>
+
+  <%= edit_form.label :websites, "Websites:" %>
+  <%= edit_form.text_field :websites %> <br>
+
+
+  <h3>Personal Info:</h3>
+
+  <%= edit_form.label :looking_for, "Looking For:" %>
+  <%= edit_form.collection_select :looking_for, looking_for_options, :id, :name, include_blank: true %> <br>
+
+  <%= edit_form.label :interested_in, "Interested In:" %>
+  <%= edit_form.text_field :interested_in %> <br>
+
+  <%= edit_form.label :political_views, "Political Views:" %>
+  <%= edit_form.collection_select :political_views, political_views, :id, :name, include_blank: true %> <br>
+
+  <%= edit_form.label :interests, "Interests:" %>
+  <%= edit_form.text_area :interests %> <br>
+
+  <%= edit_form.label :books, "Favorite Books:" %>
+  <%= edit_form.text_area :books %> <br>
+
+  <%= edit_form.label :movies, "Favorite Movies:" %>
+  <%= edit_form.text_area :movies %> <br>
+
+  <%= edit_form.label :music, "Favorite Music:" %>
+  <%= edit_form.text_area :music %> <br>
+
+  <%= edit_form.label :about_me, "About Me:" %>
+  <%= edit_form.text_area :about_me %> <br>
+
+
+<%= edit_form.submit %>
+
+
+<% end %>

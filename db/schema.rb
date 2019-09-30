@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_30_144123) do
+ActiveRecord::Schema.define(version: 2019_09_30_181527) do
 
   create_table "friendships", force: :cascade do |t|
     t.string "status"
@@ -32,6 +32,12 @@ ActiveRecord::Schema.define(version: 2019_09_30_144123) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "looking_for_options", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "receiver_id"
@@ -43,6 +49,19 @@ ActiveRecord::Schema.define(version: 2019_09_30_144123) do
 
   create_table "mods", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "political_views", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "profile_looking_for_options", force: :cascade do |t|
+    t.integer "profile_id"
+    t.integer "looking_for_option_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
