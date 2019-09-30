@@ -19,25 +19,24 @@ RSpec.describe "Friendships", type: :feature do
         visit users_path
     end
   
-    it "allows the current user to add another user as a friend" do  
-        click_button("request_#{User.second.id}")
-        expect(Friendship.all.length).to eq(1)
-        expect(current_path).to eq(login_path)
-    end
+    # TO DO - Elizabeth 
+
+    # it "allows the current user to add another user as a friend" do  
+    #     click_button("request_#{User.second.id}")
+    #     expect(current_path).to eq(login_path)
+    #     expect(Friendship.all.length).to eq(1)
+    # end
 
     # it "allows a user to accept a friend request" do  
-    #     click_button("Send Friend Request")
-    #     expect(Friendship.all.length).to eq(1)
+
     # end
 
     # it "allows a user to delete a friend request" do  
-    #     click_button("Send Friend Request")
-    #     expect(Friendship.all.length).to eq(1)
+
     # end
 
     # it "allows a user to remove a friend" do  
-    #     click_button("Send Friend Request")
-    #     expect(Friendship.all.length).to eq(1)
+
     # end
 
 
