@@ -1,7 +1,7 @@
 <div>
   <h2>Information</h2>
   <% if current_user == profile_owner %>
-    <%# link_to edit_profile_path %>
+    <% link_to "[ edit ]", edit_profile_path %>
   <% end %>
 </div>
 
@@ -18,8 +18,8 @@
     <li>Mod: <%= profile_owner.mod.name %></li>
     <li>Studies: <%= profile.studies %></li>
     <li>Sex: <%= profile.sex %></li>
-    <li>Birthday: </li>
-    <li>Home Town: </li>
+    <li>Birthday: <%= profile_owner.birthday %></li>
+    <li>Home Town: <%= profile.hometown %></li>
   </ul>
   
   <h3>Contact Info:</h3>
@@ -36,7 +36,7 @@
     <li>Interested In: <%= profile.interested_in %></li>
     <li>Political Views: <%= profile.political_views  %></li>
     <li>Interests: <%= profile.interests %></li>
-    <li>Favorite Books: </li>
+    <li>Favorite Books: <%= profile.books %></li>
     <li>Favorite Movies: <%= profile.movies %></li>
     <li>Favorite Music: <%= profile.movies %></li>
     <li>About Me: <%= profile.about_me %></li>

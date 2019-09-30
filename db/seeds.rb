@@ -37,6 +37,7 @@ puts "#{Mod.all.length} mods created"
     User.create(
         name: Faker::Name.name.gsub(/[^a-zA-Z\-\' ]/, ""),
         email: Faker::Internet.unique.email,
+        birthday: Faker::Date.birthday(min_age: 18, max_age: 80),
         password: "123456",
         mod_id: Mod.all.sample.id,
         accepted_terms: true
@@ -46,6 +47,7 @@ puts "#{Mod.all.length} mods created"
       user_id: User.last.id,
       sex: Faker::Gender.binary_type,
       studies: Faker::Lorem.sentence(word_count: 2),
+      hometown: Faker::Address.city,
       phone_number: Faker::PhoneNumber.phone_number,
       screenname: Faker::Lorem.sentence(word_count: 1),
       looking_for: Faker::Lorem.sentence(word_count: 1),
@@ -53,6 +55,7 @@ puts "#{Mod.all.length} mods created"
       relationship_status: Faker::Lorem.sentence(word_count: 2),
       political_views: Faker::Lorem.sentence(word_count: 1),
       interests: Faker::Lorem.sentence(word_count: 5),
+      books: Faker::Lorem.sentence(word_count: 4),
       movies: Faker::Lorem.sentence(word_count: 3),
       music: Faker::Music.band,
       websites: Faker::Internet.url,
