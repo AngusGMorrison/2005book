@@ -16,8 +16,8 @@ class FriendshipsController < ApplicationController
             current_user #resets current user to update current user's request statuses
             @profile = Profile.find_by(user_id: @friend_request.friend_id)
             redirect_to profile_path(@profile.slug)
-        else    
-            render :users_path
+        else
+            redirect_to users_path
         end
     end
 

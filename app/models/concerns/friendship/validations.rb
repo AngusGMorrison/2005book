@@ -1,7 +1,7 @@
 module Friendship::Validations
     extend ActiveSupport::Concern
 
-    include do 
+    included do 
         
         def friendship_doesnt_already_exist?
             if Friendship.find_by(user_id: self.user_id, friend_id: self.friend_id) || Friendship.find_by(user_id: self.friend_id, friend_id: self.user_id)
