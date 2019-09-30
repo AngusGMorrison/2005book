@@ -1,6 +1,8 @@
 <nav>
 
-<div> Currently logged in as: <%= current_user.name %></div>
+<div> Currently logged in as: <%= current_user.name %>
+<%= link_to "Log out", logout_path %>
+</div>
 <br>
 
 <%# This will become the search field eventually %>

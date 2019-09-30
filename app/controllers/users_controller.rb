@@ -23,10 +23,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user = current_user
-  end
-
   # returns an array of friends (where Friendship status == "Accepted)
   def friends
     @friends = current_user.all_friends
