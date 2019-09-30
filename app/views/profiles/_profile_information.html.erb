@@ -1,6 +1,6 @@
 <div>
   <h2>Information</h2>
-  <% if user == profile_owner %>
+  <% if current_user == profile_owner %>
     <%# link_to edit_profile_path %>
   <% end %>
 </div>
@@ -12,4 +12,34 @@
     <li>Member Since: <%= profile_owner.member_since %></li>
     <li>Last Update: <%= profile.last_update %></li>
   </ul>
+
+  <h3>Basic Info:</h3>
+  <ul>
+    <li>Mod: <%= profile_owner.mod.name %></li>
+    <li>Studies: <%= profile.studies %></li>
+    <li>Sex: <%= profile.sex %></li>
+    <li>Birthday: </li>
+    <li>Home Town: </li>
+  </ul>
+  
+  <h3>Contact Info:</h3>
+  <ul>
+    <li>Email: <%= profile_owner.email %></li>
+    <li>Screenname: <%= profile.screenname %></li>
+    <li>Phone: <%= profile.phone_number %></li>
+    <li>Websites: <%= profile.websites %></li>
+  </ul>
+
+  <h3>Personal Info:</h3>
+  <ul>
+    <li>Looking For: <%= profile.looking_for %></li>
+    <li>Interested In: <%= profile.interested_in %></li>
+    <li>Political Views: <%= profile.political_views  %></li>
+    <li>Interests: <%= profile.interests %></li>
+    <li>Favorite Books: </li>
+    <li>Favorite Movies: <%= profile.movies %></li>
+    <li>Favorite Music: <%= profile.movies %></li>
+    <li>About Me: <%= profile.about_me %></li>
+  </ul>
+
 </div>
