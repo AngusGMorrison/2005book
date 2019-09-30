@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get "/register", to: "users#new", as: "register"
   post "/register", to: "users#create", as: "create_user"
 
+  get "/users/:id/friends", to: "users#friends", as: "friends"
+
   # Profile
   get "/profiles/:slug", to: "profiles#show", as: "profile"
 
@@ -25,7 +27,7 @@ Rails.application.routes.draw do
   patch "/friendships/:id", to: "friendships#update", as: "update_friendship"
   delete "/friendships/:id", to: "friendships#destroy", as: "destroy_friendship"
 
-  get "friendships/my_friends", to: "friendships#my_friends", as: "friends"
+
   get "friendships/requests", to: "friendships#requests", as: "requests"
 
   

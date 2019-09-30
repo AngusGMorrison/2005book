@@ -37,6 +37,15 @@ class User < ApplicationRecord
         Friendship.all.select{ |friendship| friendship.status == "Pending" && friendship.user_id == self.id }
     end
 
+    # returns an array of Users who are friends with this instance of user (where Frienship status == "Accepted")
+    def all_friends
+        accepted_friendships = Friendship.all.select{ |friendship| friendship.status == "Accepted" }
+        friends_1 = accepted_friendships.map{ |friendship| User.find(friendship.user_id) }.reject{ |user| user == self }
+        friends_2 = accepted_friendships.map{ |friendship| User.find(friendship.friend_id) }.reject{ |friend| friend == self.id }
+        all_friends = (friends_1 << friends_2).flatten!
+    end
+        
+
     
 
 end

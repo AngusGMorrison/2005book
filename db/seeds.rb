@@ -87,7 +87,7 @@ puts "#{GroupUser.all.length} people joined groups"
 
 # Create friendships
 20.times do 
-    Friendship.create(status: "Accepted", user_id: User.all.sample.id, friend_id: User.all.sample.id)
+    Friendship.find_or_create_by(status: "Accepted", user_id: User.all.sample.id, friend_id: User.all.sample.id)
 end
 
 puts "#{Friendship.all.length} friendships created"
