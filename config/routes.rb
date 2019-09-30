@@ -27,7 +27,6 @@ Rails.application.routes.draw do
   patch "/friendships/:id", to: "friendships#update", as: "update_friendship"
   delete "/friendships/:id", to: "friendships#destroy", as: "destroy_friendship"
 
-
   get "friendships/requests", to: "friendships#requests", as: "requests"
 
   
