@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   # Profile
   get "/profiles/:slug", to: "profiles#show", as: "profile"
+  get "/profiles/:slug/edit", to: "profiles#edit", as: "edit_profile"
 
   # Messages
   get "/messages", to: "messages#user_messages", as: "user_messages"

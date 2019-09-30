@@ -13,7 +13,7 @@
 <br>
 
 <%# Placeholders for links, in order as displayed on 2005 FB sidebar %>
-<div><%= link_to "My Profile", profile_path(current_user.profile) %></div>
+<div><%= link_to "My Profile", profile_path(current_user.profile.slug) %></div>
 
 <div><%= link_to "My Friends", friends_path(current_user)%></div>
 
