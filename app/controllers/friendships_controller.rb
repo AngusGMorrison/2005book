@@ -12,33 +12,32 @@ class FriendshipsController < ApplicationController
     # sending a friend request initialises a new instance of Friendship with a status of "Pending"
     def create
         @friend_request = Friendship.find_or_create_by(friendship_params)
-        @friend_request.status = "Pending"
-        @friend_request.save
         current_user #resets current user to update current user's request statuses
         redirect_to "/users/index"
     end
 
-    def edit
-
-    end
-
     # friendship status is updated to "Accepted" when the friend accepts the request
     def update 
-
+        @friendship = Friendship.find(params[:id])
+        @friendship.update(friendship_params)
+        redirect_to requests_path
     end
 
-    def delete
-
+    def destroy
+        @friendship = Friendship.find(params[:id])
+        @friendship.destroy
+        redirect_to "/users/index"
     end
 
-    def view_requests
-        @requests = Friendship.all.select{ |friendship| friendship.status == "Pending"}
+    def requests
+        @friend_requests = current_user.friend_requests
+        @pending_requests = current_user.pending_requests
     end
 
     private
 
     def friendship_params
-        params.permit(:user_id, :friend_id)
+        params.require(:friendship).permit(:user_id, :friend_id, :status)
     end
 
 

@@ -100,7 +100,7 @@ end
 
 puts "#{Message.all.length} messages shared"
 
-#TEST PROFILE
+#TEST PROFILE NO.1 FOR MARK
 
 mark = User.create(
     name: "Mark Zuckerburg",
@@ -146,6 +146,39 @@ end
 end
 
 puts "#{mark.name} has been created with #{mark.friends.length} friends. He has sent #{mark.sent_messages.length} messages and received #{mark.received_messages.length} messages."
+
+
+#TEST PROFILE NO.2 FOR EDUARDO
+
+eduardo = User.create(
+    name: "Eduardo Saverin",
+    email: "eduardo@facebook.com",
+    password: "password1",
+    mod_id: 1,
+    accepted_terms: true
+)
+
+eduardo_profile = Profile.create(
+  user_id: eduardo.id,
+  sex: "Male",
+  studies: Faker::Lorem.sentence(word_count: 2),
+  phone_number: Faker::PhoneNumber.phone_number ,
+  screenname: Faker::Lorem.sentence(word_count: 1),
+  looking_for: Faker::Lorem.sentence(word_count: 1),
+  interested_in: Faker::Lorem.sentence(word_count: 2),
+  relationship_status: Faker::Lorem.sentence(word_count: 2),
+  political_views: Faker::Lorem.sentence(word_count: 1),
+  interests: Faker::Lorem.sentence(word_count: 5),
+  movies: Faker::Lorem.sentence(word_count: 3),
+  music: Faker::Music.band,
+  websites: Faker::Internet.url,
+  about_me: Faker::Lorem.sentence(word_count: 10),
+  photo_url: PHOTO_URLS.sample
+)
+
+eduardo_profile.generate_slug
+
+puts "#{eduardo.name} has been created with #{eduardo.friends.length} friends. He has sent #{eduardo.sent_messages.length} messages and received #{eduardo.received_messages.length} messages."
 
 
 

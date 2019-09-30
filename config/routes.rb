@@ -22,11 +22,11 @@ Rails.application.routes.draw do
   get "/friendships", to: "friendships#index", as: "friendships"
   get "/friendships/new", to: "friendships#new", as: "new_friendship"
   post "/friendships", to: "friendships#create"
-  get "/friendship/:id", to: "friendships#edit"
-  patch "/friendships/:id", to: "friendships#update"
+  patch "/friendships/:id", to: "friendships#update", as: "update_friendship"
+  delete "/friendships/:id", to: "friendships#destroy", as: "destroy_friendship"
 
   get "friendships/my_friends", to: "friendships#my_friends", as: "friends"
-  get "friendships/view_requests", to: "friendships#view_requests", as: "view_requests"
+  get "friendships/requests", to: "friendships#requests", as: "requests"
 
   
 
