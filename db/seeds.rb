@@ -35,7 +35,7 @@ puts "#{Mod.all.length} mods created"
 # Create users
 50.times do 
     User.create(
-        name: Faker::Name.unique.name,
+        name: Faker::Name.name.gsub(/[^a-zA-Z\-\' ]/, ""),
         email: Faker::Internet.unique.email,
         password: "123456",
         mod_id: Mod.all.sample.id,

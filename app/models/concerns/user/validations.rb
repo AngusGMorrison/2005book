@@ -13,6 +13,10 @@ module User::Validations
                 length: {
                   in: 2..30,
                   message: "must be 2-30 characters long"
+                },
+                format: {
+                  with: /\A([a-zA-Z]+[ \-']?)+[a-zA-Z]+\z/,
+                  message: "should only contain letters, - or '"
                 }
               }
 

@@ -15,6 +15,8 @@ class User < ApplicationRecord
 
     has_secure_password
 
+    before_validation :strip_name
+
     def sent_messages
         Message.all.select{ |message| message.sender_id == self.id }
     end
@@ -47,6 +49,12 @@ class User < ApplicationRecord
 
     def member_since
       self.created_at.strftime("%B %e, %Y")
+    end
+
+    private
+
+    def strip_name
+      self.name = name.strip
     end
 
         
