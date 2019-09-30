@@ -9,6 +9,11 @@ class Profile < ApplicationRecord
     self.save
   end
 
+  def self.create_profile_with_slug(user_id)
+    profile = Profile.create(user_id: user_id)
+    profile.generate_slug
+  end
+
   private
 
   def get_unique_url_safe_name
