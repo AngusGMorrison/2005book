@@ -35,8 +35,12 @@ class Profile < ApplicationRecord
     looking_for_array.join(", ")
   end
 
-  def get_looking_for_option_ids
+  def looking_for_option_ids
     self.looking_for_options.map(&:id)
+  end
+
+  def preselect_political_view
+    self.political_view ? political_view.id : nil
   end
 
 

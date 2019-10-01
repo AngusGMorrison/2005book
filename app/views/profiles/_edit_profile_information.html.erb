@@ -30,13 +30,15 @@
 
   <%= edit_form.fields_for :user do |user_form| %>
     <%= user_form.label :birthday, "Birthday:" %>
-    <%= user_form.date_select :birthday, { 
-      start_year: 1930,
-      end_year: 2001,
-      order: [:month, :day, :year],
-      prompt: true,
-      selected: user.birthday
-    } %> <br>
+    <%= user_form.date_select :birthday,
+      { 
+        start_year: 1930,
+        end_year: 2001,
+        order: [:month, :day, :year],
+        prompt: true,
+        selected: user.birthday
+      }
+    %> <br>
   <% end %>
 
   <%= edit_form.label :hometown, "Home Town:" %>
@@ -63,25 +65,13 @@
   <h3>Personal Info:</h3>
 
   <%= edit_form.label :looking_for_options, "Looking For:" %>
-  <%= edit_form.collection_check_boxes :looking_for_options,
-    LookingForOption.all,
-    :id,
-    :name,
-    {
-      include_hidden: false,
-      checked: profile.get_looking_for_option_ids
-    } 
-  %> <br>
+  <%= edit_form.collection_check_boxes :looking_for_options, LookingForOption.all, :id, :name, { include_hidden: false, checked: profile.looking_for_option_ids } %> <br>
 
   <%= edit_form.label :interested_in, "Interested In:" %>
   <%= edit_form.text_field :interested_in %> <br>
 
   <%= edit_form.label :political_view_id, "Political Views:" %>
-  <% if profile.political_view %>
-    <%= edit_form.collection_select :political_view_id, PoliticalView.all, :id, :name, { include_blank: true, selected: profile.political_view.id } %>
-  <% else %>
-    <%= edit_form.collection_select :political_view_id, PoliticalView.all, :id, :name, { include_blank: true } %>
-  <% end %>
+  <%= edit_form.collection_select :political_view_id, PoliticalView.all, :id, :name, { include_blank: true, selected: profile.preselect_political_view } %>
   <br>
 
   <%= edit_form.label :interests, "Interests:" %>
@@ -98,7 +88,6 @@
 
   <%= edit_form.label :about_me, "About Me:" %>
   <%= edit_form.text_area :about_me %> <br>
-
 
   <%= edit_form.submit %>
 <% end %>
