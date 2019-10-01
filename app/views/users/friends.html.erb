@@ -2,11 +2,7 @@
 
 <% @friends.each do |friend| %>
     <%= friend.name%> <br>
-    <% @friendship = (Friendship.find_by(user_id: current_user.id, friend_id: friend.id) || Friendship.find_by(user_id: friend.id, friend_id: current_user.id))%>
-    <% if @friendship %>
-        <%= render partial: "/friendships/delete_form", locals: { current_user: current_user, user: friend, friendship: @friendship } %>
-    <% else %>
-        <%# Show nothing %>
-    <% end %>
+    <% @friendship = Friendship.get_friendship(current_user, friend) %>
+    <%= button_to "Remove Friend", destroy_friendship_path(@friendship), :method => :delete %>
     <br><br>
 <% end %>

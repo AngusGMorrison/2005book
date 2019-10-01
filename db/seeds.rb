@@ -155,6 +155,20 @@ mark_profile.generate_slug
     Friendship.create(user_1_id: mark.id, user_2_id: User.all.sample.id)
 end
 
+puts "#{mark.name} has been created with #{mark.friend_ids.length} friends."
+
+#Give Mark 5 friend requests
+5.times do 
+  FriendRequest.create(requestor_id: User.all.sample.id, receiver_id: mark.id)
+end
+
+# Get Mark to send 5 friend requests
+5.times do 
+  FriendRequest.create(requestor_id: mark.id, receiver_id: User.all.sample.id)
+end
+
+puts "Popular guy! #{mark.name} has #{mark.friend_requests.length} friend requests!"
+
 # #Create 10 messages which Mark has sent
 # 10.times do 
 #     Message.create(sender_id: mark.id, receiver_id: mark.friends.sample.id, content: Faker::Lorem.sentence(word_count: 15))
@@ -164,8 +178,6 @@ end
 # 10.times do 
 #     Message.create(sender_id: mark.friends.sample.id, receiver_id: mark.id, subject: Faker::Lorem.sentence(word_count: 2), content: Faker::Lorem.sentence(word_count: 15))
 # end
-
-puts "#{mark.name} has been created with #{mark.friend_ids.length} friends."
 
 
 # #TEST PROFILE NO.2 FOR EDUARDO

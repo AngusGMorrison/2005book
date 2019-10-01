@@ -1,0 +1,34 @@
+<h1>My Friend Requests</h1>
+
+<h2>Friend Requests</h2>
+
+<% if @requests.empty? %>
+    You don't have any friend requests!
+<% else %>
+     <% @requests.each do |request| %>
+        <%= request.get_requestor.name %>
+
+        <% @friendship = Friendship.new %>
+        <%= form_for @friendship, url: "/friendships" do |f| %>
+        <%= f.hidden_field :user_1_id, value: request.get_requestor.id %>
+        <%= f.hidden_field :user_2_id, value: request.get_receiver.id %>
+        <%= f.submit "Accept Friend Request"%>
+        <% end %>
+
+        <%= button_to "Delete Friend Request", delete_friend_request_path(request), :method => :delete %>
+
+        <br>
+    <% end %>
+<% end %>
+
+<h2>Pending Friend Requests</h2>
+
+<% if @pending_requests.empty? %>
+    You haven't sent any friend requests!
+<% else %>
+    <% @pending_requests.each do |request| %>
+        <%= request.get_receiver.name %>
+        <%# <%= render partial: "/friendships/post_create_form", locals: {current_user: current_user, user: request.request_receiver} %>
+        <br>
+    <% end %>
+<% end %>

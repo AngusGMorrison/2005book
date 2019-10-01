@@ -17,20 +17,19 @@ Rails.application.routes.draw do
   get "/profiles/:slug/edit", to: "profiles#edit", as: "edit_profile"
   patch "/profiles/:slug", to: "profiles#update"
 
+  # Friend Requests
+  get "/friend_requests", to: "friend_requests#index", as: "friend_requests"
+  post "/friend_requests", to: "friend_requests#create", as: "create_friend_request"
+  delete "/friend_requests/:id", to: "friend_requests#destroy", as: "delete_friend_request"
+
+  # Friendships
+  get "/friendships/new", to: "friendships#new", as: "new_friendship"
+  post "/friendships", to: "friendships#create", as: "create_friendship"
+  delete "/friendships/:id", to: "friendships#destroy", as: "destroy_friendship"
+
   # Messages
   get "/messages", to: "messages#user_messages", as: "user_messages"
   get "/messages/new", to: "messages#new", as: "new_message"
-
-  # Friendships
-  get "/friendships", to: "friendships#index", as: "friendships"
-  get "/friendships/new", to: "friendships#new", as: "new_friendship"
-  post "/friendships", to: "friendships#create"
-  patch "/friendships/:id", to: "friendships#update", as: "update_friendship"
-  delete "/friendships/:id", to: "friendships#destroy", as: "destroy_friendship"
-
-
-  get "friendships/requests", to: "friendships#requests", as: "requests"
-
   
 
   resources :groups
