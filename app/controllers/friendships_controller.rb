@@ -11,6 +11,7 @@ class FriendshipsController < ApplicationController
 
     # sending a friend request initialises a new instance of Friendship with a status of "Pending"
     def create
+        byebug
         @friend_request = Friendship.new(friendship_params)
         if @friend_request.valid?
             @friend_request.save

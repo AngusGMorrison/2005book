@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get "/chains", to: "chains#index", as: "chains"
   get "/chains/new", to: "chains#new", as: "new_chain"
   get "/chains/:id", to: "chains#show", as: "chain"
+  post "/chains", to: "chains#create", as: "create_chain"
 
   # Messages
   get "/messages", to: "messages#user_messages", as: "user_messages"

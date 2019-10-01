@@ -5,11 +5,12 @@ class ChainsController < ApplicationController
     end
 
     def new
-
+        @chain = Chain.new
+        redirect_to create_chain_path
     end
 
     def create
-
+        @chain = Chain.find_or_create_by()
     end
 
     def show

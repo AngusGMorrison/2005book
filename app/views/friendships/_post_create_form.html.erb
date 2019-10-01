@@ -7,7 +7,7 @@
         <%elsif @friendship.friend_id == current_user.id && @friendship.status == "Pending" #User has already sent a friendship request; current user has not responded yet %>
             <%# Accept Friend Request%>
             <%= f.hidden_field :status, value: "Accepted" %>
-            <%= f.submit "Accept Friend Request", id: "accept_#{@friendship.user_id}" %>
+            <%= f.submit "Accept Friend Request" %>
             <%# PLACEHOLDER FOR DELETE FORM%>
         <%elsif @friendship.user_id == current_user.id && @friendship.status == "Pending" #Current User has already sent a friendship request; user has not responded yet %>
             <button type="button">Friend Request Pending</button>

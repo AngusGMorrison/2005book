@@ -8,6 +8,7 @@
      <% @friend_requests.each do |request| %>
         <%= request.request_initiator.name %>
         <%= render partial: "/friendships/post_create_form", locals: {current_user: current_user, user: request.request_initiator} %>
+        <%# <%= render partial: "/friendships/delete_form", locals: {current_user: current_user, user: request.request_initiator} %> %>
     <% end %>
 <% end %>
 

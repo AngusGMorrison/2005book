@@ -10,6 +10,10 @@ class Chain < ApplicationRecord
         [User.find(self.last_message.receiver_id), User.find(self.last_message.sender_id)]
     end
 
+    def user_ids 
+        self.users.map{ |user| user.id }
+    end
+
 
 
 end
