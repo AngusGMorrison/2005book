@@ -11,16 +11,14 @@ class ProfilesController < ApplicationController
   def edit
     @current_user = current_user
     @profile = find_profile_from_slug
-    @looking_for_options = LookingForOption.all
-    @political_views = PoliticalView.all
   end
 
   def update
     @profile = find_profile_from_slug
-    @user = @profile.user
+    @current_user = current_user
 
     update_profile_and_user
-    if @profile.valid? && @user.valid?
+    if @profile.valid? && @current_user.valid?
       redirect_to profile_path(current_user.profile.slug)
     else
       render :edit
@@ -40,7 +38,7 @@ class ProfilesController < ApplicationController
 
   def update_profile_and_user
     @profile.update_after_edit(permitted_params)
-    @user.update(permitted_params[:user])
+    @current_user.update(permitted_params[:user])
   end
 
   def permitted_params

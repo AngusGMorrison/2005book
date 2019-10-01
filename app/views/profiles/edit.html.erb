@@ -1,8 +1,6 @@
-<h1>Edit <%= @current_user.name %></h1>
+<h1>Edit Profile</h1>
 <%= render partial: "edit_profile_information",
            locals: {
              user: @current_user,
-             profile: @profile,
-             looking_for_options: @looking_for_options,
-             political_views: @political_views
+             profile: @profile
            } %>

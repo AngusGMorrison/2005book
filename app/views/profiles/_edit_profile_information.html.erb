@@ -1,3 +1,18 @@
+<% if user.errors || profile.errors %>
+  <ul>
+    <% if user.errors %>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    <% end %>
+    <% if profile.errors %>
+      <% profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: profile,
               url: profile_path(profile.slug),
               method: :patch,
@@ -67,9 +82,9 @@
 
   <%= edit_form.label :political_view_id, "Political Views:" %>
   <% if profile.political_view %>
-    <%= edit_form.collection_select :political_view_id, political_views, :id, :name, { include_blank: true, selected: profile.political_view.id } %>
+    <%= edit_form.collection_select :political_view_id, PoliticalView.all, :id, :name, { include_blank: true, selected: profile.political_view.id } %>
   <% else %>
-    <%= edit_form.collection_select :political_view_id, political_views, :id, :name, { include_blank: true } %>
+    <%= edit_form.collection_select :political_view_id, PoliticalView.all, :id, :name, { include_blank: true } %>
   <% end %>
   <br>
 
