@@ -17,7 +17,11 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    byebug
+    @profile = find_profile_from_slug
+    @user = @profile.user
+
+    update_profile_and_user
+    redirect_when_updates_valid
   end
 
   private
@@ -29,6 +33,47 @@ class ProfilesController < ApplicationController
 
   def find_profile_from_slug
     Profile.find_by(slug: params[:slug])
+  end
+
+  def update_profile_and_user
+    @profile.update_after_edit(permitted_params)
+    @user.update_after_profile_edit(permitted_params[:user])
+  end
+
+  def permitted_params
+    params.require(:profile).permit(
+      :websites,
+      :interested_in,
+      :political_views,
+      :interests,
+      :books,
+      :movies,
+      :music,
+      :about_me,
+      :studies,
+      :sex,
+      :hometown,
+      :email,
+      :screenname,
+      :phone_number,
+      :looking_for => [],
+      user: [
+        :name,
+        :email,
+        :"birthday(1i)",
+        :"birthday(2i)",
+        :"birthday(3i)",
+        :mod
+      ]  
+    ) 
+  end
+
+  def redirect_when_updates_valid
+    if @profile.valid? && @user.valid?
+      redirect_to profile_path(current_user.profile.slug)
+    else
+      render :edit
+    end
   end
 
 end

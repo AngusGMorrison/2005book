@@ -6,13 +6,6 @@ class Profile < ApplicationRecord
   belongs_to :political_view, optional: true
 
   URL_UNSAFE_CHARS = /[\/&\$\+\,\:\;=\?@# <>\[\]\{\}\|\\\^\%]/
-  LOOKING_FOR_OPTIONS = [
-                          "Friendship",
-                          "Dating",
-                          "A Relationship",
-                          "Random play",
-                          "Whatever I can get"
-                        ]
 
   def self.create_profile_with_slug(user_id)
     profile = Profile.create(user_id: user_id)
@@ -28,6 +21,14 @@ class Profile < ApplicationRecord
   def last_update
     self.updated_at.strftime("%B %e, %Y")
   end
+
+  def update_after_edit(permitted_params)
+    unless permitted_params[:looking_for].empty?
+      update_looking_for(permitted_params[:looking_for])
+    end
+    update_profile_attributes(permitted_params)
+  end
+
 
   private
 
@@ -45,5 +46,18 @@ class Profile < ApplicationRecord
     name << @profile_user.id
   end
 
+  def update_looking_for(looking_for_selections)
+    self.looking_for_options.clear
+    looking_for_selections.each do |selection|
+      lfo = LookingForOption.find(selection)
+      self.looking_for_options << lfo
+    end
+  end
+
+  def update_profile_attributes(params)
+    profile_params = params.reject { |k, v| k == "user" || k == "looking_for" }
+    self.update(profile_params)
+    byebug
+  end
 
 end
