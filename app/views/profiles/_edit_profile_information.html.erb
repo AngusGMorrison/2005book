@@ -66,7 +66,13 @@
   <%= edit_form.text_field :interested_in %> <br>
 
   <%= edit_form.label :political_view_id, "Political Views:" %>
-  <%= edit_form.collection_select :political_view_id, political_views, :id, :name,{ include_blank: true, selected: profile.political_view.id } %> <br>
+  <% if profile.political_view %>
+    <%= edit_form.collection_select :political_view_id, political_views, :id, :name, { include_blank: true, selected: profile.political_view.id } %>
+  <% else %>
+    <%= edit_form.collection_select :political_view_id, political_views, :id, :name, { include_blank: true } %>
+  <% end %>
+  <br>
+
 
   <%= edit_form.label :interests, "Interests:" %>
   <%= edit_form.text_area :interests %> <br>
