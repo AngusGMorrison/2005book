@@ -16,6 +16,11 @@ Rails.application.routes.draw do
   # Profile
   get "/profiles/:slug", to: "profiles#show", as: "profile"
 
+  # Chains
+  get "/chains", to: "chains#index", as: "chains"
+  get "/chains/new", to: "chains#new", as: "new_chain"
+  get "/chains/:id", to: "chains#show", as: "chain"
+
   # Messages
   get "/messages", to: "messages#user_messages", as: "user_messages"
   get "/messages/new", to: "messages#new", as: "new_message"

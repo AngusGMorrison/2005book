@@ -6,7 +6,9 @@ class User < ApplicationRecord
     belongs_to :mod
 
     has_many :sent_messages, foreign_key: :sender_id, class_name: :Message
-    has_many :recevied_messages, foreign_key: :receiver_id, class_name: :Message 
+    has_many :received_messages, foreign_key: :receiver_id, class_name: :Message 
+    # has_many :messages, through: { joins(:participant, :organizer) }, class_name: :Message
+    
 
     has_many :friendships
     has_many :friends, through: :friendships, source: :friend
@@ -15,12 +17,21 @@ class User < ApplicationRecord
 
     has_secure_password
 
-    def sent_messages
-        Message.all.select{ |message| message.sender_id == self.id }
+    # to get all messages a user has sent
+    # def messages
+    #     Message.joins([{sender: :user}, {receiver: :user}]).where(users: {id: self.id})
+    # end
+
+    def messages
+        self.sent_messages + self.received_messages
     end
 
-    def received_messages
-        Message.all.select{ |message| message.receiver_id == self.id }
+    def chain_ids
+        self.messages.map{ |message| message.chain_id }.uniq
+    end
+
+    def chains 
+        self.chain_ids.map{ |chain_id| Chain.find(chain_id)}
     end
 
     def mod_name

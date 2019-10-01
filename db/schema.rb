@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_29_072432) do
+ActiveRecord::Schema.define(version: 2019_09_30_152949) do
+
+  create_table "chains", force: :cascade do |t|
+    t.string "subject"
+  end
 
   create_table "friendships", force: :cascade do |t|
     t.string "status"
@@ -35,10 +39,10 @@ ActiveRecord::Schema.define(version: 2019_09_29_072432) do
   create_table "messages", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "receiver_id"
-    t.string "subject"
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "chain_id"
   end
 
   create_table "mods", force: :cascade do |t|
