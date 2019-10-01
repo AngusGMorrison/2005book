@@ -64,7 +64,7 @@ class Profile < ApplicationRecord
   end
 
   def update_political_views(permitted_params)
-    if permitted_params[:political_view_id]
+    if !permitted_params[:political_view_id].empty?
       self.political_view = PoliticalView.find(permitted_params[:political_view_id])
     else
       self.political_view = nil
