@@ -1,16 +1,5 @@
 <% if user.errors || profile.errors %>
-  <ul>
-    <% if user.errors %>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    <% end %>
-    <% if profile.errors %>
-      <% profile.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    <% end %>
-  </ul>
+  <%= render partial: "all_errors", locals: { user: user, profile: profile }  %>
 <% end %>
 
 <%= form_with model: profile,
@@ -18,7 +7,6 @@
               method: :patch,
               local: true do |edit_form| %>
 
-<div>
   <h3>Account Info:</h3>
 
   <%= edit_form.fields_for :user do |user_form| %>
@@ -75,7 +63,15 @@
   <h3>Personal Info:</h3>
 
   <%= edit_form.label :looking_for_options, "Looking For:" %>
-  <%= edit_form.collection_check_boxes :looking_for_options, LookingForOption.all, :id, :name, { include_hidden: false, checked: profile.looking_for_options.map(&:id) } %> <br>
+  <%= edit_form.collection_check_boxes :looking_for_options,
+    LookingForOption.all,
+    :id,
+    :name,
+    {
+      include_hidden: false,
+      checked: profile.get_looking_for_option_ids
+    } 
+  %> <br>
 
   <%= edit_form.label :interested_in, "Interested In:" %>
   <%= edit_form.text_field :interested_in %> <br>
@@ -87,7 +83,6 @@
     <%= edit_form.collection_select :political_view_id, PoliticalView.all, :id, :name, { include_blank: true } %>
   <% end %>
   <br>
-
 
   <%= edit_form.label :interests, "Interests:" %>
   <%= edit_form.text_area :interests %> <br>
@@ -105,7 +100,5 @@
   <%= edit_form.text_area :about_me %> <br>
 
 
-<%= edit_form.submit %>
-
-
+  <%= edit_form.submit %>
 <% end %>

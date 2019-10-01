@@ -1,0 +1,8 @@
+<ul>
+  <% if user.errors %>
+    <%= render partial: "full_message", collection: user.errors.full_messages %>
+  <% end %>
+  <% if profile.errors %>
+    <%= render partial: "full_message", collection: profile.errors.full_messages %>
+  <% end %>
+</ul>

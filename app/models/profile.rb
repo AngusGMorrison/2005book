@@ -35,6 +35,10 @@ class Profile < ApplicationRecord
     looking_for_array.join(", ")
   end
 
+  def get_looking_for_option_ids
+    self.looking_for_options.map(&:id)
+  end
+
 
   private
 
