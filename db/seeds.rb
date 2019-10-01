@@ -166,7 +166,7 @@ end
 puts "#{mark.name} has been created with #{mark.friends.length} friends. He has sent #{mark.sent_messages.length} messages and received #{mark.received_messages.length} messages within #{mark.chains.length} chains."
 
 
-#TEST PROFILE NO.2 FOR EDUARDO
+# Test Profile No.2 - Eduardo
 
 eduardo = User.create(
     name: "Eduardo Saverin",

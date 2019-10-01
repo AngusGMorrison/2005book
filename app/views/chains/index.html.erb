@@ -1,0 +1,14 @@
+<h1>My Messages</h1>
+
+<% if @chains.empty? %>
+    You don't have any messages.
+<% else %>
+    <% @chains.each do |chain| %>
+        <img src=<%= chain.users.reject{ |user| user == current_user}[0].profile.photo_url %> width="25"> <br>
+        <%= link_to chain.users.reject{ |user| user == current_user}[0].name, chain_path(chain) %> <br>
+        <%= "#{chain.last_message.content[0,30]}..." %> <br>
+        <small><%= I18n.l(chain.messages.max_by{ |message| message.created_at }.created_at, format: :long) %></small>
+        <br><br>
+    <% end %>
+<% end %>
+
