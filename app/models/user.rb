@@ -51,11 +51,17 @@ class User < ApplicationRecord
       self.created_at.strftime("%B %e, %Y")
     end
 
+    def formatted_birthday
+      self.birthday.strftime("%m/%d/%Y")
+    end
+
     private
 
     def strip_name
       self.name = name.strip
     end
+
+
 
         
 
