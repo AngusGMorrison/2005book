@@ -48,7 +48,7 @@ class ProfilesController < ApplicationController
     params.require(:profile).permit(
       :websites,
       :interested_in,
-      :political_views,
+      :political_view_id,
       :interests,
       :books,
       :movies,
