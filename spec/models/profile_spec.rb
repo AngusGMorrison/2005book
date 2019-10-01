@@ -24,10 +24,9 @@ RSpec.describe Profile, type: :model do
       studies: Faker::Lorem.sentence(word_count: 2),
       phone_number: Faker::PhoneNumber.phone_number ,
       screenname: Faker::Lorem.sentence(word_count: 1),
-      looking_for: Faker::Lorem.sentence(word_count: 1),
       interested_in: Faker::Lorem.sentence(word_count: 2),
       relationship_status: Faker::Lorem.sentence(word_count: 2),
-      political_views: Faker::Lorem.sentence(word_count: 1),
+      political_view_id: PoliticalView.all.sample,
       interests: Faker::Lorem.sentence(word_count: 5),
       movies: Faker::Lorem.sentence(word_count: 3),
       music: Faker::Music.band,
@@ -41,15 +40,15 @@ RSpec.describe Profile, type: :model do
 
   it "generates a URL-safe slug" do
     user = User.create(
-      name: "Te'st Use?r^",
+      name: "Steve McGee",
       mod_id: @mod.id,
       email: "test2@email.com",
       password: "password",
-      accepted_terms: true)  
+      accepted_terms: true)
     profile = Profile.create(user_id: user.id)
     profile.generate_slug
     
-    expect(profile.slug).to eq("te'st-use-r-2")
+    expect(profile.slug).to eq("steve-mcgee-2")
   end
 
 end
