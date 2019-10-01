@@ -59,7 +59,7 @@ class ProfilesController < ApplicationController
       :email,
       :screenname,
       :phone_number,
-      :looking_for => [],
+      :looking_for_options => [],
       user: [
         :name,
         :email,

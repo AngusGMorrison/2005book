@@ -28,6 +28,13 @@ class Profile < ApplicationRecord
     update_profile_attributes(permitted_params)
   end
 
+  def formatted_looking_for
+    looking_for_array = self.looking_for_options.each_with_object([]) do |lfo, array|
+      array << lfo.name
+    end
+    looking_for_array.join(", ")
+  end
+
 
   private
 
@@ -48,8 +55,8 @@ class Profile < ApplicationRecord
   def update_looking_for(permitted_params)
     self.looking_for_options.clear
 
-    if permitted_params[:looking_for]
-      permitted_params[:looking_for].each do |selection|
+    if permitted_params[:looking_for_options]
+      permitted_params[:looking_for_options].each do |selection|
         lfo = LookingForOption.find(selection)
         self.looking_for_options << lfo
       end
@@ -65,7 +72,7 @@ class Profile < ApplicationRecord
   end
 
   def update_profile_attributes(params)
-    params_to_reject = [ "user", "looking_for", "political_views" ]
+    params_to_reject = [ "user", "looking_for_options", "political_views" ]
     profile_params = params.reject { |k, v| params_to_reject.include?(k) }
     self.update(profile_params)
   end
