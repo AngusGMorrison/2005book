@@ -8,8 +8,11 @@ class User < ApplicationRecord
     has_many :sent_messages, foreign_key: :sender_id, class_name: :Message
     has_many :recevied_messages, foreign_key: :receiver_id, class_name: :Message 
 
-    has_many :friendships
-    has_many :friends, through: :friendships, source: :friend
+    has_many :friendships_as_user_1, foreign_key: :user_1_id, class_name: :Friendship
+    has_many :friendships_as_user_2, foreign_key: :user_2_id, class_name: :Friendship
+
+    has_many :friend_requests_as_requestor, foreign_key: :requestor_id, class_name: :FriendRequest
+    has_many :friend_requests_as_receiver, foreign_key: :receiver_id, class_name: :FriendRequest
 
     has_many :groups, foreign_key: :admin_id
 
@@ -17,34 +20,34 @@ class User < ApplicationRecord
 
     before_validation :strip_name
 
-    def sent_messages
-        Message.all.select{ |message| message.sender_id == self.id }
+    # Methods for Friendships
+
+    def friendships 
+        self.friendships_as_user_1 + self.friendships_as_user_2
     end
 
-    def received_messages
-        Message.all.select{ |message| message.receiver_id == self.id }
+    def friend_ids
+        self.friendships.map{ |friendship| [friendship.user_1_id, friendship.user_2_id] }.flatten.reject{ |id| id == self.id }
     end
+
+    def friends
+        self.friend_ids.map{ |friend_id| User.find(friend_id) }
+    end
+
+    # Methods for FriendRequests
+
+    def friend_requests 
+        self.friend_requests_as_requestor + self.friend_requests_as_receiver 
+    end
+
+    def friend_request_ids
+        self.friend_requests.map{ |friend_request| [friend_request.requestor_id, friend_request.receiver_id] }.flatten.reject{ |id| id == self.id }
+    end
+
+    # Other methods
 
     def mod_name
         Mod.find(self.mod_id).name
-    end
-
-    # returns an array of a user's friend requests
-    def friend_requests
-        Friendship.all.select{ |friendship| friendship.status == "Pending" && friendship.friend_id == self.id }
-    end
-
-    # returns an array of all of the user's friend requests which they have sent
-    def pending_requests
-        Friendship.all.select{ |friendship| friendship.status == "Pending" && friendship.user_id == self.id }
-    end
-
-    # returns an array of Users who are friends with this instance of user (where Frienship status == "Accepted")
-    def all_friends
-        accepted_friendships = Friendship.all.select{ |friendship| friendship.status == "Accepted" }
-        friends_1 = accepted_friendships.map{ |friendship| User.find(friendship.user_id) }.reject{ |user| user == self }
-        friends_2 = accepted_friendships.map{ |friendship| User.find(friendship.friend_id) }.reject{ |friend| friend == self.id }
-        all_friends = (friends_1 << friends_2).flatten!
     end
 
     def member_since

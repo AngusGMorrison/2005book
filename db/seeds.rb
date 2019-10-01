@@ -1,6 +1,6 @@
 require 'faker'
 
-PHOTO_URLS = [
+photo_urls = [
   "https://live.staticflickr.com/5252/5403292396_0804de9bcf_b.jpg", 
   "https://i.dailymail.co.uk/i/pix/2013/08/29/article-2405475-1B8389EE000005DC-718_634x550.jpg",
   "https://d2jqdfju7ec8o3.cloudfront.net/2019/21/j6g7dw/7tg8hq.snsg8c.im.lg.jpg",
@@ -19,6 +19,7 @@ PHOTO_URLS = [
 Mod.delete_all
 User.delete_all
 Group.delete_all
+FriendRequest.delete_all
 Friendship.delete_all
 Message.delete_all
 GroupUser.delete_all
@@ -77,7 +78,7 @@ puts "#{PoliticalView.all.length} political views created"
       music: Faker::Music.band,
       websites: Faker::Internet.url,
       about_me: Faker::Lorem.sentence(word_count: 10),
-      photo_url: PHOTO_URLS.sample
+      photo_url: photo_urls.sample
     )
 
     Profile.last.generate_slug
@@ -105,9 +106,9 @@ end
 puts "#{GroupUser.all.length} people joined groups"
 
 
-# Create friendships
+# Create friends
 20.times do 
-    Friendship.find_or_create_by(status: "Accepted", user_id: User.all.sample.id, friend_id: User.all.sample.id)
+    Friendship.find_or_create_by(user_1: User.all.sample, user_2: User.all.sample)
 end
 
 puts "#{Friendship.all.length} friendships created"
@@ -144,59 +145,59 @@ mark_profile = Profile.create(
   music: Faker::Music.band,
   websites: Faker::Internet.url,
   about_me: Faker::Lorem.sentence(word_count: 10),
-  photo_url: PHOTO_URLS.sample
+  photo_url: photo_urls.sample
 )
 
 mark_profile.generate_slug
 
-#Give Mark 10 friends
-10.times do 
-    Friendship.create(status: "Accepted", user_id: mark.id, friend_id: User.all.sample.id)
+#Give Mark 5 friends
+5.times do 
+    Friendship.create(user_1_id: mark.id, user_2_id: User.all.sample.id)
 end
 
-#Create 10 messages which Mark has sent
-10.times do 
-    Message.create(sender_id: mark.id, receiver_id: mark.friends.sample.id, subject: Faker::Lorem.sentence(word_count: 2), content: Faker::Lorem.sentence(word_count: 15))
-end
+# #Create 10 messages which Mark has sent
+# 10.times do 
+#     Message.create(sender_id: mark.id, receiver_id: mark.friends.sample.id, content: Faker::Lorem.sentence(word_count: 15))
+# end
 
-#Create 10 messages which Mark has received
-10.times do 
-    Message.create(sender_id: mark.friends.sample.id, receiver_id: mark.id, subject: Faker::Lorem.sentence(word_count: 2), content: Faker::Lorem.sentence(word_count: 15))
-end
+# #Create 10 messages which Mark has received
+# 10.times do 
+#     Message.create(sender_id: mark.friends.sample.id, receiver_id: mark.id, subject: Faker::Lorem.sentence(word_count: 2), content: Faker::Lorem.sentence(word_count: 15))
+# end
 
-puts "#{mark.name} has been created with #{mark.friends.length} friends. He has sent #{mark.sent_messages.length} messages and received #{mark.received_messages.length} messages."
+puts "#{mark.name} has been created with #{mark.friend_ids.length} friends."
 
 
-#TEST PROFILE NO.2 FOR EDUARDO
+# #TEST PROFILE NO.2 FOR EDUARDO
 
-eduardo = User.create(
-    name: "Eduardo Saverin",
-    email: "eduardo@facebook.com",
-    password: "password1",
-    mod_id: 1,
-    accepted_terms: true
-)
+# eduardo = User.create(
+#     name: "Eduardo Saverin",
+#     email: "eduardo@facebook.com",
+#     password: "password1",
+#     mod_id: 1,
+#     accepted_terms: true
+# )
 
-eduardo_profile = Profile.create(
-  user_id: eduardo.id,
-  sex: "Male",
-  studies: Faker::Lorem.sentence(word_count: 2),
-  phone_number: Faker::PhoneNumber.phone_number ,
-  screenname: Faker::Lorem.sentence(word_count: 1),
-  looking_for: Faker::Lorem.sentence(word_count: 1),
-  relationship_status: Faker::Lorem.sentence(word_count: 2),
-  political_view_id: 3,
-  interests: Faker::Lorem.sentence(word_count: 5),
-  movies: Faker::Lorem.sentence(word_count: 3),
-  music: Faker::Music.band,
-  websites: Faker::Internet.url,
-  about_me: Faker::Lorem.sentence(word_count: 10),
-  photo_url: PHOTO_URLS.sample
-)
+# eduardo_profile = Profile.create(
+#   user_id: eduardo.id,
+#   sex: "Male",
+#   studies: Faker::Lorem.sentence(word_count: 2),
+#   phone_number: Faker::PhoneNumber.phone_number ,
+#   screenname: Faker::Lorem.sentence(word_count: 1),
+#   looking_for: Faker::Lorem.sentence(word_count: 1),
+#   relationship_status: Faker::Lorem.sentence(word_count: 2),
+#   political_view_id: 3,
+#   interests: Faker::Lorem.sentence(word_count: 5),
+#   movies: Faker::Lorem.sentence(word_count: 3),
+#   music: Faker::Music.band,
+#   websites: Faker::Internet.url,
+#   about_me: Faker::Lorem.sentence(word_count: 10),
+#   photo_url: photo_urls.sample
+# )
 
-eduardo_profile.generate_slug
+# eduardo_profile.generate_slug
 
-puts "#{eduardo.name} has been created with #{eduardo.friends.length} friends. He has sent #{eduardo.sent_messages.length} messages and received #{eduardo.received_messages.length} messages."
+# puts "#{eduardo.name} has been created with #{eduardo.friends.length} friends."
 
 
 
