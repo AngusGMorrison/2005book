@@ -1,15 +1,17 @@
+<%# <%locals: {current_user: current_user, user: request.request_initiator}%>
+
 <%# if a Friendship instance already exists between the two users...  %>
-<% if @friendship = Friendship.find_by(user_id: current_user.id, friend_id: user.id) || @friendship = Friendship.find_by(user_id: user.id, friend_id: current_user.id)%>
+<% if @friendship = Friendship.get_existing_friendship(current_user,user) %>
     
-    <%= form_for @friendship, url: "/friendships/#{@friendship.id}", html: {method: "patch"} do |f| %>
-        <%if @friendship.status == "Accepted" #current user and user are friends %>
-            <%# PLACEHOLDER FOR DELETE FORM%>
-        <%elsif @friendship.friend_id == current_user.id && @friendship.status == "Pending" #User has already sent a friendship request; current user has not responded yet %>
-            <%# Accept Friend Request%>
+    <%= form_for @friendship, url: "/friendships/#{@friendship.id}" do |f| %>
+        <%if @friendship.status == "Accepted" %>
+            <%# Don't show a form %>
+        <%elsif @friendship.request_receiver == current_user && @friendship.status == "Pending" %>
+            <%= f.hidden_field :user_id, value: @friendship.user_id %>
+            <%= f.hidden_field :friend_id, value: @friendship.friend_id %>
             <%= f.hidden_field :status, value: "Accepted" %>
             <%= f.submit "Accept Friend Request" %>
-            <%# PLACEHOLDER FOR DELETE FORM%>
-        <%elsif @friendship.user_id == current_user.id && @friendship.status == "Pending" #Current User has already sent a friendship request; user has not responded yet %>
+        <%elsif @friendship.request_initiator == current_user && @friendship.status == "Pending" %>
             <button type="button">Friend Request Pending</button>
         <% else %>
             <%# DO NOTHING %>
@@ -27,3 +29,5 @@
     <% end %>
 
 <% end %>
+
+<%# , url: "/friendships/#{@friendship.id}", html: {method: "patch"} %>

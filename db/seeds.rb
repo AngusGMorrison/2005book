@@ -1,6 +1,6 @@
 require 'faker'
 
-PHOTO_URLS = [
+photo_urls = [
   "https://live.staticflickr.com/5252/5403292396_0804de9bcf_b.jpg", 
   "https://i.dailymail.co.uk/i/pix/2013/08/29/article-2405475-1B8389EE000005DC-718_634x550.jpg",
   "https://d2jqdfju7ec8o3.cloudfront.net/2019/21/j6g7dw/7tg8hq.snsg8c.im.lg.jpg",
@@ -57,7 +57,7 @@ puts "#{Mod.all.length} mods created"
       music: Faker::Music.band,
       websites: Faker::Internet.url,
       about_me: Faker::Lorem.sentence(word_count: 10),
-      photo_url: PHOTO_URLS.sample
+      photo_url: photo_urls.sample
     )
 
     Profile.last.generate_slug
@@ -93,9 +93,9 @@ end
 puts "#{Friendship.all.length} friendships created"
 
 
-# Create threads
+# Create chains
 10.times do 
-  Chain.create(subject: Faker::Lorem.sentence(word_count: 2))
+  Chain.create()
 end
 
 puts "#{Chain.all.length} chains started"
@@ -138,24 +138,27 @@ mark_profile = Profile.create(
   music: Faker::Music.band,
   websites: Faker::Internet.url,
   about_me: Faker::Lorem.sentence(word_count: 10),
-  photo_url: PHOTO_URLS.sample
+  photo_url: photo_urls.sample
 )
 
 mark_profile.generate_slug
 
 # Give Mark 10 friends
 10.times do 
-    Friendship.create(status: "Accepted", user_id: mark.id, friend_id: User.all.sample.id)
+    @friendship = Friendship.new(status: "Accepted", user_id: mark.id, friend_id: User.all.sample.id)
+    if @friendship.valid?
+      @friendship.save 
+    end
 end
 
 # Give Mark message chains with messages
-mark_chains = []
+marks_message_chains = []
 5.times do 
-  mark_chains << Chain.create(subject: Faker::Lorem.sentence(word_count: 2))
+  marks_message_chains << Chain.create()
 end
 
-mark_chains.each do |chain|
-  friend = mark.friends.sample
+marks_message_chains.each do |chain|
+  friend = mark.accepted_friends.sample
   # give each chain four messages
   2.times do 
     Message.create(chain_id: chain.id, sender_id: mark.id, receiver_id: friend.id, content: Faker::Lorem.sentence(word_count: 5))
@@ -163,7 +166,7 @@ mark_chains.each do |chain|
   end
 end
 
-puts "#{mark.name} has been created with #{mark.friends.length} friends. He has sent #{mark.sent_messages.length} messages and received #{mark.received_messages.length} messages within #{mark.chains.length} chains."
+puts "#{mark.name} has been created with #{mark.accepted_friends.length} friends. He has sent #{mark.sent_messages.length} messages and received #{mark.received_messages.length} messages within #{mark.chains.length} chains."
 
 
 # Test Profile No.2 - Eduardo
@@ -191,12 +194,12 @@ eduardo_profile = Profile.create(
   music: Faker::Music.band,
   websites: Faker::Internet.url,
   about_me: Faker::Lorem.sentence(word_count: 10),
-  photo_url: PHOTO_URLS.sample
+  photo_url: photo_urls.sample
 )
 
 eduardo_profile.generate_slug
 
-puts "#{eduardo.name} has been created with #{eduardo.friends.length} friends. He has sent #{eduardo.sent_messages.length} messages and received #{eduardo.received_messages.length} messages."
+puts "#{eduardo.name} has been created with #{eduardo.accepted_friends.length} friends. He has sent #{eduardo.sent_messages.length} messages and received #{eduardo.received_messages.length} messages."
 
 
 
