@@ -17,7 +17,6 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    byebug
     @profile = find_profile_from_slug
     @user = @profile.user
 

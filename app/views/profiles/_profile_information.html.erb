@@ -18,7 +18,7 @@
     <li>Mod: <%= profile_owner.mod.name %></li>
     <li>Studies: <%= profile.studies %></li>
     <li>Sex: <%= profile.sex %></li>
-    <li>Birthday: <%= profile_owner.formatted_birthday %></li>
+    <li>Birthday: <%= profile_owner.formatted_birthday if profile_owner.birthday %></li>
     <li>Home Town: <%= profile.hometown %></li>
   </ul>
   
@@ -34,7 +34,7 @@
   <ul>
     <li>Looking For: <%= profile.looking_for %></li>
     <li>Interested In: <%= profile.interested_in %></li>
-    <li>Political Views: <%= profile.political_views  %></li>
+    <li>Political Views: <%= profile.political_view  %></li>
     <li>Interests: <%= profile.interests %></li>
     <li>Favorite Books: <%= profile.books %></li>
     <li>Favorite Movies: <%= profile.movies %></li>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_30_181527) do
+ActiveRecord::Schema.define(version: 2019_10_01_124538) do
 
   create_table "friendships", force: :cascade do |t|
     t.string "status"
@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 2019_09_30_181527) do
     t.string "looking_for"
     t.string "interested_in"
     t.string "relationship_status"
-    t.string "political_views"
     t.string "interests"
     t.string "movies"
     t.string "music"
@@ -87,6 +86,7 @@ ActiveRecord::Schema.define(version: 2019_09_30_181527) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "hometown"
     t.string "books"
+    t.integer "political_view_id"
   end
 
   create_table "users", force: :cascade do |t|

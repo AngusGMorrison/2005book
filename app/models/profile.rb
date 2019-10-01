@@ -24,6 +24,7 @@ class Profile < ApplicationRecord
 
   def update_after_edit(permitted_params)
     update_looking_for(permitted_params)
+    update_political_views(permitted_params)
     update_profile_attributes(permitted_params)
   end
 
@@ -55,8 +56,18 @@ class Profile < ApplicationRecord
     end
   end
 
+  def update_political_views(permitted_params)
+    if permitted_params[:political_views]
+      self.political_views = PoliticalView.find(permitted_params[:political_views])
+      byebug
+    else
+      self.political_views.clear
+    end
+  end
+
   def update_profile_attributes(params)
-    profile_params = params.reject { |k, v| k == "user" || k == "looking_for" }
+    params_to_reject = [ "user", "looking_for", "political_views" ]
+    profile_params = params.reject { |k, v| params_to_reject.include?(k) }
     self.update(profile_params)
   end
 

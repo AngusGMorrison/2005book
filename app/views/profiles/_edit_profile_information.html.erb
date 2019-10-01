@@ -31,7 +31,8 @@
       start_year: 1930,
       end_year: 2001,
       order: [:month, :day, :year],
-      prompt: true
+      prompt: true,
+      selected: user.birthday
     } %> <br>
   <% end %>
 
@@ -64,8 +65,8 @@
   <%= edit_form.label :interested_in, "Interested In:" %>
   <%= edit_form.text_field :interested_in %> <br>
 
-  <%= edit_form.label :political_views, "Political Views:" %>
-  <%= edit_form.collection_select :political_views, political_views, :id, :name, include_blank: true %> <br>
+  <%= edit_form.label :political_view_id, "Political Views:" %>
+  <%= edit_form.collection_select :political_view_id, political_views, :id, :name, include_blank: true %> <br>
 
   <%= edit_form.label :interests, "Interests:" %>
   <%= edit_form.text_area :interests %> <br>
