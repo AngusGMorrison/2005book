@@ -11,7 +11,6 @@ class ProfilesController < ApplicationController
   def edit
     @current_user = current_user
     @profile = find_profile_from_slug
-    @mods = Mod.all
     @looking_for_options = LookingForOption.all
     @political_views = PoliticalView.all
   end

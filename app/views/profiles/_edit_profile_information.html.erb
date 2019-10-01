@@ -16,7 +16,7 @@
 
   <%= edit_form.fields_for :user do |user_form| %>
     <%= user_form.label :mod_id, "Mod:" %>
-    <%= user_form.collection_select :mod_id, mods, :id, :name, { selected: user.mod.id } %> <br>
+    <%= user_form.collection_select :mod_id, Mod.all, :id, :name, { selected: user.mod.id } %> <br>
   <% end %>
 
   <%= edit_form.label :studies, "Studies:" %>
