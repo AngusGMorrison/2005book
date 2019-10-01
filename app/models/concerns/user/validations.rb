@@ -2,7 +2,7 @@ module User::Validations
   extend ActiveSupport::Concern
 
   included do
-    validates :mod, :email, :password, {
+    validates :mod, :email, {
                 presence: true
               }
 
@@ -27,11 +27,16 @@ module User::Validations
                 format: {
                   with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
                   message: "format is invalid"
-                }
+                },
               }
 
     validates :accepted_terms, {
                 acceptance: true
               }
+
+    validates :password, {
+      presence: true,
+      on: :create
+    }
   end
 end

@@ -8,15 +8,15 @@
 
   <%= edit_form.fields_for :user do |user_form| %>
     <%= user_form.label :name, "Name:" %>
-    <%= user_form.text_field :name %>
+    <%= user_form.text_field :name, value: user.name %>
   <% end %>
 
 
   <h3>Basic Info:</h3>
 
   <%= edit_form.fields_for :user do |user_form| %>
-    <%= user_form.label :mod, "Mod:" %>
-    <%= user_form.collection_select :mod, mods, :id, :name %> <br>
+    <%= user_form.label :mod_id, "Mod:" %>
+    <%= user_form.collection_select :mod_id, mods, :id, :name, { selected: user.mod.id } %> <br>
   <% end %>
 
   <%= edit_form.label :studies, "Studies:" %>
@@ -43,7 +43,7 @@
 
   <%= edit_form.fields_for :user do |user_form| %>
     <%= user_form.label :email, "Email:" %>
-    <%= user_form.email_field :email %> <br>
+    <%= user_form.email_field :email, value: user.email %> <br>
   <% end %>
 
   <%= edit_form.label :screenname, "Screenname:" %>

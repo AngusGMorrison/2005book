@@ -21,7 +21,11 @@ class ProfilesController < ApplicationController
     @user = @profile.user
 
     update_profile_and_user
-    redirect_when_updates_valid
+    if @profile.valid? && @user.valid?
+      redirect_to profile_path(current_user.profile.slug)
+    else
+      render :edit
+    end
   end
 
   private
@@ -37,7 +41,7 @@ class ProfilesController < ApplicationController
 
   def update_profile_and_user
     @profile.update_after_edit(permitted_params)
-    @user.update_after_profile_edit(permitted_params[:user])
+    @user.update(permitted_params[:user])
   end
 
   def permitted_params
@@ -63,17 +67,9 @@ class ProfilesController < ApplicationController
         :"birthday(1i)",
         :"birthday(2i)",
         :"birthday(3i)",
-        :mod
+        :mod_id
       ]  
     ) 
-  end
-
-  def redirect_when_updates_valid
-    if @profile.valid? && @user.valid?
-      redirect_to profile_path(current_user.profile.slug)
-    else
-      render :edit
-    end
   end
 
 end

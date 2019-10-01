@@ -23,9 +23,7 @@ class Profile < ApplicationRecord
   end
 
   def update_after_edit(permitted_params)
-    unless permitted_params[:looking_for].empty?
-      update_looking_for(permitted_params[:looking_for])
-    end
+    update_looking_for(permitted_params)
     update_profile_attributes(permitted_params)
   end
 
@@ -46,18 +44,20 @@ class Profile < ApplicationRecord
     name << @profile_user.id
   end
 
-  def update_looking_for(looking_for_selections)
+  def update_looking_for(permitted_params)
     self.looking_for_options.clear
-    looking_for_selections.each do |selection|
-      lfo = LookingForOption.find(selection)
-      self.looking_for_options << lfo
+
+    if permitted_params[:looking_for]
+      permitted_params[:looking_for].each do |selection|
+        lfo = LookingForOption.find(selection)
+        self.looking_for_options << lfo
+      end
     end
   end
 
   def update_profile_attributes(params)
     profile_params = params.reject { |k, v| k == "user" || k == "looking_for" }
     self.update(profile_params)
-    byebug
   end
 
 end
