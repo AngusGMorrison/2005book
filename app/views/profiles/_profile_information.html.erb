@@ -10,7 +10,7 @@
   <ul>
     <li>Name: <%= profile_owner.name %></li>
     <li>Member Since: <%= profile_owner.member_since %></li>
-    <li>Last Update: <%= profile.last_update %></li>
+    <li>Last Update: <%= profile.get_last_updated_at %></li>
   </ul>
 
   <h3>Basic Info:</h3>
@@ -32,7 +32,7 @@
 
   <h3>Personal Info:</h3>
   <ul>
-    <li>Looking For: <%= profile.formatted_looking_for %></li>
+    <li>Looking For: <%= profile.get_formatted_looking_for_options %></li>
     <li>Interested In: <%= profile.interested_in %></li>
     <li>Political Views: <%= profile.political_view.name if profile.political_view  %></li>
     <li>Interests: <%= profile.interests %></li>

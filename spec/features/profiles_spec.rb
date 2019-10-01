@@ -4,7 +4,6 @@ RSpec.describe "New profile", type: :feature do
   let(:fill_email) { fill_in "user_email", with: "test@test.com" }
   let(:fill_password) { fill_in "user_password", with: "password" }
   let(:submit_login) { click_on "Login" }
-  # let(:edit_profile) { visit edit_profile_path(@slug1) }
   let(:submit_edits) { click_on "Update Profile" }
 
   def create_test_objects
