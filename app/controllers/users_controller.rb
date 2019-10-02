@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def index
     # returns an array of all user objects, excluding current user
+    @current_user = current_user
     @users = User.all.reject{ |user| user.id == current_user.id }
   end
 
@@ -24,6 +25,7 @@ class UsersController < ApplicationController
 
   # returns an array of friends (where Friendship status == "Accepted)
   def friends
+    @current_user = current_user
     @friends = current_user.friends
   end
 
