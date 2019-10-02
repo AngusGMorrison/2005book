@@ -6,7 +6,7 @@
     You don't have any friend requests!
 <% else %>
      <% @requests.each do |request| %>
-        <%= request.get_requestor.name %>
+        <%= link_to request.get_requestor.name, profile_path(request.get_requestor.profile.slug) %>
         <%= render partial: "accept_form", locals: {friendship: Friendship.new, user_1_id: request.get_requestor.id, user_2_id: request.get_receiver.id }%>
         <%= render partial: "delete_form", locals: {id: request.id} %>
        
@@ -20,7 +20,7 @@
     You haven't sent any friend requests!
 <% else %>
     <% @pending_requests.each do |request| %>
-        <%= request.get_receiver.name %> <br>
+        <%= link_to request.get_receiver.name, profile_path(request.get_receiver.profile.slug) %> <br>
         <button>Friend Request Pending</button> <br>
         <br>
     <% end %>
