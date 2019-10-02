@@ -1,11 +1,45 @@
 <div>
   <h2>Information</h2>
-  <%= link_to edit_user_path %>
+  <% if current_user == profile_owner %>
+    <%= link_to "[ edit ]", edit_profile_path(profile.slug) %>
+  <% end %>
 </div>
 
 <div>
   <h3>Account Info:</h3>
   <ul>
-    <li><%= user.name %></li>
+    <li>Name: <%= profile_owner.name %></li>
+    <li>Member Since: <%= profile_owner.member_since %></li>
+    <li>Last Update: <%= profile.get_last_updated_at %></li>
   </ul>
+
+  <h3>Basic Info:</h3>
+  <ul>
+    <li>Mod: <%= profile_owner.mod.name %></li>
+    <li>Studies: <%= profile.studies %></li>
+    <li>Sex: <%= profile.sex %></li>
+    <li>Birthday: <%= profile_owner.formatted_birthday if profile_owner.birthday %></li>
+    <li>Home Town: <%= profile.hometown %></li>
+  </ul>
+  
+  <h3>Contact Info:</h3>
+  <ul>
+    <li>Email: <%= profile_owner.email %></li>
+    <li>Screenname: <%= profile.screenname %></li>
+    <li>Phone: <%= profile.phone_number %></li>
+    <li>Websites: <%= profile.websites %></li>
+  </ul>
+
+  <h3>Personal Info:</h3>
+  <ul>
+    <li>Looking For: <%= profile.get_formatted_looking_for_options %></li>
+    <li>Interested In: <%= profile.interested_in %></li>
+    <li>Political Views: <%= profile.political_view.name if profile.political_view  %></li>
+    <li>Interests: <%= profile.interests %></li>
+    <li>Favorite Books: <%= profile.books %></li>
+    <li>Favorite Movies: <%= profile.movies %></li>
+    <li>Favorite Music: <%= profile.music %></li>
+    <li>About Me: <%= profile.about_me %></li>
+  </ul>
+
 </div>

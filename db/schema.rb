@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_30_152949) do
+ActiveRecord::Schema.define(version: 2019_10_01_124538) do
 
   create_table "chains", force: :cascade do |t|
     t.string "subject"
@@ -36,6 +36,12 @@ ActiveRecord::Schema.define(version: 2019_09_30_152949) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "looking_for_options", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "receiver_id"
@@ -51,6 +57,19 @@ ActiveRecord::Schema.define(version: 2019_09_30_152949) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "political_views", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "profile_looking_for_options", force: :cascade do |t|
+    t.integer "profile_id"
+    t.integer "looking_for_option_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.string "slug"
     t.integer "user_id"
@@ -61,13 +80,17 @@ ActiveRecord::Schema.define(version: 2019_09_30_152949) do
     t.string "looking_for"
     t.string "interested_in"
     t.string "relationship_status"
-    t.string "political_views"
     t.string "interests"
     t.string "movies"
     t.string "music"
     t.string "websites"
     t.string "about_me"
     t.string "photo_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "hometown"
+    t.string "books"
+    t.integer "political_view_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -78,6 +101,7 @@ ActiveRecord::Schema.define(version: 2019_09_30_152949) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "accepted_terms", default: false
+    t.datetime "birthday"
   end
 
 end

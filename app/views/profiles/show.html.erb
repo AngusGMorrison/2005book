@@ -1,6 +1,9 @@
-<h1><%= @user.name %></h1>
-<%= @user.mod.name %>
-<%= @user.email %>
-<%= link_to "Log out", logout_path %>
+<h1><%= @profile_owner.name %></h1>
+<%= @profile_owner.mod.name %>
 
-<!-- <%# render partial: "profile_information", locals: { user: @user } %> -->
+<%= render partial: "profile_information",
+          locals: {
+            current_user: @current_user,
+            profile_owner: @profile_owner,
+            profile: @profile
+          } %>

@@ -17,6 +17,7 @@ class CreateProfiles < ActiveRecord::Migration[6.0]
       t.string :websites
       t.string :about_me
       t.string :photo_url
+      t.timestamps
     end
   end
 end

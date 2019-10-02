@@ -17,10 +17,7 @@ class User < ApplicationRecord
 
     has_secure_password
 
-    # to get all messages a user has sent
-    # def messages
-    #     Message.joins([{sender: :user}, {receiver: :user}]).where(users: {id: self.id})
-    # end
+    before_validation :strip_name
 
     def messages
         self.sent_messages + self.received_messages
@@ -53,6 +50,23 @@ class User < ApplicationRecord
         all_friendships = self.friendships.select{ |friendship| friendship.status == "Accepted" }
         all_friendships.map{ |friendship| [User.find(friendship.user_id), User.find(friendship.friend_id)] }.flatten.reject{ |friend| friend == self }
     end
+
+    def member_since
+      self.created_at.strftime("%B %e, %Y")
+    end
+
+    def formatted_birthday
+      self.birthday.strftime("%m/%d/%Y")
+    end
+
+    private
+
+    def strip_name
+      self.name = name.strip
+    end
+
+
+
         
 
     

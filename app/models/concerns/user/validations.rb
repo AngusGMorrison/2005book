@@ -2,7 +2,7 @@ module User::Validations
   extend ActiveSupport::Concern
 
   included do
-    validates :mod, :email, :password, {
+    validates :mod, :email, {
                 presence: true
               }
 
@@ -13,6 +13,10 @@ module User::Validations
                 length: {
                   in: 2..30,
                   message: "must be 2-30 characters long"
+                },
+                format: {
+                  with: /\A([a-zA-Z]+[ \-']?)+[a-zA-Z]+\z/,
+                  message: "should start and end with a letter and contain only letters, - or '"
                 }
               }
 
@@ -23,11 +27,16 @@ module User::Validations
                 format: {
                   with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
                   message: "format is invalid"
-                }
+                },
               }
 
     validates :accepted_terms, {
                 acceptance: true
               }
+
+    validates :password, {
+      presence: true,
+      on: :create
+    }
   end
 end

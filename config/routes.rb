@@ -10,11 +10,12 @@ Rails.application.routes.draw do
   get "/users/index", to: "users#index", as: "users" # for the purposes of testing friendships feature
   get "/register", to: "users#new", as: "register"
   post "/register", to: "users#create", as: "create_user"
-
   get "/users/:id/friends", to: "users#friends", as: "friends"
 
   # Profile
   get "/profiles/:slug", to: "profiles#show", as: "profile"
+  get "/profiles/:slug/edit", to: "profiles#edit", as: "edit_profile"
+  patch "/profiles/:slug", to: "profiles#update"
 
   # Chains
   get "/chains", to: "chains#index", as: "chains"

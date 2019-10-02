@@ -1,7 +1,7 @@
 <h1>All Users</h1>
 
 <% @users.each do |user| %>
-    <%= user.name %>
+    <%= link_to user.name, profile_path(user.profile.slug) %>
     <%= render partial: "/friendships/post_create_form", locals: {current_user: current_user, user: user} %>
     <%# if an instance of Friendship already exists, show either the "Accept Request" or "Remove Friend" button%>
     <% if @friendship = Friendship.find_by(user_id: current_user.id, friend_id: user.id) || @friendship = Friendship.find_by(user_id: user.id, friend_id: current_user.id) %>

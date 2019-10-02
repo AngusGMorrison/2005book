@@ -1,0 +1,93 @@
+<% if user.errors || profile.errors %>
+  <%= render partial: "all_errors", locals: { user: user, profile: profile }  %>
+<% end %>
+
+<%= form_with model: profile,
+              url: profile_path(profile.slug),
+              method: :patch,
+              local: true do |edit_form| %>
+
+  <h3>Account Info:</h3>
+
+  <%= edit_form.fields_for :user do |user_form| %>
+    <%= user_form.label :name, "Name:" %>
+    <%= user_form.text_field :name, value: user.name %>
+  <% end %>
+
+
+  <h3>Basic Info:</h3>
+
+  <%= edit_form.fields_for :user do |user_form| %>
+    <%= user_form.label :mod_id, "Mod:" %>
+    <%= user_form.collection_select :mod_id, Mod.all, :id, :name, { selected: user.mod.id } %> <br>
+  <% end %>
+
+  <%= edit_form.label :studies, "Studies:" %>
+  <%= edit_form.text_field :studies %> <br>
+
+  <%= edit_form.label :sex, "Sex:" %>
+  <%= edit_form.text_field :sex %> <br>
+
+  <%= edit_form.fields_for :user do |user_form| %>
+    <%= user_form.label :birthday, "Birthday:" %>
+    <%= user_form.date_select :birthday,
+      { 
+        start_year: 1930,
+        end_year: 2001,
+        order: [:month, :day, :year],
+        prompt: true,
+        selected: user.birthday
+      }
+    %> <br>
+  <% end %>
+
+  <%= edit_form.label :hometown, "Home Town:" %>
+  <%= edit_form.text_field :hometown %> <br>
+  
+
+  <h3>Contact Info:</h3>
+
+  <%= edit_form.fields_for :user do |user_form| %>
+    <%= user_form.label :email, "Email:" %>
+    <%= user_form.email_field :email, value: user.email %> <br>
+  <% end %>
+
+  <%= edit_form.label :screenname, "Screenname:" %>
+  <%= edit_form.text_field :screenname %> <br>
+  
+  <%= edit_form.label :phone_number, "Phone number:" %>
+  <%= edit_form.text_field :phone_number %> <br>
+
+  <%= edit_form.label :websites, "Websites:" %>
+  <%= edit_form.text_field :websites %> <br>
+
+
+  <h3>Personal Info:</h3>
+
+  <%= edit_form.label :looking_for_options, "Looking For:" %>
+  <%= edit_form.collection_check_boxes :looking_for_options, LookingForOption.all, :id, :name, { include_hidden: false, checked: profile.get_looking_for_option_ids } %> <br>
+
+  <%= edit_form.label :interested_in, "Interested In:" %>
+  <%= edit_form.text_field :interested_in %> <br>
+
+  <%= edit_form.label :political_view_id, "Political Views:" %>
+  <%= edit_form.collection_select :political_view_id, PoliticalView.all, :id, :name, { include_blank: true, selected: profile.get_political_view_id } %>
+  <br>
+
+  <%= edit_form.label :interests, "Interests:" %>
+  <%= edit_form.text_area :interests %> <br>
+
+  <%= edit_form.label :books, "Favorite Books:" %>
+  <%= edit_form.text_area :books %> <br>
+
+  <%= edit_form.label :movies, "Favorite Movies:" %>
+  <%= edit_form.text_area :movies %> <br>
+
+  <%= edit_form.label :music, "Favorite Music:" %>
+  <%= edit_form.text_area :music %> <br>
+
+  <%= edit_form.label :about_me, "About Me:" %>
+  <%= edit_form.text_area :about_me %> <br>
+
+  <%= edit_form.submit %>
+<% end %>

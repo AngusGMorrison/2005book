@@ -32,11 +32,30 @@ Mod.create(name: "!false")
 puts "#{Mod.all.length} mods created"
 
 
+#Create looking_for_options
+LookingForOption.create(name: "Friendship")
+LookingForOption.create(name: "Dating")
+LookingForOption.create(name: "A Relationship")
+LookingForOption.create(name: "Random play")
+LookingForOption.create(name: "Whatever I can get")
+
+puts "#{LookingForOption.all.length} looking_for_options created"
+
+#Create political views
+PoliticalView.create(name: "Very Conservative")
+PoliticalView.create(name: "Conservative")
+PoliticalView.create(name: "Moderate")
+PoliticalView.create(name: "Liberal")
+PoliticalView.create(name: "Very Liberal")
+
+puts "#{PoliticalView.all.length} political views created"
+
 # Create users
 50.times do 
     User.create(
-        name: Faker::Name.unique.name,
+        name: Faker::Name.name.gsub(/[^a-zA-Z\-\' ]/, ""),
         email: Faker::Internet.unique.email,
+        birthday: Faker::Date.birthday(min_age: 18, max_age: 80),
         password: "123456",
         mod_id: Mod.all.sample.id,
         accepted_terms: true
@@ -46,13 +65,14 @@ puts "#{Mod.all.length} mods created"
       user_id: User.last.id,
       sex: Faker::Gender.binary_type,
       studies: Faker::Lorem.sentence(word_count: 2),
+      hometown: Faker::Address.city,
       phone_number: Faker::PhoneNumber.phone_number,
       screenname: Faker::Lorem.sentence(word_count: 1),
-      looking_for: Faker::Lorem.sentence(word_count: 1),
       interested_in: Faker::Lorem.sentence(word_count: 2),
       relationship_status: Faker::Lorem.sentence(word_count: 2),
-      political_views: Faker::Lorem.sentence(word_count: 1),
+      political_view_id: PoliticalView.all.sample,
       interests: Faker::Lorem.sentence(word_count: 5),
+      books: Faker::Lorem.sentence(word_count: 4),
       movies: Faker::Lorem.sentence(word_count: 3),
       music: Faker::Music.band,
       websites: Faker::Internet.url,
@@ -127,12 +147,11 @@ mark_profile = Profile.create(
   user_id: mark.id,
   sex: "Male",
   studies: Faker::Lorem.sentence(word_count: 2),
-  phone_number: Faker::PhoneNumber.phone_number ,
+  phone_number: Faker::PhoneNumber.phone_number,
   screenname: Faker::Lorem.sentence(word_count: 1),
-  looking_for: Faker::Lorem.sentence(word_count: 1),
   interested_in: Faker::Lorem.sentence(word_count: 2),
   relationship_status: Faker::Lorem.sentence(word_count: 2),
-  political_views: Faker::Lorem.sentence(word_count: 1),
+  political_view_id: 5,
   interests: Faker::Lorem.sentence(word_count: 5),
   movies: Faker::Lorem.sentence(word_count: 3),
   music: Faker::Music.band,
@@ -183,9 +202,8 @@ eduardo_profile = Profile.create(
   phone_number: Faker::PhoneNumber.phone_number ,
   screenname: Faker::Lorem.sentence(word_count: 1),
   looking_for: Faker::Lorem.sentence(word_count: 1),
-  interested_in: Faker::Lorem.sentence(word_count: 2),
   relationship_status: Faker::Lorem.sentence(word_count: 2),
-  political_views: Faker::Lorem.sentence(word_count: 1),
+  political_view_id: 3,
   interests: Faker::Lorem.sentence(word_count: 5),
   movies: Faker::Lorem.sentence(word_count: 3),
   music: Faker::Music.band,

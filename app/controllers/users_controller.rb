@@ -23,10 +23,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user = current_user
-  end
-
   # returns an array of friends (where Friendship status == "Accepted)
   def friends
     @friends = current_user.all_friends
@@ -45,14 +41,8 @@ class UsersController < ApplicationController
   end
 
   def begin_first_session
-    create_profile
+    Profile.create_profile_with_slug(@user.id)
     begin_session
-  end
-
-
-  def create_profile
-    profile = Profile.create(user_id: @user.id)
-    profile.generate_slug
   end
 
   def render_registration_form_with_errors
