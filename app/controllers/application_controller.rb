@@ -19,8 +19,8 @@ class ApplicationController < ActionController::Base
   end
 
   def begin_session
-    session[:user_id] = @user.id
-    redirect_to profile_path(@user.profile.slug)
+    session[:user_id] = @current_user.id
+    redirect_to profile_path(@current_user.profile.slug)
   end
 
 end

@@ -1,3 +1,17 @@
+.widget-header {
+  height: 18px;
+  background-color: var(--primary-blue);
+  padding-left: 2px;
+}
+
+h1.widget-heading {
+  color: white;
+}
+
+.primary-widget-body {
+  padding: 18px 8px;  
+}
+
 p.static-body {
   text-align: center;
 }
@@ -21,3 +35,4 @@ p {
 .primary-widget-button-container {
   margin-left: 40%;
 }
+

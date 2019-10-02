@@ -1,19 +1,62 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Facebook2005</title>
+    <title>2005book</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
+    <%= javascript_pack_tag "application", "data-turbolinks-track": "reload" %>
   </head>
 
   <body>
+    <div class="page-container">
+      <div class="content-container">
+
+        <header class="facebook-banner">
+          <div class="banner-img-container">
+            <%= image_tag"silhouette-logo-left.jpg" %>
+          </div>
+          <div class="banner-logo-nav-container">
+            <div class="logo-container">
+              <%= link_to image_tag("logo-right.jpg"), root_path %>
+            </div>
+            <nav class="banner-nav-container">
+              <% if @current_user.id %>
+                <%# render partial: "layouts/partials/logged_in_nav", locals: { current_user: @current_user } %>
+              <% else %>
+                <%= render partial: "layouts/partials/logged_out_nav" %>
+              <% end %>
+            </nav>
+          </div>
+        </header>
+
+        <aside class="sidebar-container">
+          <% if @current_user.id %>
+            <%# render partial: "sidebar-search-form" %>
+            <%# render partial: "sidebar-logged-in-nav" %>
+          <% else %>
+            <%= render partial: "layouts/partials/sidebar_logged_out_nav" %>
+          <% end %>
+        </aside>
+
+        <section class="primary-content-container">
+            <%= yield %>
+        </section>
+
+        <footer class="footer-container">
+          <nav class="footer-nav">about  contact  jobs  announce  advertise  terms  privacy</nav>
+          <p class="small-print">a Prendergast-Morrison production</p>
+          <p class="small-print">Thefacebook &copy; 2005</p>
+        </footer>
+
+      </div>
+    </div>
+
     <% if current_user.id %>
       <%= render partial: "layouts/navbar"%>
     <% end %>
 
-    <%= yield %>
+    
   </body>
 </html>
