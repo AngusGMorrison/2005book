@@ -1,6 +1,6 @@
 require 'faker'
 
-PHOTO_URLS = [
+photo_urls = [
   "https://live.staticflickr.com/5252/5403292396_0804de9bcf_b.jpg", 
   "https://i.dailymail.co.uk/i/pix/2013/08/29/article-2405475-1B8389EE000005DC-718_634x550.jpg",
   "https://d2jqdfju7ec8o3.cloudfront.net/2019/21/j6g7dw/7tg8hq.snsg8c.im.lg.jpg",
@@ -18,6 +18,7 @@ PHOTO_URLS = [
 Mod.delete_all
 User.delete_all
 Group.delete_all
+FriendRequest.delete_all
 Friendship.delete_all
 Message.delete_all
 GroupUser.delete_all
@@ -77,7 +78,7 @@ puts "#{PoliticalView.all.length} political views created"
       music: Faker::Music.band,
       websites: Faker::Internet.url,
       about_me: Faker::Lorem.sentence(word_count: 10),
-      photo_url: PHOTO_URLS.sample
+      photo_url: photo_urls.sample
     )
 
     Profile.last.generate_slug
@@ -105,9 +106,9 @@ end
 puts "#{GroupUser.all.length} people joined groups"
 
 
-# Create friendships
+# Create friends
 20.times do 
-    Friendship.find_or_create_by(status: "Accepted", user_id: User.all.sample.id, friend_id: User.all.sample.id)
+    Friendship.find_or_create_by(user_1: User.all.sample, user_2: User.all.sample)
 end
 
 puts "#{Friendship.all.length} friendships created"
@@ -133,7 +134,7 @@ end
 
 puts "#{Message.all.length} messages shared"
 
-#Test Profile No. 1 - Mark
+# Test Profile No. 1 - Mark
 
 mark = User.create(
     name: "Mark Zuckerburg",
@@ -157,35 +158,42 @@ mark_profile = Profile.create(
   music: Faker::Music.band,
   websites: Faker::Internet.url,
   about_me: Faker::Lorem.sentence(word_count: 10),
-  photo_url: PHOTO_URLS.sample
+  photo_url: photo_urls.sample
 )
 
 mark_profile.generate_slug
 
-# Give Mark 10 friends
-10.times do 
-    Friendship.create(status: "Accepted", user_id: mark.id, friend_id: User.all.sample.id)
-end
-
-# Give Mark message chains with messages
-mark_chains = []
+#Give Mark 5 friends
 5.times do 
-  mark_chains << Chain.create(subject: Faker::Lorem.sentence(word_count: 2))
+    Friendship.create(user_1_id: mark.id, user_2_id: User.all.sample.id)
 end
 
-mark_chains.each do |chain|
-  friend = mark.friends.sample
-  # give each chain four messages
-  2.times do 
-    Message.create(chain_id: chain.id, sender_id: mark.id, receiver_id: friend.id, content: Faker::Lorem.sentence(word_count: 5))
-    Message.create(chain_id: chain.id, sender_id: friend.id, receiver_id: mark.id, content: Faker::Lorem.sentence(word_count: 5))
-  end
+puts "#{mark.name} has been created with #{mark.friend_ids.length} friends."
+
+#Give Mark 5 friend requests
+5.times do 
+  FriendRequest.create(requestor_id: User.all.sample.id, receiver_id: mark.id)
 end
 
-puts "#{mark.name} has been created with #{mark.friends.length} friends. He has sent #{mark.sent_messages.length} messages and received #{mark.received_messages.length} messages within #{mark.chains.length} chains."
+# Get Mark to send 5 friend requests
+5.times do 
+  FriendRequest.create(requestor_id: mark.id, receiver_id: User.all.sample.id)
+end
+
+puts "Popular guy! #{mark.name} has #{mark.friend_requests.length} friend requests!"
+
+# #Create 10 messages which Mark has sent
+# 10.times do 
+#     Message.create(sender_id: mark.id, receiver_id: mark.friends.sample.id, content: Faker::Lorem.sentence(word_count: 15))
+# end
+
+# #Create 10 messages which Mark has received
+# 10.times do 
+#     Message.create(sender_id: mark.friends.sample.id, receiver_id: mark.id, subject: Faker::Lorem.sentence(word_count: 2), content: Faker::Lorem.sentence(word_count: 15))
+# end
 
 
-# Test Profile No.2 - Eduardo
+# Test Profile No. 2 - Eduardo
 
 eduardo = User.create(
     name: "Eduardo Saverin",
@@ -209,12 +217,12 @@ eduardo_profile = Profile.create(
   music: Faker::Music.band,
   websites: Faker::Internet.url,
   about_me: Faker::Lorem.sentence(word_count: 10),
-  photo_url: PHOTO_URLS.sample
+  photo_url: photo_urls.sample
 )
 
 eduardo_profile.generate_slug
 
-puts "#{eduardo.name} has been created with #{eduardo.friends.length} friends. He has sent #{eduardo.sent_messages.length} messages and received #{eduardo.received_messages.length} messages."
+puts "#{eduardo.name} has been created with #{eduardo.friend_ids.length} friends."
 
 
 

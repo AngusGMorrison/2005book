@@ -1,11 +1,24 @@
 <h1>All Users</h1>
 
 <% @users.each do |user| %>
-    <%= link_to user.name, profile_path(user.profile.slug) %>
-    <%= render partial: "/friendships/post_create_form", locals: {current_user: current_user, user: user} %>
-    <%# if an instance of Friendship already exists, show either the "Accept Request" or "Remove Friend" button%>
-    <% if @friendship = Friendship.find_by(user_id: current_user.id, friend_id: user.id) || @friendship = Friendship.find_by(user_id: user.id, friend_id: current_user.id) %>
-        <%= render partial: "/friendships/delete_form", locals: {current_user: current_user, user: user, friendship: @friendship} %>
+    <%= link_to user.name, profile_path(user.profile.slug) %> <br>
+
+    <% if @friendship = Friendship.get_friendship(current_user, user) %>
+        <%= render partial: "/friendships/delete_form", locals: {friendship: @friendship}%>
     <% end %>
+
+    <% if @friend_request = FriendRequest.get_friend_request(current_user.id, user.id)%>
+        <% if current_user.id == @friend_request.requestor_id %>
+             <button>Friend Request Pending</button> <br>
+        <% else %>
+            <%= render partial: "/friend_requests/accept_form", locals: {friendship: Friendship.new, user_1_id: @friend_request.get_requestor.id, user_2_id: @friend_request.get_receiver.id }%>
+            <%= render partial: "/friend_requests/delete_form", locals: {id: @friend_request.id} %>
+        <% end %>
+    <% end %>
+
+    <% if Friendship.get_friendship(current_user, user).nil? && FriendRequest.get_friend_request(current_user.id, user.id).nil? %>
+        <%= render partial: "/friend_requests/new_form", locals: {friend_request: FriendRequest.new, requestor_id: current_user.id, receiver_id: user.id }%>
+    <% end %>
+
     <br><br>
 <% end %>
