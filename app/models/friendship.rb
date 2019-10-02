@@ -1,15 +1,11 @@
 class Friendship < ApplicationRecord
     include Friendship::Validations
+    
+    belongs_to :user_1, class_name: :User
+    belongs_to :user_2, class_name: :User
 
-    belongs_to :user
-    belongs_to :friend, class_name: :User
-
-    def request_initiator
-        User.find(self.user_id)
+    def self.get_friendship(user_1, user_2)
+        Friendship.find_by(user_1_id: user_1.id, user_2_id: user_2.id) || Friendship.find_by(user_1_id: user_2.id, user_2_id: user_1.id)
     end
-
-    def request_receiver
-        User.find(self.friend_id)
-    end
-
+    
 end

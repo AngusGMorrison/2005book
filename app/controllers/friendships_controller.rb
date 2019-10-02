@@ -1,39 +1,30 @@
 class FriendshipsController < ApplicationController
 
-    # returns all friends for the current user
     def index
         @friends = current_user.friends
     end
 
-    def new
-        @friendship = Friendship.new
-    end
+    # def new
+    #     @friendship = Friendship.new
+    # end
 
-    # sending a friend request initialises a new instance of Friendship with a status of "Pending"
     def create
-        @friend_request = Friendship.new(friendship_params)
-        if @friend_request.valid?
-            @friend_request.save
+        @friendship = Friendship.new(friendship_params)
+        if @friendship.valid?
+            @friendship.save
             current_user #resets current user to update current user's request statuses
-            @profile = Profile.find_by(user_id: @friend_request.friend_id)
-            redirect_to profile_path(@profile.slug)
+            @request = FriendRequest.get_friend_request(params[:friendship][:user_1_id], params[:friendship][:user_2_id])
+            @request.destroy
+            redirect_to friend_requests_path
         else
-            flash[:error] = "Friend request could not be sent"
-            redirect_to requests_path
+            redirect_to friend_requests_path
         end
-    end
-
-    # friendship status is updated to "Accepted" when the friend accepts the request
-    def update 
-        @friendship = Friendship.find(params[:id])
-        @friendship.update(friendship_params)
-        redirect_to requests_path
     end
 
     def destroy
         @friendship = Friendship.find(params[:id])
         @friendship.destroy
-        redirect_to friends_path
+        redirect_to friends_path(current_user)
     end
 
     def requests
@@ -44,7 +35,7 @@ class FriendshipsController < ApplicationController
     private
 
     def friendship_params
-        params.require(:friendship).permit(:user_id, :friend_id, :status)
+        params.require(:friendship).permit(:user_1_id, :user_2_id)
     end
 
 
