@@ -3,6 +3,6 @@
 <% @friends.each do |friend| %>
     <%= friend.name%> <br>
     <% @friendship = Friendship.get_friendship(current_user, friend) %>
-    <%= button_to "Remove Friend", destroy_friendship_path(@friendship), :method => :delete %>
+    <%= render partial: "/friendships/delete_form", locals: {friendship: @friendship}%>
     <br><br>
 <% end %>

@@ -12,5 +12,9 @@ class FriendRequest < ApplicationRecord
         User.find(self.receiver_id)
     end
 
+    def self.get_friend_request(user_1_id, user_2_id)
+        FriendRequest.find_by(requestor_id: user_1_id, receiver_id: user_2_id) || FriendRequest.find_by(requestor_id: user_2_id, receiver_id: user_1_id)
+    end
+
 
 end

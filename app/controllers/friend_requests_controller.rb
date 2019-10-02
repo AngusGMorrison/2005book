@@ -7,7 +7,14 @@ class FriendRequestsController < ApplicationController
     end
 
     def create
-
+        @friend_request = FriendRequest.new(requestor_id: params[:friend_request][:requestor_id], receiver_id: params[:friend_request][:receiver_id])
+        if @friend_request.valid?
+            @friend_request.save
+            current_user #resets current user to update current user's request statuses
+            redirect_to friend_requests_path
+        else
+            redirect_to friend_requests_path
+        end
     end
 
     def destroy

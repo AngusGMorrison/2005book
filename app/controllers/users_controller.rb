@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_action :require_logged_in, only: :show
   before_action :require_logged_out, only: [:new, :create]
 
-  # to test friendship feature...
   def index
     # returns an array of all user objects, excluding current user
     @users = User.all.reject{ |user| user.id == current_user.id }
