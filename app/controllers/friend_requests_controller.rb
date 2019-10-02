@@ -1,7 +1,7 @@
 class FriendRequestsController < ApplicationController
 
     def index
-        current_user
+        @current_user = current_user
         @requests = current_user.friend_requests_as_receiver
         @pending_requests = current_user.friend_requests_as_requestor
     end

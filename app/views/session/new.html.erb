@@ -1,16 +1,25 @@
-<h1>[ Login ]</h1>
+<div class="primary-widget-body">
+  <h1 class="widget-heading-no-header">[ Login ]</h1>
 
-<% if flash[:login_error] %>
-  <%= flash[:login_error] %>
-<% end %>
+  <% if flash[:login_error] %>
+    <%= flash[:login_error] %>
+  <% end %>
 
-<%= form_with scope: :user, url: login_path, local: true do |login_form| %>
-  <%= login_form.label :email, "Email:", class_name: "label-left" %>
-  <%= login_form.text_field :email, class_name: "text-field" %>
+  <%= form_with scope: :user, url: login_path, local: true, class: "login-form" do |login_form| %>
+    <div class="justified-fields-container login">
+      <div class="single-field-container">
+        <%= login_form.label :email, "Email:", class: "field-label-left login" %>
+        <%= login_form.text_field :email, class: "text-field" %>
+      </div>
+      <div class="single-field-container">
+        <%= login_form.label :password, "Password:", class: "field-label-left login" %>
+        <%= login_form.password_field :password, class: "text-field" %>
+      </div>
+    </div>
 
-  <%= login_form.label :password, "Password:", class_name: "label-left" %>
-  <%= login_form.password_field :password, class_name: "text-field" %>
-
-  <%= login_form.submit "Login", class_name: "primary-button" %>
-  <%= link_to "Register", register_path, class_name: "primary-button" %>
-<% end %>
+    <div class="primary-widget-button-container">
+      <button class="primary-button master-login"><%= login_form.submit "Login" %></button>
+      <button class="primary-button master-register"><%= link_to "Register", register_path %></button>
+    </div>
+  <% end %>
+</div>

@@ -14,6 +14,10 @@ a {
   text-decoration: none;
 }
 
+input[type=text], input[type=password], input[type=email], input[type=number] {
+  font: normal 11px Tahoma, Arial, sans-serif;
+}
+
 input[type="submit"] {
   background-color: var(--primary-blue);
   color: white;
@@ -77,27 +81,42 @@ input[type="submit"] {
   border: var(--secondary-border);
 }
 
-.sidebar-login-form {
-  margin-bottom: 11px;
+.single-field-container {
+  height: 18px;
+  font-size: 0;
+  margin-bottom: 5px;
 }
 
-.sidebar-login-form .field-label-top-right {
-  display: block;
+.field-label-left {
+  display: inline-block;
   font-size: 11px;
-  text-align: right;
+  height: 17px;
+  padding-top: 2px;
 }
 
-.sidebar-login-form .text-field {
-  width: 100%;
+.text-field {
+  width: 160px;
+  max-width: 100%;
   height: 17px;
+  vertical-align: top;
 
   border: var(--field-border);
   background-color: var(--secondary-blue);
 }
 
-.sidebar-button-container {
-  margin-left: 6px;
+.dropdown-container {
+  display: inline-block;
+  font-size: 11px;
 }
+
+select {
+  -webkit-appearance: menulist;
+  -moz-appearance: menulist;
+  appearance: menulist;
+  background-color: var(--secondary-blue);
+  border: var(--field-border);
+}
+
 
 .primary-button {
   height: 19px;
@@ -122,5 +141,6 @@ input[type="submit"] {
 }
 
 p.small-print {
+  font-size: 11px;
   margin: 0;
 }
