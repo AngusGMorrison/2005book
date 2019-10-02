@@ -68,5 +68,15 @@
     border-right: var(--primary-border);
 }
 
+/* Requests Page */
+
+.requests-container {
+    padding-bottom: 20px;
+}
+
+.requests-header {
+    font-weight: bold;
+}
+
 
 
