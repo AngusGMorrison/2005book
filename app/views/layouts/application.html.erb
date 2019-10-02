@@ -23,7 +23,7 @@
             </div>
             <nav class="banner-nav-container">
               <% if @current_user.id %>
-                <%# render partial: "layouts/partials/logged_in_nav", locals: { current_user: @current_user } %>
+                <%= render partial: "layouts/partials/logged_in_nav", locals: { current_user: @current_user } %>
               <% else %>
                 <%= render partial: "layouts/partials/logged_out_nav" %>
               <% end %>
