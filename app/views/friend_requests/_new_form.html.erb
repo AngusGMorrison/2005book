@@ -1,5 +1,7 @@
-<%= form_for friend_request, url: "/friend_requests" do |f| %>
-<%= f.hidden_field :requestor_id, value: requestor_id %>
-<%= f.hidden_field :receiver_id, value: receiver_id %>
-<%= f.submit "Send Friend Request", id: "#{receiver_id}"%>
-<% end %>
+<button class="primary-button">
+    <%= form_for friend_request, url: "/friend_requests" do |f| %>
+    <%= f.hidden_field :requestor_id, value: requestor_id %>
+    <%= f.hidden_field :receiver_id, value: receiver_id %>
+    <%= f.submit "Send Friend Request", id: "#{receiver_id}"%>
+    <% end %>
+</button>
