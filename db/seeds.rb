@@ -121,7 +121,7 @@ end
 
 puts "#{Message.all.length} messages shared"
 
-#TEST PROFILE NO.1 FOR MARK
+# Test Profile No. 1 - Mark
 
 mark = User.create(
     name: "Mark Zuckerburg",
@@ -180,36 +180,36 @@ puts "Popular guy! #{mark.name} has #{mark.friend_requests.length} friend reques
 # end
 
 
-# #TEST PROFILE NO.2 FOR EDUARDO
+# Test Profile No. 2 - Eduardo
 
-# eduardo = User.create(
-#     name: "Eduardo Saverin",
-#     email: "eduardo@facebook.com",
-#     password: "password1",
-#     mod_id: 1,
-#     accepted_terms: true
-# )
+eduardo = User.create(
+    name: "Eduardo Saverin",
+    email: "eduardo@facebook.com",
+    password: "password1",
+    mod_id: 1,
+    accepted_terms: true
+)
 
-# eduardo_profile = Profile.create(
-#   user_id: eduardo.id,
-#   sex: "Male",
-#   studies: Faker::Lorem.sentence(word_count: 2),
-#   phone_number: Faker::PhoneNumber.phone_number ,
-#   screenname: Faker::Lorem.sentence(word_count: 1),
-#   looking_for: Faker::Lorem.sentence(word_count: 1),
-#   relationship_status: Faker::Lorem.sentence(word_count: 2),
-#   political_view_id: 3,
-#   interests: Faker::Lorem.sentence(word_count: 5),
-#   movies: Faker::Lorem.sentence(word_count: 3),
-#   music: Faker::Music.band,
-#   websites: Faker::Internet.url,
-#   about_me: Faker::Lorem.sentence(word_count: 10),
-#   photo_url: photo_urls.sample
-# )
+eduardo_profile = Profile.create(
+  user_id: eduardo.id,
+  sex: "Male",
+  studies: Faker::Lorem.sentence(word_count: 2),
+  phone_number: Faker::PhoneNumber.phone_number ,
+  screenname: Faker::Lorem.sentence(word_count: 1),
+  looking_for: Faker::Lorem.sentence(word_count: 1),
+  relationship_status: Faker::Lorem.sentence(word_count: 2),
+  political_view_id: 3,
+  interests: Faker::Lorem.sentence(word_count: 5),
+  movies: Faker::Lorem.sentence(word_count: 3),
+  music: Faker::Music.band,
+  websites: Faker::Internet.url,
+  about_me: Faker::Lorem.sentence(word_count: 10),
+  photo_url: photo_urls.sample
+)
 
-# eduardo_profile.generate_slug
+eduardo_profile.generate_slug
 
-# puts "#{eduardo.name} has been created with #{eduardo.friends.length} friends."
+puts "#{eduardo.name} has been created with #{eduardo.friend_ids.length} friends."
 
 
 
