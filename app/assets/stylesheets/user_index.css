@@ -23,7 +23,6 @@
 
 .user-info-preview-container {
     display: inline-block;
-    /* padding-left: 10px; */
 }
 
 .user-preview-text-container {
@@ -32,17 +31,17 @@
     width: 150px;
 }
 
-        .user-preview-name-header {
-            font-weight: bold;
-            font-size: 14px;
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
+.user-preview-name-header {
+    font-weight: bold;
+    font-size: 14px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
 
-        .user-preview-mod-header {
-            /* padding-top: 5px;
-            padding-bottom: 5px; */
-        }
+.user-preview-mod-header {
+    /* padding-top: 5px;
+    padding-bottom: 5px; */
+}
 
 .user-preview-buttons-container {
     display: inline-block;
