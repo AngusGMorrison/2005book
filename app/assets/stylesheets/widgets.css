@@ -9,7 +9,11 @@ h1.widget-heading {
 }
 
 .primary-widget-body {
-  padding: 18px;
+  padding: 18px 8px;  
+}
+
+p.static-body {
+  text-align: center;
 }
 
 h2.static-heading {

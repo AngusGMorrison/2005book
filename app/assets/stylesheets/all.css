@@ -15,7 +15,7 @@ a {
 }
 
 input[type="submit"] {
-  background-color: var(--primary-border);
+  background-color: var(--primary-blue);
   color: white;
   font: normal 11px Tahoma, Arial, sans-serif;
 }
