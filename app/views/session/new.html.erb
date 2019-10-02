@@ -4,7 +4,7 @@
   <%= flash[:login_error] %>
 <% end %>
 
-<%= form_with scope: :user, url: "/login", local: true do |login_form| %>
+<%= form_with scope: :user, local: true do |login_form| %>
 
   <%= login_form.label :email, "Email:" %>
   <%= login_form.text_field :email%>

@@ -9,14 +9,14 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = current_user
+    @current_user = current_user
     @mods = Mod.all
   end
 
   def create
-    @user = User.create(user_params)
+    @current_user = User.create(user_params)
 
-    if @user.valid?
+    if @current_user.valid?
       begin_first_session
     else
       render_registration_form_with_errors
@@ -41,13 +41,13 @@ class UsersController < ApplicationController
   end
 
   def begin_first_session
-    Profile.create_profile_with_slug(@user.id)
+    Profile.create_profile_with_slug(@current_user.id)
     begin_session
   end
 
   def render_registration_form_with_errors
     @mods = Mod.all
-    @errors = @user.errors
+    @errors = @current_user.errors
     render "new"
   end
 

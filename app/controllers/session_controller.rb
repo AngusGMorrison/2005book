@@ -2,12 +2,13 @@ class SessionController < ApplicationController
   before_action :require_logged_out, only: [:new, :create]
 
   def new
+    @current_user = current_user
   end
 
   def create
-    @user = User.find_by(email: params[:user][:email])
+    @current_user = User.find_by(email: params[:user][:email])
 
-    if @user.try(:authenticate, params[:user][:password])
+    if @current_user.try(:authenticate, params[:user][:password])
       begin_session
     else
       reject_login
