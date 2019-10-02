@@ -22,13 +22,8 @@
               <%= link_to image_tag("logo-right.jpg"), root_path %>
             </div>
             <nav class="banner-nav-container">
-<<<<<<< HEAD
-              <% if @current_user.id %>
-                <%= render partial: "layouts/partials/logged_in_nav", locals: { current_user: @current_user } %>
-=======
               <% if current_user.id %>
                 <%# render partial: "layouts/partials/logged_in_nav", locals: { current_user: @current_user } %>
->>>>>>> master
               <% else %>
                 <%# <%= render partial: "layouts/partials/logged_out_nav" %> 
               <% end %>
