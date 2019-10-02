@@ -1,11 +1,64 @@
-<br>
-<%= notice %>
 
-<h1>My Friends</h1>
+<header class="widget-header"> 
+    <h1 class="widget-heading">My Friends</h1>
+</header>
 
-<% @friends.each do |friend| %>
-    <%= link_to friend.name, profile_path(friend.profile.slug) %> <br>
-    <% @friendship = Friendship.get_friendship(current_user, friend) %>
-    <%= render partial: "/friendships/delete_form", locals: {friendship: @friendship}%>
-    <br><br>
-<% end %>
+<div class="primary-widget-body">
+
+    <% if notice %>
+        <div class="notice-container">
+            <p class="notice-text"> <%= notice %> </p> 
+        </div>
+    <% end %>
+
+    <div class="display-user-previews-container">
+
+        <% @friends.each do |friend| %>
+
+        <div class="user-preview-container">
+
+            <div class="user-img-preview-container">
+                <a href=<%=profile_path(friend.profile.slug)%>> <img class="profile-photo-preview-img" src=<%= friend.profile.photo_url %> alt=<%= "profile photo for #{friend.name}"%>> </a> 
+            </div>
+
+            <div class="user-info-preview-container"> 
+
+                <div class="user-preview-text-container">
+                    
+                    <h2 class="user-preview-name-header">
+                        <%= friend.name %> 
+                    </h2>
+                    <h3 class="user-preview-mod-header">
+                        <%= friend.mod.name %> 
+                    </h3>
+                    
+                </div>
+
+                <div class="user-preview-buttons-container">
+                    <div class="user-preview-button-container">
+                        <% @friendship = Friendship.get_friendship(current_user, friend) %>
+                        <%= render partial: "/friendships/delete_form", locals: {friendship: @friendship}%>
+                    </div>
+                    
+
+                </div>
+                
+               
+
+            </div>
+
+            
+        </div>
+
+            
+            
+        <% end %>
+
+    </div>
+
+
+
+
+
+</div>
+

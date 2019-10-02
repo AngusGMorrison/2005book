@@ -30,10 +30,6 @@
                                 <%= render partial: "/friendships/delete_form", locals: {friendship: @friendship}%>
                             <% end %>
                         </div>
-                        
-                        <div>
-                        
-                        </div>
 
 
                         <% if @friend_request = FriendRequest.get_friend_request(current_user.id, user.id)%>
