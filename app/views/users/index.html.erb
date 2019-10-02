@@ -11,8 +11,8 @@
         <% if current_user.id == @friend_request.requestor_id %>
              <button>Friend Request Pending</button> <br>
         <% else %>
-            <%= render partial: "friend_requests/accept_form", locals: {friendship: Friendship.new, user_1_id: @friend_request.get_requestor.id, user_2_id: @friend_request.get_receiver.id }%>
-            <%= render partial: "friend_requests/delete_form", locals: {id: @friend_request.id} %>
+            <%= render partial: "/friend_requests/accept_form", locals: {friendship: Friendship.new, user_1_id: @friend_request.get_requestor.id, user_2_id: @friend_request.get_receiver.id }%>
+            <%= render partial: "/friend_requests/delete_form", locals: {id: @friend_request.id} %>
         <% end %>
     <% end %>
 

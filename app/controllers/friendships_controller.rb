@@ -1,13 +1,12 @@
 class FriendshipsController < ApplicationController
 
-    # returns all friends for the current user
     def index
         @friends = current_user.friends
     end
 
-    def new
-        @friendship = Friendship.new
-    end
+    # def new
+    #     @friendship = Friendship.new
+    # end
 
     def create
         @friendship = Friendship.new(user_1_id: params[:friendship][:user_1_id], user_2_id: params[:friendship][:user_2_id])
