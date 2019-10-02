@@ -12,13 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2019_10_01_160901) do
 
+  create_table "chains", force: :cascade do |t|
+    t.string "subject"
+  end
+
   create_table "friend_requests", force: :cascade do |t|
     t.integer "requestor_id"
     t.integer "receiver_id"
-  end
-
-  create_table "chains", force: :cascade do |t|
-    t.string "subject"
   end
 
   create_table "friendships", force: :cascade do |t|

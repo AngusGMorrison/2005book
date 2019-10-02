@@ -1,7 +1,7 @@
 <h1>My Friends</h1>
 
 <% @friends.each do |friend| %>
-    <%= friend.name%> <br>
+    <%= link_to friend.name, profile_path(friend.profile.slug) %> <br>
     <% @friendship = Friendship.get_friendship(current_user, friend) %>
     <%= render partial: "/friendships/delete_form", locals: {friendship: @friendship}%>
     <br><br>
