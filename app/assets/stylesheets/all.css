@@ -1,10 +1,23 @@
 * {
   --primary-blue: rgb(57, 89, 150);
+  --secondary-blue: #D8DFEA;
+  --primary-grey: #666;
+
+
   --primary-border: 1px solid var(--primary-blue);
+  --secondary-border: 1px dashed var(--primary-blue);
+  --field-border: 1px solid var(--primary-grey);
+  --button-highlight-border: 1px solid var(--secondary-blue)
 }
 
 a {
   text-decoration: none;
+}
+
+input[type="submit"] {
+  background-color: var(--primary-border);
+  color: white;
+  font: normal 11px Tahoma, Arial, sans-serif;
 }
 
 .page-container {
@@ -14,12 +27,14 @@ a {
 .content-container {
   width: 700px;
   margin: auto;
+  padding-bottom: 24px;
   border: var(--primary-border);
 }
 
 .facebook-banner {
   background-color: var(--primary-blue);
   border-bottom: var(--primary-border);
+  margin-bottom: 2px;
 }
 
 .banner-img-container, .banner-logo-nav-container {
@@ -40,4 +55,72 @@ a {
 
   font-size: 11px;
   color: white;
+}
+
+.primary-content-container {
+  display: inline-block;
+  vertical-align: top;
+  width: 572px;
+  margin-bottom: 18px;
+  border: var(--primary-border);
+}
+
+.sidebar-container {
+  display: inline-block;
+  width: 116px;
+  margin: 0 2px;
+}
+
+.sidebar-widget {
+  padding: 2px;
+
+  border: var(--secondary-border);
+}
+
+.sidebar-login-form {
+  margin-bottom: 11px;
+}
+
+.sidebar-login-form .field-label-top-right {
+  display: block;
+  font-size: 11px;
+  text-align: right;
+}
+
+.sidebar-login-form .text-field {
+  width: 100%;
+  height: 17px;
+
+  border: var(--field-border);
+  background-color: var(--secondary-blue);
+}
+
+.sidebar-button-container {
+  margin-left: 6px;
+}
+
+.primary-button {
+  height: 19px;
+  background-color: var(--primary-blue);
+  color: white;
+  font: normal 11px Tahoma, Arial, sans-serif;
+
+  padding: 0 7px;
+  border-top: var(--button-highlight-border);
+  border-left: var(--button-highlight-border);
+  border-bottom: var(--primary-border);
+  border-right: var(--primary-border);
+}
+
+.primary-button a:visited {
+  color: white;
+}
+
+.footer-container {
+  font-size: 11px;
+  text-align: center;
+}
+
+p.small-print {
+  margin: 0;
 }

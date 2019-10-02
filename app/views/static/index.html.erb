@@ -1,3 +1,19 @@
-<h1>Facebook</h1>
-<%= link_to "Register", register_path %>
-<%= link_to "Login", login_path %>
+<header class="widget-header">
+  <h1 class="widget-heading">Welcome To Thefacebook!</h1>
+</header>
+
+<div class="primary-widget-body">
+  <h2 class="static-heading">[ Welcome to Thefacebook ]</h2>
+
+  <p>Thefacebook is an online directory that connects people through mods at Flatiron School.</p>
+  <p>We have recently opened up Thefacebook to the following mods:</p>
+
+  <p class="mod-list"><%= Mod.list_names %></p>
+
+  <p>To get started, click below to register. If you have already registered, you can log in.</p>
+
+  <div class="primary-widget-button-container">
+    <button class="primary-button"><%= link_to "Register", register_path %></button>
+    <button class="primary-button"><%= link_to "Login", login_path %><button>
+  <div class="primary-widget-button-container">
+</div>
