@@ -1,3 +1,12 @@
 <div class="sidebar-widget">
-  <%= form with scope: user %>
+  <%= form_with scope: :user, url: login_path, local: true do |login_form| %>
+    <%= login_form.label :email, "Email:", class_name: "label-top-right" %>
+    <%= login_form.text_field :email, class_name: "text-field" %>
+
+    <%= login_form.label :password, "Password:", class_name: "label-top-right" %>
+    <%= login_form.password_field :password, class_name: "text-field" %>
+
+    <%= login_form.submit "Login", class_name: "primary-button" %>
+    <%= link_to "Register", register_path, class_name: "primary-button" %>
+  <% end %>
 </div>

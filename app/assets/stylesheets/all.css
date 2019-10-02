@@ -1,0 +1,43 @@
+* {
+  --primary-blue: rgb(57, 89, 150);
+  --primary-border: 1px solid var(--primary-blue);
+}
+
+a {
+  text-decoration: none;
+}
+
+.page-container {
+  font: normal 13px Tahoma, Arial, sans-serif;
+}
+
+.content-container {
+  width: 700px;
+  margin: auto;
+  border: var(--primary-border);
+}
+
+.facebook-banner {
+  background-color: var(--primary-blue);
+  border-bottom: var(--primary-border);
+}
+
+.banner-img-container, .banner-logo-nav-container {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.banner-img-container {
+  width: 50%;
+}
+
+.banner-nav-container {
+  margin-left: 8px;
+}
+
+.banner-nav-link {
+  margin-right: 5px;
+
+  font-size: 11px;
+  color: white;
+}
