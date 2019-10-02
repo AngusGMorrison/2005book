@@ -1,0 +1,58 @@
+h1.widget-heading-no-header {
+  margin-top: 18px;
+}
+
+h1.widget-heading-no-header, h2.static-heading {
+  margin-bottom: 18px;
+
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+p.static-body {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.mod-list {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.justified-fields-container {
+  max-width: 40%;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.field-label-left.login {
+  width: 54px;
+}
+
+.primary-button.master-login {
+  width: 64px;
+  margin-right: 6px;
+}
+
+.primary-button.master-register {
+  width: 56px;
+}
+
+.sidebar-login-form {
+  margin-bottom: 11px;
+}
+
+.sidebar-login-form .field-label-top-right {
+  display: block;
+  font-size: 11px;
+  text-align: right;
+}
+
+.sidebar-button-container {
+  margin-left: 6px;
+}
+
+.primary-widget-button-container {
+  margin-left: 38%;
+}
