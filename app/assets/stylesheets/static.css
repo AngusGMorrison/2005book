@@ -10,8 +10,12 @@ h1.widget-heading-no-header, h2.static-heading {
   text-align: center;
 }
 
+.registration-body-column {
+  width: 488px;
+  margin: auto;
+}
+
 p.static-body {
-  text-align: center;
   margin-bottom: 12px;
 }
 
@@ -21,13 +25,44 @@ p.static-body {
 }
 
 .justified-fields-container {
-  max-width: 40%;
   margin: auto;
   margin-bottom: 10px;
 }
 
+.justified-fields-container.login {
+  max-width: 40%;
+}
+
+.justified-fields-container.registration {
+  margin-top: 18px;
+  margin-bottom: 18px;
+  max-width: 60%;
+}
+
 .field-label-left.login {
   width: 54px;
+}
+
+.field-label-left.registration {
+  width: 109px;
+}
+
+.checkbox-container {
+  display: inline-block;
+  height: 100%;
+  vertical-align: top;
+  margin-right: 10px;
+  padding-top: 8px;
+  
+}
+
+.terms-conditions-container {
+  display: inline-block;
+  width: 90%;
+}
+
+.terms-conditions-label {
+  font-size: 11px;
 }
 
 .primary-button.master-login {
@@ -37,6 +72,18 @@ p.static-body {
 
 .primary-button.master-register {
   width: 56px;
+}
+
+.registration-form .small-print {
+  text-align: center;
+}
+
+p.small-print.password {
+  margin-bottom: 12px;
+}
+
+.password-warning {
+  color: red;
 }
 
 .sidebar-login-form {

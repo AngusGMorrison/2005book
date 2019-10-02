@@ -14,6 +14,10 @@ a {
   text-decoration: none;
 }
 
+input[type=text], input[type=password], input[type=email], input[type=number] {
+  font: normal 11px Tahoma, Arial, sans-serif;
+}
+
 input[type="submit"] {
   background-color: var(--primary-blue);
   color: white;
@@ -78,6 +82,7 @@ input[type="submit"] {
 }
 
 .single-field-container {
+  height: 18px;
   font-size: 0;
   margin-bottom: 5px;
 }
@@ -98,6 +103,20 @@ input[type="submit"] {
   border: var(--field-border);
   background-color: var(--secondary-blue);
 }
+
+.dropdown-container {
+  display: inline-block;
+  font-size: 11px;
+}
+
+select {
+  -webkit-appearance: menulist;
+  -moz-appearance: menulist;
+  appearance: menulist;
+  background-color: var(--secondary-blue);
+  border: var(--field-border);
+}
+
 
 .primary-button {
   height: 19px;
@@ -122,5 +141,6 @@ input[type="submit"] {
 }
 
 p.small-print {
+  font-size: 11px;
   margin: 0;
 }
