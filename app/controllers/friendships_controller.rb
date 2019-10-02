@@ -15,15 +15,19 @@ class FriendshipsController < ApplicationController
             current_user #resets current user to update current user's request statuses
             @request = FriendRequest.get_friend_request(params[:friendship][:user_1_id], params[:friendship][:user_2_id])
             @request.destroy
+            flash[:notice] = "You and #{@friendship.get_user_1.name} are now friends."
             redirect_to friend_requests_path
         else
+            flash[:notice] = "Could not create friendships."
             redirect_to friend_requests_path
         end
     end
 
     def destroy
         @friendship = Friendship.find(params[:id])
+        @friend = ((@friendship.get_user_1 == current_user) ? (@friendship.get_user_2) : (@friendship.get_user_2))
         @friendship.destroy
+        flash[:notice] = "You have removed #{@friend.name} as a friend."
         redirect_to friends_path(current_user)
     end
 

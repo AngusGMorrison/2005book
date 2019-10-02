@@ -7,5 +7,17 @@ class Friendship < ApplicationRecord
     def self.get_friendship(user_1, user_2)
         Friendship.find_by(user_1_id: user_1.id, user_2_id: user_2.id) || Friendship.find_by(user_1_id: user_2.id, user_2_id: user_1.id)
     end
+
+    def get_user_1
+        User.find(self.user_1_id)
+    end
+
+    def get_user_2
+        User.find(self.user_2_id)
+    end
+
+    def get_friend
+        
+    end
     
 end
