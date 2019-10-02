@@ -9,17 +9,19 @@ class MessagesController < ApplicationController
     end
 
     def create
+        @message = Message.new(message_params)
+        @message.save
+        redirect_to chain_path(params[:message][:chain_id])
+    end
+
+    def show
 
     end
 
-    def show 
-
+    private
+    
+    def message_params
+        params.require(:message).permit(:sender_id, :receiver_id, :content, :chain_id)
     end
-
-
-    def user_messages
-        @messages = Message.all.select{ |message| message.sender_id == current_user.id || message.receiver_id == current_user.id }.sort_by{ |message| message.created_at}
-    end
-
 
 end

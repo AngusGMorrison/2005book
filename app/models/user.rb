@@ -6,7 +6,9 @@ class User < ApplicationRecord
     belongs_to :mod
 
     has_many :sent_messages, foreign_key: :sender_id, class_name: :Message
-    has_many :recevied_messages, foreign_key: :receiver_id, class_name: :Message 
+    has_many :received_messages, foreign_key: :receiver_id, class_name: :Message 
+    # has_many :messages, through: { joins(:participant, :organizer) }, class_name: :Message
+    
 
     has_many :friendships
     has_many :friends, through: :friendships, source: :friend
@@ -17,16 +19,20 @@ class User < ApplicationRecord
 
     before_validation :strip_name
 
-    def sent_messages
-        Message.all.select{ |message| message.sender_id == self.id }
+    def messages
+        self.sent_messages + self.received_messages
     end
 
-    def received_messages
-        Message.all.select{ |message| message.receiver_id == self.id }
+    def chain_ids
+        self.messages.map{ |message| message.chain_id }.uniq
+    end
+
+    def chains 
+        self.chain_ids.map{ |chain_id| Chain.find(chain_id)}
     end
 
     def mod_name
-        Mod.find(self.mod_id).name
+        self.mod.name
     end
 
     # returns an array of a user's friend requests
@@ -41,10 +47,8 @@ class User < ApplicationRecord
 
     # returns an array of Users who are friends with this instance of user (where Frienship status == "Accepted")
     def all_friends
-        accepted_friendships = Friendship.all.select{ |friendship| friendship.status == "Accepted" }
-        friends_1 = accepted_friendships.map{ |friendship| User.find(friendship.user_id) }.reject{ |user| user == self }
-        friends_2 = accepted_friendships.map{ |friendship| User.find(friendship.friend_id) }.reject{ |friend| friend == self.id }
-        all_friends = (friends_1 << friends_2).flatten!
+        all_friendships = self.friendships.select{ |friendship| friendship.status == "Accepted" }
+        all_friendships.map{ |friendship| [User.find(friendship.user_id), User.find(friendship.friend_id)] }.flatten.reject{ |friend| friend == self }
     end
 
     def member_since

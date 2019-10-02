@@ -17,6 +17,11 @@ Rails.application.routes.draw do
   get "/profiles/:slug/edit", to: "profiles#edit", as: "edit_profile"
   patch "/profiles/:slug", to: "profiles#update"
 
+  # Chains
+  get "/chains", to: "chains#index", as: "chains"
+  get "/chains/new", to: "chains#new", as: "new_chain"
+  get "/chains/:id", to: "chains#show", as: "chain"
+
   # Messages
   get "/messages", to: "messages#user_messages", as: "user_messages"
   get "/messages/new", to: "messages#new", as: "new_message"
@@ -27,7 +32,6 @@ Rails.application.routes.draw do
   post "/friendships", to: "friendships#create"
   patch "/friendships/:id", to: "friendships#update", as: "update_friendship"
   delete "/friendships/:id", to: "friendships#destroy", as: "destroy_friendship"
-
 
   get "friendships/requests", to: "friendships#requests", as: "requests"
 

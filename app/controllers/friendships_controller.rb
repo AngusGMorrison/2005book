@@ -11,9 +11,16 @@ class FriendshipsController < ApplicationController
 
     # sending a friend request initialises a new instance of Friendship with a status of "Pending"
     def create
-        @friend_request = Friendship.find_or_create_by(friendship_params)
-        current_user #resets current user to update current user's request statuses
-        redirect_to "/users/index"
+        @friend_request = Friendship.new(friendship_params)
+        if @friend_request.valid?
+            @friend_request.save
+            current_user #resets current user to update current user's request statuses
+            @profile = Profile.find_by(user_id: @friend_request.friend_id)
+            redirect_to profile_path(@profile.slug)
+        else
+            flash[:error] = "Friend request could not be sent"
+            redirect_to requests_path
+        end
     end
 
     # friendship status is updated to "Accepted" when the friend accepts the request
@@ -26,7 +33,7 @@ class FriendshipsController < ApplicationController
     def destroy
         @friendship = Friendship.find(params[:id])
         @friendship.destroy
-        redirect_to "/users/index"
+        redirect_to friends_path
     end
 
     def requests

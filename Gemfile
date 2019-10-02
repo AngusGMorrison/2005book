@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 # Generate random seed data
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+# Parse DateTime into readable formats
 gem 'rails-i18n', '~> 6.0.0' # For 6.0.0 or higher
 
 # Use Active Storage variant

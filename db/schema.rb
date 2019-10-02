@@ -12,6 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2019_10_01_124538) do
 
+  create_table "chains", force: :cascade do |t|
+    t.string "subject"
+  end
+
   create_table "friendships", force: :cascade do |t|
     t.string "status"
     t.integer "user_id"
@@ -41,10 +45,10 @@ ActiveRecord::Schema.define(version: 2019_10_01_124538) do
   create_table "messages", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "receiver_id"
-    t.string "subject"
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "chain_id"
   end
 
   create_table "mods", force: :cascade do |t|
