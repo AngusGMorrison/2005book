@@ -1,13 +1,3 @@
-<div class="sidebar-widget">
-  <div class="search-form-container">
-    <%= form_with url: "/users/index", local: true, method: "get" do |search_form| %>
-      <%= search_form.text_field :search, { value: params[:search], class: "text-field" } %>
-      <%= search_form.label :search, "quick search" %>
-      <button class="highlight-button"><%= search_form.submit "go", class: "highlight-submit" %></button>
-    <% end %>
-  </div>
-</div>
-
 <nav class="sidebar-widget sidebar-nav">
   <div class="sidebar-profile-links">
     <%= link_to "My Profile", profile_path(current_user.profile.slug), class: "sidebar-nav-link sidebar-profile-link" %> 
