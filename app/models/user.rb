@@ -47,6 +47,10 @@ class User < ApplicationRecord
       self.friends.include?(user)
     end
 
+    def mutual_friends(user)
+      self.friends & user.friends
+    end
+
     # Methods for FriendRequests
 
     # returns an array of received requests
