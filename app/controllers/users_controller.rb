@@ -3,9 +3,8 @@ class UsersController < ApplicationController
   before_action :require_logged_out, only: [:new, :create]
 
   def index
-    # returns an array of all user objects, excluding current user
     @current_user = current_user
-    @users = User.all.reject{ |user| user.id == current_user.id }
+    @users = User.search(params[:search], @current_user)
   end
 
   def new
@@ -15,7 +14,6 @@ class UsersController < ApplicationController
 
   def create
     @current_user = User.create(user_params)
-
     if @current_user.valid?
       begin_first_session
     else
@@ -23,10 +21,10 @@ class UsersController < ApplicationController
     end
   end
 
-  # returns an array of friends (where Friendship status == "Accepted)
   def friends
     @current_user = current_user
-    @friends = current_user.friends
+    @friends = @current_user.friends
+    @requests = @current_user.friend_requests
   end
 
   private
@@ -37,7 +35,8 @@ class UsersController < ApplicationController
       :mod_id,
       :email,
       :password,
-      :accepted_terms
+      :accepted_terms, 
+      :search
     )
   end
 

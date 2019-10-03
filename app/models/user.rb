@@ -7,8 +7,6 @@ class User < ApplicationRecord
 
     has_many :sent_messages, foreign_key: :sender_id, class_name: :Message
     has_many :received_messages, foreign_key: :receiver_id, class_name: :Message 
-    # has_many :messages, through: { joins(:participant, :organizer) }, class_name: :Message
-    
 
     has_many :friendships_as_user_1, foreign_key: :user_1_id, class_name: :Friendship
     has_many :friendships_as_user_2, foreign_key: :user_2_id, class_name: :Friendship
@@ -22,6 +20,15 @@ class User < ApplicationRecord
 
     before_validation :strip_name
 
+    def self.search(search, current_user)
+        if search 
+            results = User.where("name LIKE ?", "%" + search + "%").order(:name)
+        else
+            results = User.all
+        end
+       return results.reject{ |user| user.id == current_user.id }
+    end
+
     # Methods for Friendships
 
     def friendships 
@@ -33,7 +40,7 @@ class User < ApplicationRecord
     end
 
     def friends
-        self.friend_ids.map{ |friend_id| User.find(friend_id) }
+        self.friend_ids.map{ |friend_id| User.find(friend_id) }.sort_by{ |friend| friend.name }
     end
 
     def friends_with?(user)
@@ -42,8 +49,9 @@ class User < ApplicationRecord
 
     # Methods for FriendRequests
 
+    # returns an array of received requests
     def friend_requests 
-        self.friend_requests_as_requestor + self.friend_requests_as_receiver 
+        self.friend_requests_as_receiver.sort_by{ |request| request.requestor.name }
     end
 
     def friend_request_ids

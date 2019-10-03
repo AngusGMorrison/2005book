@@ -42,6 +42,7 @@ LookingForOption.create(name: "Whatever I can get")
 
 puts "#{LookingForOption.all.length} looking_for_options created"
 
+
 #Create political views
 PoliticalView.create(name: "Very Conservative")
 PoliticalView.create(name: "Conservative")
@@ -50,6 +51,7 @@ PoliticalView.create(name: "Liberal")
 PoliticalView.create(name: "Very Liberal")
 
 puts "#{PoliticalView.all.length} political views created"
+
 
 # Create users
 50.times do 
@@ -114,25 +116,26 @@ end
 puts "#{Friendship.all.length} friendships created"
 
 
-# Create threads
+# Create message chains
 10.times do 
-  Chain.create(subject: Faker::Lorem.sentence(word_count: 2))
+  Chain.create()
 end
 
 puts "#{Chain.all.length} chains started"
 
-# Create messages
+# Give each chain two users and some messages
 Chain.all.each do |chain|
   u1 = User.all.sample
   u2 = User.all.sample
 
-  2.times do 
-    Message.create(chain_id: chain.id, sender_id: u1.id, receiver_id: u2.id, content: Faker::Lorem.sentence(word_count: 5))
-    Message.create(chain_id: chain.id, sender_id: u2.id, receiver_id: u1.id, content: Faker::Lorem.sentence(word_count: 5))
+  5.times do 
+    Message.create(chain_id: chain.id, sender_id: u1.id, receiver_id: u2.id, content: Faker::Lorem.sentence(word_count: 10))
+    Message.create(chain_id: chain.id, sender_id: u2.id, receiver_id: u1.id, content: Faker::Lorem.sentence(word_count: 10))
   end
 end
 
 puts "#{Message.all.length} messages shared"
+
 
 # Test Profile No. 1 - Mark
 
@@ -163,14 +166,14 @@ mark_profile = Profile.create(
 
 mark_profile.generate_slug
 
-#Give Mark 5 friends
-5.times do 
+#Give Mark 10 friends
+10.times do 
     Friendship.create(user_1_id: mark.id, user_2_id: User.all.sample.id)
 end
 
-puts "#{mark.name} has been created with #{mark.friend_ids.length} friends."
+puts "#{mark.name} has been created with #{mark.friends.length} friends."
 
-#Give Mark 5 friend requests
+# Give Mark 5 friend requests
 5.times do 
   FriendRequest.create(requestor_id: User.all.sample.id, receiver_id: mark.id)
 end
@@ -180,17 +183,21 @@ end
   FriendRequest.create(requestor_id: mark.id, receiver_id: User.all.sample.id)
 end
 
-puts "Popular guy! #{mark.name} has #{mark.friend_requests.length} friend requests!"
+puts "#{mark.name} has sent #{mark.friend_requests.length} friend requests and received #{mark.friend_requests_as_receiver.length} friend requests."
 
-# #Create 10 messages which Mark has sent
-# 10.times do 
-#     Message.create(sender_id: mark.id, receiver_id: mark.friends.sample.id, content: Faker::Lorem.sentence(word_count: 15))
-# end
+# Give Mark some message chains
+5.times do 
+  friend_id = User.all.sample.id
+  chain = Chain.create()
+  5.times do 
+    # message sent by Mark...
+    Message.create(chain_id: chain.id, sender_id: mark.id, receiver_id: friend_id, content: Faker::Lorem.sentence(word_count: 15) )
+    # message sent to Mark by friend...
+    Message.create(chain_id: chain.id, sender_id: friend_id, receiver_id: mark.id, content: Faker::Lorem.sentence(word_count: 10) )
+  end
+end
 
-# #Create 10 messages which Mark has received
-# 10.times do 
-#     Message.create(sender_id: mark.friends.sample.id, receiver_id: mark.id, subject: Faker::Lorem.sentence(word_count: 2), content: Faker::Lorem.sentence(word_count: 15))
-# end
+puts "#{mark.name} is part of #{mark.chains.length} message chains. He has shared #{mark.sent_messages.length} and has received #{mark.received_messages.length}."
 
 
 # Test Profile No. 2 - Eduardo
