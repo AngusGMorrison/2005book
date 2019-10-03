@@ -14,44 +14,75 @@
 
         <div class="my-messages-widget-content-container">
 
-            <div class="previous-messages-container">
-                
+            <div class="previous-messages-container"> 
+  
                 <% @messages.each do |message| %>
 
                     <div class="previous-message-container">
-                        <img src=<%= message.sender.profile.photo_url %> alt="" width="25" title=<%=message.sender.name%>}> 
-                        <%= message.content %> 
-                        <%= I18n.l(message.created_at, format: :long) %>
+                        
+                        <div class="friend-profile-img-container" >
+                            <img src=<%= message.sender.profile.photo_url %> alt="" width="25" title=<%=message.sender.name%>}> 
+                        </div>
+                        
+                        <div class="all-message-content-container">
+
+                            <div class="name-date-container">
+
+                                <div class="message-name-container">
+                                   <h3 class="message-from-header">
+                                        <%= message.sender.name %>
+                                   </h3> 
+                                </div>
+
+                                <div class="message-date-container">
+                                    
+                                    <h4 class="message-date-header">
+                                        <%= I18n.l(message.created_at, format: :long) %>
+                                    </h4>
+                                    
+                                </div>
+
+                            </div>
+
+                            <div class='message-text-container'>
+                                <p class="message-text">
+                                    <%= message.content %> 
+                                </p>
+                            </div>
+
+                        </div>
+                        
                     </div>
                     
                 <% end %>
-
             </div>
 
             <div class="message-response-container">
+                
                 <%= form_for @new_message do |f| %>
-                <%= f.hidden_field :sender_id, value: current_user.id %> 
-                <%= f.hidden_field :receiver_id, value: @friend.id %> 
-                <%= f.hidden_field :chain_id, value: @chain.id %> 
-                <%= f.text_area :content %> 
-                <%= f.submit "Send"%>
-            <% end %>
+                    
+                    <div class="message-response-text-area-container">
+                        <%= f.hidden_field :sender_id, value: current_user.id %> 
+                        <%= f.hidden_field :receiver_id, value: @friend.id %> 
+                        <%= f.hidden_field :chain_id, value: @chain.id %> 
+                        <%= f.text_area :content , class: "text-area"%> 
+                    </div>
+                
+                    <div class="message-send-button-container">
+                        
+                        <button class="primary-button">
+                            <%= f.submit "Send"%>
+                        </button>
+                        
+                    </div>
+
+                <% end %>
+                    
             </div>
-
-
-            
-
-            
 
         </div>
 
-        
-
-
-
     </div>
-
-
 
 </div>
 
