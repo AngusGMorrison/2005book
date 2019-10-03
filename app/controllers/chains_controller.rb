@@ -1,7 +1,8 @@
 class ChainsController < ApplicationController
 
     def index
-        @chains = current_user.chains.sort_by{ |chain| chain.last_message.created_at }.reverse
+        @current_user = current_user
+        @chains = @current_user.chains
     end
 
     def new
@@ -13,6 +14,7 @@ class ChainsController < ApplicationController
     end
 
     def show
+        @current_user = current_user
         @chain = Chain.find(params[:id])
         @friend = @chain.users.reject{ |user| user == current_user}[0]
         @messages = @chain.messages.order("created_at ASC")

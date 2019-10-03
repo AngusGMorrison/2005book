@@ -2,7 +2,7 @@
 
 <% @messages.each do |message| %>
 
-    <img src=<%= message.sender.profile.photo_url %> alt="" width="25"> <br>
+    <img src=<%= message.sender.profile.photo_url %> alt="" width="25" title=<%=message.sender.name%>}> <br>
     <%= message.content %> <br>
     <small><%= I18n.l(message.created_at, format: :long) %></small>
     <br><br>

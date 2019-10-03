@@ -108,9 +108,15 @@ end
 puts "#{GroupUser.all.length} people joined groups"
 
 
-# Create friends
-20.times do 
-    Friendship.find_or_create_by(user_1: User.all.sample, user_2: User.all.sample)
+# Give everyone 10 friends
+User.all.each do |user|
+    5.times do  
+      Friendship.find_or_create_by(user_1: user, user_2: User.all.sample)
+    end
+  
+    5.times do 
+      Friendship.find_or_create_by(user_1: User.all.sample, user_2: user)
+    end 
 end
 
 puts "#{Friendship.all.length} friendships created"
@@ -126,7 +132,7 @@ puts "#{Chain.all.length} chains started"
 # Give each chain two users and some messages
 Chain.all.each do |chain|
   u1 = User.all.sample
-  u2 = User.all.sample
+  u2 = u1.friends.sample
 
   5.times do 
     Message.create(chain_id: chain.id, sender_id: u1.id, receiver_id: u2.id, content: Faker::Lorem.sentence(word_count: 10))
@@ -166,9 +172,10 @@ mark_profile = Profile.create(
 
 mark_profile.generate_slug
 
-#Give Mark 10 friends
+#Give Mark 20 friends
 10.times do 
     Friendship.create(user_1_id: mark.id, user_2_id: User.all.sample.id)
+    Friendship.create(user_1_id: User.all.sample.id, user_2_id: mark.id)
 end
 
 puts "#{mark.name} has been created with #{mark.friends.length} friends."
@@ -187,17 +194,17 @@ puts "#{mark.name} has sent #{mark.friend_requests.length} friend requests and r
 
 # Give Mark some message chains
 5.times do 
-  friend_id = User.all.sample.id
+  friend = mark.friends.sample
   chain = Chain.create()
   5.times do 
     # message sent by Mark...
-    Message.create(chain_id: chain.id, sender_id: mark.id, receiver_id: friend_id, content: Faker::Lorem.sentence(word_count: 15) )
+    message = Message.create(chain_id: chain.id, sender_id: mark.id, receiver_id: friend.id, content: Faker::Lorem.sentence(word_count: 15) )
     # message sent to Mark by friend...
-    Message.create(chain_id: chain.id, sender_id: friend_id, receiver_id: mark.id, content: Faker::Lorem.sentence(word_count: 10) )
+    Message.create(chain_id: chain.id, sender_id: friend.id, receiver_id: mark.id, content: Faker::Lorem.sentence(word_count: 10) )
   end
 end
 
-puts "#{mark.name} is part of #{mark.chains.length} message chains. He has shared #{mark.sent_messages.length} and has received #{mark.received_messages.length}."
+puts "#{mark.name} is part of #{mark.chains.length} message chains. He has shared #{mark.sent_messages.length} and has received #{mark.received_messages.length} messages."
 
 
 # Test Profile No. 2 - Eduardo

@@ -65,7 +65,7 @@ class User < ApplicationRecord
     end
 
     def chains 
-        self.chain_ids.map{ |chain_id| Chain.find(chain_id)}
+        self.chain_ids.map{ |chain_id| Chain.find(chain_id)}.sort_by{ |chain| chain.last_message.created_at }.reverse
     end
 
     # Other methods
