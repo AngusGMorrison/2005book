@@ -49,6 +49,7 @@ class ProfilesController < ApplicationController
       :interests,
       :books,
       :movies,
+      :photo_url,
       :music,
       :about_me,
       :studies,
