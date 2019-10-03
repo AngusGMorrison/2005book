@@ -7,8 +7,6 @@ class User < ApplicationRecord
 
     has_many :sent_messages, foreign_key: :sender_id, class_name: :Message
     has_many :received_messages, foreign_key: :receiver_id, class_name: :Message 
-    # has_many :messages, through: { joins(:participant, :organizer) }, class_name: :Message
-    
 
     has_many :friendships_as_user_1, foreign_key: :user_1_id, class_name: :Friendship
     has_many :friendships_as_user_2, foreign_key: :user_2_id, class_name: :Friendship
@@ -47,7 +45,7 @@ class User < ApplicationRecord
 
     # Methods for FriendRequests
 
-    # returns an array of received
+    # returns an array of received requests
     def friend_requests 
         self.friend_requests_as_receiver.sort_by{ |request| request.requestor.name }
     end
