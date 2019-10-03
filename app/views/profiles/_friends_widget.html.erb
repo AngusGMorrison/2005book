@@ -1,0 +1,18 @@
+<%= render partial: "profile_widget_header", locals: { current_user: current_user, profile: profile, editable: false, heading: "Friends" }  %>
+
+<div class="widget-body">
+  <% if @current_user.friends.empty? %>
+    <p class="profile-center">You don't have any friends yet.</p>
+  <% else %>
+    <% current_user.first_6_friends.each do |friend| %>
+      <div class="profile-friend-container">
+        <div class="profile-friend-image-container">
+          <%= link_to image_tag(friend.profile.photo_url), profile_path(friend.profile.slug) %>
+        </div>
+        <div class="profile-friend-name-container">
+          <%= link_to friend.name, profile_path(friend.profile.slug) %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

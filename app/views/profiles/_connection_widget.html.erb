@@ -2,10 +2,10 @@
 
 <div class="widget-body">
   <% if current_user.owns_profile?(profile) %>
-    <p>This is you.</p>
+    <p class="profile-center">This is you.</p>
   <% elsif current_user.friends_with?(profile_owner) %>
-    <p>You are friends with <%= profile_owner.name %></p>
+    <p class="profile-center">You are friends with <%= profile_owner.name %>.</p>
   <% else %>
-    <p>You and <%= @profile_owner.name %> aren't friends yet.</p>
+    <p class="profile-center">You and <%= @profile_owner.name %> aren't friends yet.</p>
   <% end %>
 </div>

@@ -47,9 +47,19 @@ class User < ApplicationRecord
       self.friends.include?(user)
     end
 
-    def mutual_friends(user)
+    def number_of_mutual_friends(user)
+      get_mutual_friends(user).length
+    end
+
+    def get_mutual_friends(user)
       self.friends & user.friends
     end
+
+    def first_6_friends
+      friends.slice(0..5)
+    end
+
+    
 
     # Methods for FriendRequests
 
