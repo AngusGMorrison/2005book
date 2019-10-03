@@ -26,6 +26,7 @@
 }
 
 h3.profile-info-subheading {
+  font-size: 11px;
   font-weight: 700;
 }
 
@@ -33,8 +34,8 @@ h3.profile-info-subheading {
   width: 100%;
 }
 
-.profile-info-table td:first-child {
-  width: 33%;
+.profile-info-table td:first-child, .edit-profile-table td:first-child {
+  width: 100px;
 }
 
 .profile-info-table td:last-child {
@@ -91,4 +92,23 @@ p.profile-center {
   font-size: 11px;
   color: black;
   text-align: center;
+}
+
+.edit-profile-table {
+  border-collapse: separate;
+  border-spacing: 0 5px;
+}
+
+.edit-profile-table td {
+  font-size: 11px;
+}
+
+.profile-edit-button-container {
+  margin-top: 12px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.primary-button.profile-edit-button {
+  margin: auto;
 }
