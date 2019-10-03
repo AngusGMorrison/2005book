@@ -14,73 +14,75 @@
     </tr>
   </table>
 
-  <h3 class="profile-info-subheading">Basic Info:</h3>
-  <table class="profile-info-table">
-    <tr>
-      <td>Mod:</td><td><%= profile_owner.mod.name %></td>
-    </tr>
-    <tr>
-      <td>Studies:</td><td><%= profile.studies %></td>
-    </tr>
-    <tr>
-      <td>Sex:</td><td><%= profile.sex %></td>
-    </tr>
-    <tr>
-      <td>Birthday:</td><td><%= profile_owner.formatted_birthday if profile_owner.birthday %></td>
-    </tr>
-    <tr>
-      <td>Home Town:</td><td><%= profile.hometown %></td>
-    </tr>
-  </table>
+  <% if current_user.friends_with?(profile_owner) || current_user.owns_profile?(profile) %>
+    <h3 class="profile-info-subheading">Basic Info:</h3>
+    <table class="profile-info-table">
+      <tr>
+        <td>Mod:</td><td><%= profile_owner.mod.name %></td>
+      </tr>
+      <tr>
+        <td>Studies:</td><td><%= profile.studies %></td>
+      </tr>
+      <tr>
+        <td>Sex:</td><td><%= profile.sex %></td>
+      </tr>
+      <tr>
+        <td>Birthday:</td><td><%= profile_owner.formatted_birthday if profile_owner.birthday %></td>
+      </tr>
+      <tr>
+        <td>Home Town:</td><td><%= profile.hometown %></td>
+      </tr>
+    </table>
 
-  <h3 class="profile-info-subheading">Contact Info:</h3>
-  <table class="profile-info-table">
-    <tr>
-      <td>Email:</td><td><%= mail_to profile_owner.email %></td>
-    </tr>
-    <tr>
-      <td>Screenname:</td><td><%= profile.screenname %></td>
-    </tr>
-    <tr>
-      <td>Phone:</td><td><%= profile.phone_number %></td>
-    </tr>
-    <tr>
-      <td>Websites:</td><td><%= profile.websites %></td>
-    </tr>
-  </table>
+    <h3 class="profile-info-subheading">Contact Info:</h3>
+    <table class="profile-info-table">
+      <tr>
+        <td>Email:</td><td><%= mail_to profile_owner.email %></td>
+      </tr>
+      <tr>
+        <td>Screenname:</td><td><%= profile.screenname %></td>
+      </tr>
+      <tr>
+        <td>Phone:</td><td><%= profile.phone_number %></td>
+      </tr>
+      <tr>
+        <td>Websites:</td><td><%= profile.websites %></td>
+      </tr>
+    </table>
 
-  <h3 class="profile-info-subheading">Personal Info:</h3>
-  <table class="profile-info-table">
-    <tr>
-      <td>Looking For:</td>
-      <% if profile.looking_for_options %>
-        <td>
-          <% profile.looking_for_options.each do |lfo| %>
-            <%= lfo.name %><br>
-          <% end %>      
-        </td>
-      <% end %>
-    </tr>
-    <tr>
-      <td>Interested In:</td><td><%= profile.interested_in %></td>
-    </tr>
-    <tr>
-      <td>Political Views:</td><td><%= profile.political_view.name if profile.political_view %></td>
-    </tr>
-    <tr>
-      <td>Interests:</td><td><%= profile.interests %></td>
-    </tr>
-    <tr>
-      <td>Favorite Books:</td><td><%= profile.books %></td>
-    </tr>
-    <tr>
-      <td>Favorite Movies:</td><td><%= profile.movies %></td>
-    </tr>
-    <tr>
-      <td>Favorite Music:</td><td><%= profile.music %></td>
-    </tr>
-    <tr>
-      <td>About Me:</td><td><%= profile.about_me %></td>
-    </tr>
-  </table>
+    <h3 class="profile-info-subheading">Personal Info:</h3>
+    <table class="profile-info-table">
+      <tr>
+        <td>Looking For:</td>
+        <% if profile.looking_for_options %>
+          <td>
+            <% profile.looking_for_options.each do |lfo| %>
+              <%= lfo.name %><br>
+            <% end %>      
+          </td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>Interested In:</td><td><%= profile.interested_in %></td>
+      </tr>
+      <tr>
+        <td>Political Views:</td><td><%= profile.political_view.name if profile.political_view %></td>
+      </tr>
+      <tr>
+        <td>Interests:</td><td><%= profile.interests %></td>
+      </tr>
+      <tr>
+        <td>Favorite Books:</td><td><%= profile.books %></td>
+      </tr>
+      <tr>
+        <td>Favorite Movies:</td><td><%= profile.movies %></td>
+      </tr>
+      <tr>
+        <td>Favorite Music:</td><td><%= profile.music %></td>
+      </tr>
+      <tr>
+        <td>About Me:</td><td><%= profile.about_me %></td>
+      </tr>
+    </table>
+  <% end %>
 </div>
