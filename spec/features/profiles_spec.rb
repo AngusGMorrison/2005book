@@ -76,7 +76,7 @@ RSpec.describe "New profile", type: :feature do
   end
 
   it "has a link to edit the profile" do
-    click_on "[ edit ]"
+    find(".primary-content-container").click_on("[ edit ]")
     expect(current_path).to eq(edit_profile_path(@slug1))
   end
 

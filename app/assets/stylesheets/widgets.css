@@ -12,3 +12,16 @@ h1.widget-heading {
   padding: 18px 8px;  
 }
 
+.sidebar-nav {
+  padding: 8px;
+}
+
+.sidebar-nav-link {
+  display: block;
+  font-size: 12px;
+}
+
+.sidebar-nav-link.sidebar-profile-link {
+  display: inline-block;
+}
+

@@ -1,0 +1,12 @@
+<nav class="sidebar-widget sidebar-nav">
+  <div class="sidebar-profile-links">
+    <%= link_to "My Profile", profile_path(current_user.profile.slug), class: "sidebar-nav-link sidebar-profile-link" %> 
+    <%= link_to "[ edit ]", edit_profile_path(current_user.profile.slug), class: "sidebar-nav-link sidebar-profile-link" %>
+  </div>
+  <%= link_to "My Friends", friends_path(current_user), class: "sidebar-nav-link" %>
+  <span class="sidebar-nav-link">My Groups</span>
+  <span class="sidebar-nav-link">My Parties</span>
+  <%= link_to "My Messages", chains_path, class: "sidebar-nav-link" %>
+  <span class="sidebar-nav-link">My Account</span>
+  <span class="sidebar-nav-link">My Privacy</span>
+</nav>
