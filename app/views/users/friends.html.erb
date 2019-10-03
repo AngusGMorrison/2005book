@@ -73,6 +73,12 @@
             <h2 class="requests-header">Friends</h2>
         </div>
 
+        <% if @friends.empty? %>
+            <div class="empty-requests-container">
+                <p class="no-requests-text">You don't have any friends yet!</p>           
+            </div>
+        <% end %>
+
          <div class="display-user-previews-container">
 
             <% @friends.each do |friend| %>
