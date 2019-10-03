@@ -1,0 +1,5 @@
+<%= render partial: "profile_widget_header", locals: { current_user: current_user, profile: profile, editable: false, heading: "Mutual Friends" }  %>
+
+<div class="widget-body">
+    <p><%= "You have #{current_user.number_of_mutual_friends(profile_owner)} friends in common with #{@profile_owner.name}." %></p>
+</div>

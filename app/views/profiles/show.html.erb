@@ -23,11 +23,19 @@
         <%= render partial: "connection_widget", locals: { current_user: @current_user, profile_owner: @profile_owner, profile: @profile } %>
       </div>
 
-      <% if @current_user.friends_with?(@profile_owner) %>
+      <% unless @current_user.owns_profile?(@profile) %>
+        <div class="mutual-friends-widget widget">
+          <%= render partial: "mutual_friends_widget", locals: { current_user: @current_user, profile_owner: @profile_owner, profile: @profile } %>
+        </div>
       <% end %>
-      <div class="mutual-friends-widget widget"></div>
-      <div class="profile-connection-widget widget"></div>
-      <div class="profile-friends-widget widget"></div>
+      
+      <% if @current_user.friends_with?(@profile_owner) || @current_user.owns_profile?(@profile) %>
+        <div class="profile-friends-widget widget">
+          <%= render partial: "friends_widget", locals: { current_user: @current_user, profile_owner: @profile_owner, profile: @profile } %>
+        </div>
+      <% end %>
+        
+      
     </div>
   
     <div class="right-inner-profile-container">

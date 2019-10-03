@@ -1,7 +1,15 @@
 <%= render partial: "profile_widget_header", locals: { current_user: current_user, profile: profile, heading: "Picture", editable: true } %>
 
+
 <div class="widget-body">
-  <div class="picture-container">
-    <img class="profile-picture" src="<%= profile.photo_url %>" alt="Profile picture">
-  </div>
+  <% if @profile.photo_url %>
+    <div class="picture-container">
+      <img class="profile-picture" src="<%= profile.photo_url %>" alt="Profile picture">
+    </div>
+  <% else %>
+    <p class="profile-center">You haven't uploaded a picture yet.</p>
+  <% end %>
 </div>
+
+ 
+

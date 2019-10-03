@@ -70,11 +70,6 @@ class Profile < ApplicationRecord
     self.updated_at.strftime("%B %e, %Y")
   end
 
-  def get_formatted_looking_for_options
-    looking_for_array = self.looking_for_options.map { |lfo| lfo.name }
-    looking_for_array.join("\n")
-  end
-
   def get_looking_for_option_ids
     self.looking_for_options.map(&:id)
   end
