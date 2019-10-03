@@ -33,9 +33,14 @@
 
 .user-preview-name-header {
     font-weight: bold;
+    color: black;
     font-size: 14px;
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+.invisible-link {
+    color: black;
 }
 
 .user-preview-mod-header {

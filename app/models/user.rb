@@ -33,13 +33,14 @@ class User < ApplicationRecord
     end
 
     def friends
-        self.friend_ids.map{ |friend_id| User.find(friend_id) }
+        self.friend_ids.map{ |friend_id| User.find(friend_id) }.sort_by{ |friend| friend.name }
     end
 
     # Methods for FriendRequests
 
+    # returns an array of received
     def friend_requests 
-        self.friend_requests_as_requestor + self.friend_requests_as_receiver 
+        self.friend_requests_as_receiver.sort_by{ |request| request.requestor.name }
     end
 
     def friend_request_ids

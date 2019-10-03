@@ -37,7 +37,7 @@
                             <div class="user-preview-text-container">
                                 
                                 <h3 class="user-preview-name-header">
-                                    <%= link_to request.get_requestor.name, profile_path(request.get_requestor.profile.slug) %> 
+                                    <%= link_to request.get_requestor.name, profile_path(request.get_requestor.profile.slug), class: "invisible-link" %> 
                                 </h3>
 
                                 <h4 class="user-preview-mod-header"> 
@@ -87,7 +87,7 @@
 
                         <div class="user-preview-text-container">
                             <h2 class="user-preview-name-header">
-                                <%= friend.name %> 
+                                <%= link_to friend.name, profile_path(friend.profile.slug), class: "invisible-link" %> 
                             </h2>
                             <h3 class="user-preview-mod-header">
                                 <%= friend.mod.name %> 
