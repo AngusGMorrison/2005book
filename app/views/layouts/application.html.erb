@@ -36,7 +36,7 @@
 
         <aside class="sidebar-container">
           <% if @current_user.id %>
-            <%# render partial: "sidebar-search-form" %>
+            <%= render partial: "layouts/partials/sidebar_search_form" %>
             <%= render partial: "layouts/partials/sidebar_logged_in_nav" %>
           <% else %>
             <%= render partial: "layouts/partials/sidebar_logged_out_nav" %>
