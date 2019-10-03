@@ -74,9 +74,16 @@
     padding-bottom: 20px;
 }
 
+.requests-header-container {
+    margin-bottom: 10px;
+}
+
 .requests-header {
     font-weight: bold;
 }
 
+.notice-container {
+    margin-bottom: 10px;
+}
 
 

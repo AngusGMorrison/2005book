@@ -23,10 +23,10 @@ class UsersController < ApplicationController
     end
   end
 
-  # returns an array of friends (where Friendship status == "Accepted)
   def friends
     @current_user = current_user
-    @friends = current_user.friends
+    @friends = @current_user.friends
+    @requests = @current_user.friend_requests_as_receiver
   end
 
   private
