@@ -87,12 +87,22 @@
     </table>
 
 
+    <h3 class="profile-info-subheading">Profile Picture:</h3>
+
+    <table class="edit-profile-table">
+      <tr>
+        <td><%= edit_form.label :photo_url, "Picture URL:" %></td>
+        <td><%= edit_form.url_field :photo_url, class: "text-field" %></td>
+      </tr>
+    </table>
+
+
     <h3 class="profile-info-subheading">Personal Info:</h3>
 
     <table class="edit-profile-table">
       <tr>
         <td><%= edit_form.label :looking_for_options, "Looking For:" %></td>
-        <td>
+        <td><%= edit_form.text_field :interested_in, class: "text-field" %></td>
           <%= edit_form.collection_check_boxes :looking_for_options, LookingForOption.all, :id, :name, { include_hidden: false, checked: profile.get_looking_for_option_ids } do |option| %>
             <%= option.label class: "profile-check-box" do %>
               <%= option.check_box %>
