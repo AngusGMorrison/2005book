@@ -16,10 +16,10 @@ class FriendshipsController < ApplicationController
             @request = FriendRequest.get_friend_request(params[:friendship][:user_1_id], params[:friendship][:user_2_id])
             @request.destroy
             flash[:notice] = "You and #{@friendship.get_user_1.name} are now friends."
-            redirect_to friend_requests_path
+            redirect_to friends_path(current_user)
         else
             flash[:notice] = "Could not create friendships."
-            redirect_to friend_requests_path
+            redirect_to friends_path(current_user)
         end
     end
 
