@@ -20,17 +20,19 @@
 .message-date-receiver-preview-content-container {
     display: inline-block;
     vertical-align: middle;
+    width: 370px;
 }
 
 .receiver-name-container {
     display: inline-block;
-    width: 130px;
+    /* width: 100px; */
 }
 
 .message-date-container {
-    display: inline-block;
-    padding-left: 140px;
+    /* display: inline-block; */
+    /* padding-left: 140px; */
     vertical-align: middle;
+    float: right;
 }
 
 .message-receiver-date-container{
@@ -40,6 +42,10 @@
 
 .message-date {
     font-size: 10px;
+}
+
+.message-from-header {
+    font-weight: bold;
 }
 
 
