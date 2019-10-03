@@ -1,3 +1,29 @@
-<h1>New Message</h1>
+<header class="widget-header">
+    <h1 class="widget-heading">My Messages</h1> 
+</header>
 
-<%= render partial: "/messages/form", locals: {new_message: @message, current_user: current_user, friend: nil, chain: Chain.new } %>
+<div class="primary-widget-body">
+
+    <div class="inner-profile-container"> 
+
+        <div class="my-messages-widget">
+
+            <header class="widget-header">
+                <h1 class="widget-heading">
+                    New Message
+                </h1> 
+            </header>
+
+            <div class="new-message-body-container">
+                 <%= render partial: "/messages/form", locals: {new_message: @message, current_user: current_user, friend: nil, chain: Chain.new } %>
+            </div>
+
+       
+
+        </div>
+
+        
+
+    </div>
+
+</div>
