@@ -26,6 +26,12 @@ input[type="submit"] {
   font: normal 11px Tahoma, Arial, sans-serif;
 }
 
+textarea {
+  width: 200px;
+  height: 60px;
+  background-color: var(--highlight-blue);
+}
+
 .page-container {
   font: normal 13px Tahoma, Arial, sans-serif;
 }

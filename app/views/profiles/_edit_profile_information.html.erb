@@ -1,4 +1,4 @@
-<div class="widget-body">
+<div class="widget-body profile-info-body">
   <% if user.errors || profile.errors %>
     <%= render partial: "all_errors", locals: { user: user, profile: profile }  %>
   <% end %>
@@ -6,15 +6,12 @@
   <%= form_with model: profile, url: profile_path(profile.slug), method: :patch, local: true do |edit_form| %>
 
     <h3 class="profile-info-subheading">Account Info:</h3>
+
     <table class="edit-profile-table">
       <tr>      
       <%= edit_form.fields_for :user do |user_form| %>
-        <td>
-          <%= user_form.label :name, "Name:", class: "field-label-left" %>
-        </td>
-        <td>
-          <%= user_form.text_field :name, value: user.name, class: "text-field" %>
-        </td>
+        <td><%= user_form.label :name, "Name:" %></td>
+        <td><%= user_form.text_field :name, value: user.name, class: "text-field" %></td>
       </tr>
       <% end %>
     </table>
@@ -22,78 +19,121 @@
 
     <h3 class="profile-info-subheading">Basic Info:</h3>
 
-    <%= edit_form.fields_for :user do |user_form| %>
-      <%= user_form.label :mod_id, "Mod:" %>
-      <%= user_form.collection_select :mod_id, Mod.all, :id, :name, { selected: user.mod.id } %> <br>
-    <% end %>
+    <table class="edit-profile-table">
+      <tr>
+        <%= edit_form.fields_for :user do |user_form| %>
+          <td><%= user_form.label :mod_id, "Mod:" %></td>
+          <td><%= user_form.collection_select :mod_id, Mod.all, :id, :name, { selected: user.mod.id } %></td>
+        <% end %>
+      </tr>
 
-    <%= edit_form.label :studies, "Studies:" %>
-    <%= edit_form.text_field :studies %> <br>
+      <tr>
+        <td><%= edit_form.label :studies, "Studies:" %></td>
+        <td><%= edit_form.text_field :studies, class: "text-field" %></td>
+      </tr>
 
-    <%= edit_form.label :sex, "Sex:" %>
-    <%= edit_form.text_field :sex %> <br>
+      <tr>
+        <td><%= edit_form.label :sex, "Sex:" %></td>
+        <td><%= edit_form.text_field :sex, class: "text-field" %></td>
+      </tr>
 
-    <%= edit_form.fields_for :user do |user_form| %>
-      <%= user_form.label :birthday, "Birthday:" %>
-      <%= user_form.date_select :birthday,
-        { 
-          start_year: 1930,
-          end_year: 2001,
-          order: [:month, :day, :year],
-          prompt: true,
-          selected: user.birthday
-        }
-      %> <br>
-    <% end %>
+      <tr>
+        <%= edit_form.fields_for :user do |user_form| %>
+          <td>
+            <%= user_form.label :birthday, "Birthday:" %>
+          </td>
+          <td>
+            <%= user_form.date_select :birthday,
+              { 
+                start_year: 1930,
+                end_year: 2001,
+                order: [:month, :day, :year],
+                prompt: true,
+                selected: user.birthday
+              }
+            %>
+          </td>
+        <% end %>
+      </tr>
 
-    <%= edit_form.label :hometown, "Home Town:" %>
-    <%= edit_form.text_field :hometown %> <br>
+      <tr>
+        <td><%= edit_form.label :hometown, "Home Town:" %></td>
+        <td><%= edit_form.text_field :hometown, class: "text-field" %></td>
+      </tr>
+    </table>
     
 
     <h3 class="profile-info-subheading">Contact Info:</h3>
 
-    <%= edit_form.fields_for :user do |user_form| %>
-      <%= user_form.label :email, "Email:" %>
-      <%= user_form.email_field :email, value: user.email %> <br>
-    <% end %>
-
-    <%= edit_form.label :screenname, "Screenname:" %>
-    <%= edit_form.text_field :screenname %> <br>
-    
-    <%= edit_form.label :phone_number, "Phone number:" %>
-    <%= edit_form.text_field :phone_number %> <br>
-
-    <%= edit_form.label :websites, "Websites:" %>
-    <%= edit_form.text_field :websites %> <br>
+    <table class="edit-profile-table">
+      <tr>    
+        <%= edit_form.fields_for :user do |user_form| %>
+          <td><%= user_form.label :email, "Email:" %></td>
+          <td><%= user_form.email_field :email, value: user.email, class: "text-field" %></td>
+        <% end %>
+      </tr>
+      <tr>
+        <td><%= edit_form.label :screenname, "Screenname:" %></td>
+        <td><%= edit_form.text_field :screenname, class: "text-field" %></td>
+      </tr>
+      <tr>    
+        <td><%= edit_form.label :phone_number, "Phone number:" %></td>
+        <td><%= edit_form.text_field :phone_number, class: "text-field" %></td>
+      </tr>
+      <tr>
+        <td><%= edit_form.label :websites, "Websites:" %></td>
+        <td><%= edit_form.text_area :websites%></td>
+      </tr>
+    </table>
 
 
     <h3 class="profile-info-subheading">Personal Info:</h3>
 
-    <%= edit_form.label :looking_for_options, "Looking For:" %>
-    <%= edit_form.collection_check_boxes :looking_for_options, LookingForOption.all, :id, :name, { include_hidden: false, checked: profile.get_looking_for_option_ids } %> <br>
+    <table class="edit-profile-table">
+      <tr>
+        <td><%= edit_form.label :looking_for_options, "Looking For:" %></td>
+        <td>
+          <%= edit_form.collection_check_boxes :looking_for_options, LookingForOption.all, :id, :name, { include_hidden: false, checked: profile.get_looking_for_option_ids } do |option| %>
+            <%= option.label class: "profile-check-box" do %>
+              <%= option.check_box %>
+              <%= option.object.name %><br>
+            <% end %>
+          <% end %>
+        </td>
 
-    <%= edit_form.label :interested_in, "Interested In:" %>
-    <%= edit_form.text_field :interested_in %> <br>
+      </tr>
+      <tr>
+        <td><%= edit_form.label :interested_in, "Interested In:" %></td>
+        <td><%= edit_form.text_field :interested_in, class: "text-field" %></td>
+      </tr>
+      <tr>
+        <td><%= edit_form.label :political_view_id, "Political Views:" %></td>
+        <td><%= edit_form.collection_select :political_view_id, PoliticalView.all, :id, :name, { include_blank: true, selected: profile.get_political_view_id } %></td>
+      </tr>
+      <tr>
+        <td><%= edit_form.label :interests, "Interests:" %></td>
+        <td><%= edit_form.text_area :interests %></td>
+      </tr>
+      <tr>
+        <td><%= edit_form.label :books, "Favorite Books:" %></td>
+        <td><%= edit_form.text_area :books %></td>
+      </tr>
+      <tr>
+        <td><%= edit_form.label :movies, "Favorite Movies:" %></td>
+        <td><%= edit_form.text_area :movies %></td>
+      </tr>
+      <tr>
+        <td><%= edit_form.label :music, "Favorite Music:" %></td>
+        <td><%= edit_form.text_area :music %></td>
+      </tr>
+      <tr>
+        <td><%= edit_form.label :about_me, "About Me:" %></td>
+        <td><%= edit_form.text_area :about_me %></td>
+      </tr>
+    </table>
 
-    <%= edit_form.label :political_view_id, "Political Views:" %>
-    <%= edit_form.collection_select :political_view_id, PoliticalView.all, :id, :name, { include_blank: true, selected: profile.get_political_view_id } %>
-    <br>
-
-    <%= edit_form.label :interests, "Interests:" %>
-    <%= edit_form.text_area :interests %> <br>
-
-    <%= edit_form.label :books, "Favorite Books:" %>
-    <%= edit_form.text_area :books %> <br>
-
-    <%= edit_form.label :movies, "Favorite Movies:" %>
-    <%= edit_form.text_area :movies %> <br>
-
-    <%= edit_form.label :music, "Favorite Music:" %>
-    <%= edit_form.text_area :music %> <br>
-
-    <%= edit_form.label :about_me, "About Me:" %>
-    <%= edit_form.text_area :about_me %> <br>
-
-    <%= edit_form.submit %>
-  <% end %>
+  <div class="profile-edit-button-container">
+    <button class="primary-button profile-edit-button"><%= edit_form.submit %></button>
   </div>
+  <% end %>
+</div>

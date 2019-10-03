@@ -93,3 +93,22 @@ p.profile-center {
   color: black;
   text-align: center;
 }
+
+.edit-profile-table {
+  border-collapse: separate;
+  border-spacing: 0 5px;
+}
+
+.edit-profile-table td {
+  font-size: 11px;
+}
+
+.profile-edit-button-container {
+  margin-top: 12px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.primary-button.profile-edit-button {
+  margin: auto;
+}
