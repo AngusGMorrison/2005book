@@ -74,6 +74,10 @@ class User < ApplicationRecord
       self.birthday.strftime("%m/%d/%Y")
     end
 
+    def owns_profile?(profile)
+      self == profile.user
+    end
+
     private
 
     def strip_name

@@ -4,8 +4,8 @@
 
     <% if editable %>
       <p class="widget-subheading">
-        <% if current_user == profile_owner %>
-          <%= link_to "[ edit ]", edit_profile_path(current_user.profile.slug) %>
+        <% if current_user.owns_profile?(profile) %>
+          <%= link_to "[ edit ]", edit_profile_path(profile.slug) %>
         <% end %>
       </p>
     <% end %>
