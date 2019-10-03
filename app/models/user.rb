@@ -22,6 +22,15 @@ class User < ApplicationRecord
 
     before_validation :strip_name
 
+    def self.search(search, current_user)
+        if search 
+            results = User.where("name LIKE ?", "%" + search + "%").order(:name)
+        else
+            results = User.all
+        end
+       return results.reject{ |user| user.id == current_user.id }
+    end
+
     # Methods for Friendships
 
     def friendships 

@@ -3,9 +3,8 @@ class UsersController < ApplicationController
   before_action :require_logged_out, only: [:new, :create]
 
   def index
-    # returns an array of all user objects, excluding current user
     @current_user = current_user
-    @users = User.all.reject{ |user| user.id == current_user.id }.sort_by{ |user| user.name }
+    @users = User.search(params[:search], @current_user)
   end
 
   def new
@@ -36,7 +35,8 @@ class UsersController < ApplicationController
       :mod_id,
       :email,
       :password,
-      :accepted_terms
+      :accepted_terms, 
+      :search
     )
   end
 

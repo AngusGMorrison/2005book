@@ -1,6 +1,16 @@
 <nav>
 <br>
 
+<div class="search-box">
+
+<%= form_with(url: "/users/index", local: true, method: "get" ) do %>
+    <%= text_field_tag(:search, params[:search]) %>
+    <%= label_tag(:search, "quick search") %>
+    <%= submit_tag("Go") %>
+<% end %>
+
+</div>
+
 <%# Placeholders for links, in order as displayed on 2005 FB sidebar %>
 <div><%= link_to "My Profile", profile_path(current_user.profile.slug) %></div>
 
