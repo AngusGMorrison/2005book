@@ -43,6 +43,10 @@ class User < ApplicationRecord
         self.friend_ids.map{ |friend_id| User.find(friend_id) }.sort_by{ |friend| friend.name }
     end
 
+    def friends_with?(user)
+      self.friends.include?(user)
+    end
+
     # Methods for FriendRequests
 
     # returns an array of received requests
@@ -80,6 +84,10 @@ class User < ApplicationRecord
 
     def formatted_birthday
       self.birthday.strftime("%m/%d/%Y")
+    end
+
+    def owns_profile?(profile)
+      self == profile.user
     end
 
     private

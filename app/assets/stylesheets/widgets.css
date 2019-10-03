@@ -1,3 +1,8 @@
+.widget {
+  border: var(--primary-border);
+  margin-bottom: 18px;
+}
+
 .widget-header {
   height: 18px;
   background-color: var(--primary-blue);
@@ -5,10 +10,43 @@
 }
 
 h1.widget-heading {
+  display: inline-block;
   color: white;
 }
 
+h2.widget-heading {
+  display: inline-block;
+  color: white;
+}
+
+p.widget-subheading {
+  float: right;
+  margin-right: 2px;
+  color: white;
+}
+
+p.widget-subheading a {
+  color: white;
+}
+
+.widget-body {
+  padding: 2px;
+}
+
 .primary-widget-body {
-  padding: 18px 8px;  
+  padding: 18px 12px;  
+}
+
+.sidebar-nav {
+  padding: 8px;
+}
+
+.sidebar-nav-link {
+  display: block;
+  font-size: 11px;
+}
+
+.sidebar-nav-link.sidebar-profile-link {
+  display: inline-block;
 }
 

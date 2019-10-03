@@ -1,17 +1,19 @@
 * {
   --primary-blue: rgb(57, 89, 150);
-  --secondary-blue: #D8DFEA;
+  --secondary-blue: rgb(91, 154, 233);
+  --highlight-blue: #D8DFEA;
   --primary-grey: #666;
 
 
   --primary-border: 1px solid var(--primary-blue);
   --secondary-border: 1px dashed var(--primary-blue);
   --field-border: 1px solid var(--primary-grey);
-  --button-highlight-border: 1px solid var(--secondary-blue)
+  --button-highlight-border: 1px solid var(--highlight-blue)
 }
 
 a {
   text-decoration: none;
+  color: var(--secondary-blue);
 }
 
 input[type=text], input[type=password], input[type=email], input[type=number] {
@@ -101,7 +103,7 @@ input[type="submit"] {
   vertical-align: top;
 
   border: var(--field-border);
-  background-color: var(--secondary-blue);
+  background-color: var(--highlight-blue);
 }
 
 .dropdown-container {
@@ -113,7 +115,7 @@ select {
   -webkit-appearance: menulist;
   -moz-appearance: menulist;
   appearance: menulist;
-  background-color: var(--secondary-blue);
+  background-color: var(--highlight-blue);
   border: var(--field-border);
 }
 

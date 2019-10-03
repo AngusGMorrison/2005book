@@ -1,45 +1,86 @@
-<div>
-  <h2>Information</h2>
-  <% if current_user == profile_owner %>
-    <%= link_to "[ edit ]", edit_profile_path(profile.slug) %>
-  <% end %>
-</div>
+<%= render partial: "profile_widget_header", locals: { current_user: current_user, profile: profile, heading: "Information", editable: true } %>
 
-<div>
-  <h3>Account Info:</h3>
-  <ul>
-    <li>Name: <%= profile_owner.name %></li>
-    <li>Member Since: <%= profile_owner.member_since %></li>
-    <li>Last Update: <%= profile.get_last_updated_at %></li>
-  </ul>
+<div class="widget-body profile-info-body">
+  <h3 class="profile-info-subheading">Account Info:</h3>
+  <table class="profile-info-table">
+    <tr>
+      <td>Name:</td><td><%= profile_owner.name %></td>
+    </tr>
+    <tr>
+      <td>Member Since:</td><td><%= profile_owner.member_since %></td>
+    </tr>
+    <tr>
+      <td>Last Update:</td><td><%= profile.get_last_updated_at %></td>
+    </tr>
+  </table>
 
-  <h3>Basic Info:</h3>
-  <ul>
-    <li>Mod: <%= profile_owner.mod.name %></li>
-    <li>Studies: <%= profile.studies %></li>
-    <li>Sex: <%= profile.sex %></li>
-    <li>Birthday: <%= profile_owner.formatted_birthday if profile_owner.birthday %></li>
-    <li>Home Town: <%= profile.hometown %></li>
-  </ul>
-  
-  <h3>Contact Info:</h3>
-  <ul>
-    <li>Email: <%= profile_owner.email %></li>
-    <li>Screenname: <%= profile.screenname %></li>
-    <li>Phone: <%= profile.phone_number %></li>
-    <li>Websites: <%= profile.websites %></li>
-  </ul>
+  <h3 class="profile-info-subheading">Basic Info:</h3>
+  <table class="profile-info-table">
+    <tr>
+      <td>Mod:</td><td><%= profile_owner.mod.name %></td>
+    </tr>
+    <tr>
+      <td>Studies:</td><td><%= profile.studies %></td>
+    </tr>
+    <tr>
+      <td>Sex:</td><td><%= profile.sex %></td>
+    </tr>
+    <tr>
+      <td>Birthday:</td><td><%= profile_owner.formatted_birthday if profile_owner.birthday %></td>
+    </tr>
+    <tr>
+      <td>Home Town:</td><td><%= profile.hometown %></td>
+    </tr>
+  </table>
 
-  <h3>Personal Info:</h3>
-  <ul>
-    <li>Looking For: <%= profile.get_formatted_looking_for_options %></li>
-    <li>Interested In: <%= profile.interested_in %></li>
-    <li>Political Views: <%= profile.political_view.name if profile.political_view  %></li>
-    <li>Interests: <%= profile.interests %></li>
-    <li>Favorite Books: <%= profile.books %></li>
-    <li>Favorite Movies: <%= profile.movies %></li>
-    <li>Favorite Music: <%= profile.music %></li>
-    <li>About Me: <%= profile.about_me %></li>
-  </ul>
+  <h3 class="profile-info-subheading">Contact Info:</h3>
+  <table class="profile-info-table">
+    <tr>
+      <td>Email:</td><td><%= mail_to profile_owner.email %></td>
+    </tr>
+    <tr>
+      <td>Screenname:</td><td><%= profile.screenname %></td>
+    </tr>
+    <tr>
+      <td>Phone:</td><td><%= profile.phone_number %></td>
+    </tr>
+    <tr>
+      <td>Websites:</td><td><%= profile.websites %></td>
+    </tr>
+  </table>
 
+  <h3 class="profile-info-subheading">Personal Info:</h3>
+  <table class="profile-info-table">
+    <tr>
+      <td>Looking For:</td>
+      <% if profile.looking_for_options %>
+        <td>
+          <% profile.looking_for_options.each do |lfo| %>
+            <%= lfo.name %><br>
+          <% end %>      
+        </td>
+      <% end %>
+    </tr>
+    <tr>
+      <td>Interested In:</td><td><%= profile.interested_in %></td>
+    </tr>
+    <tr>
+      <td>Political Views:</td><td><%= profile.political_view.name if profile.political_view %></td>
+    </tr>
+    <tr>
+      <td>Interests:</td><td><%= profile.interests %></td>
+    </tr>
+    <tr>
+      <td>Favorite Books:</td><td><%= profile.books %></td>
+    </tr>
+    <tr>
+      <td>Favorite Movies:</td><td><%= profile.movies %></td>
+    </tr>
+    <tr>
+      <td>Favorite Music:</td><td><%= profile.music %></td>
+    </tr>
+    <tr>
+      <td>About Me:</td><td><%= profile.about_me %></td>
+    </tr>
+  </table>
 </div>

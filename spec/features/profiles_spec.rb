@@ -76,7 +76,7 @@ RSpec.describe "New profile", type: :feature do
   end
 
   it "has a link to edit the profile" do
-    click_on "[ edit ]"
+    find(".primary-content-container").click_on("[ edit ]")
     expect(current_path).to eq(edit_profile_path(@slug1))
   end
 
@@ -85,7 +85,7 @@ RSpec.describe "New profile", type: :feature do
     fill_in "profile_user_name", with: ""
     fill_in "profile_user_name", with: "Passed Test User"
     submit_edits
-    expect(page).to have_current_path(profile_path(@slug1)).and have_css("li", text: "Passed Test User")
+    expect(page).to have_current_path(profile_path(@slug1)).and have_css("td", text: "Passed Test User")
   end
 
   it "autofills the edited name on subsequent edit" do
@@ -102,7 +102,7 @@ RSpec.describe "New profile", type: :feature do
     edit_profile
     page.select("Test Mod 2", from: "profile_user_mod_id")
     submit_edits
-    expect(page).to have_current_path(profile_path(@slug1)).and have_css("li", text: "Mod: Test Mod 2")
+    expect(page).to have_current_path(profile_path(@slug1)).and have_css("td", text: "Mod: Test Mod 2")
   end
 
   it "autofills the selected mod on subsequent edit" do
@@ -118,7 +118,7 @@ RSpec.describe "New profile", type: :feature do
     edit_profile
     fill_in "profile_studies", with: "Coding"
     submit_edits
-    expect(page).to have_current_path(profile_path(@slug1)).and have_css("li", text: "Studies: Coding")
+    expect(page).to have_current_path(profile_path(@slug1)).and have_css("td", text: "Studies: Coding")
   end
 
   it "autofills the edited studies on subsequent edit" do
@@ -134,7 +134,7 @@ RSpec.describe "New profile", type: :feature do
     edit_profile
     fill_in "profile_sex", with: "Bot"
     submit_edits
-    expect(page).to have_current_path(profile_path(@slug1)).and have_css("li", text: "Sex: Bot")
+    expect(page).to have_current_path(profile_path(@slug1)).and have_css("td", text: "Sex: Bot")
   end
 
   it "autofills the edited sex on subsequent edit" do
@@ -151,7 +151,7 @@ RSpec.describe "New profile", type: :feature do
     page.select("1", from: "profile_user_birthday_3i")
     page.select("2000", from: "profile_user_birthday_1i")
     submit_edits
-    expect(page).to have_current_path(profile_path(@slug1)).and have_css("li", text: "Birthday: 01/01/2000")
+    expect(page).to have_current_path(profile_path(@slug1)).and have_css("td", text: "Birthday: 01/01/2000")
   end
 
   it "autofills the edited birthday on subsequent edit" do
@@ -169,7 +169,7 @@ RSpec.describe "New profile", type: :feature do
     edit_profile
     fill_in "profile_user_email", with: "newemail@test.com"
     submit_edits
-    expect(page).to have_current_path(profile_path(@slug1)).and have_css("li", text: "Email: newemail@test.com")
+    expect(page).to have_current_path(profile_path(@slug1)).and have_css("td", text: "Email: newemail@test.com")
   end
 
   it "autofills the edited email on subsequent edit" do
@@ -184,7 +184,7 @@ RSpec.describe "New profile", type: :feature do
     edit_profile
     fill_in "profile_screenname", with: "Gadnuk"
     submit_edits
-    expect(page).to have_current_path(profile_path(@slug1)).and have_css("li", text: "Screenname: Gadnuk")
+    expect(page).to have_current_path(profile_path(@slug1)).and have_css("td", text: "Screenname: Gadnuk")
   end
 
   it "autofills the screenname on subsequent edit" do
@@ -199,7 +199,7 @@ RSpec.describe "New profile", type: :feature do
     edit_profile
     fill_in "profile_phone_number", with: "06688234765"
     submit_edits
-    expect(page).to have_current_path(profile_path(@slug1)).and have_css("li", text: "Phone: 06688234765")
+    expect(page).to have_current_path(profile_path(@slug1)).and have_css("td", text: "Phone: 06688234765")
   end
 
   it "autofills the phone number on subsequent edit" do
@@ -214,7 +214,7 @@ RSpec.describe "New profile", type: :feature do
     edit_profile
     fill_in "profile_websites", with: "www.facebook.com"
     submit_edits
-    expect(page).to have_current_path(profile_path(@slug1)).and have_css("li", text: "Websites: www.facebook.com")
+    expect(page).to have_current_path(profile_path(@slug1)).and have_css("td", text: "Websites: www.facebook.com")
   end
 
   it "autofills the websites on subsequent edit" do
@@ -231,7 +231,7 @@ RSpec.describe "New profile", type: :feature do
     check "profile_looking_for_options_1"
     check "profile_looking_for_options_2"
     submit_edits
-    expect(page).to have_current_path(profile_path(@slug1)).and have_css("li", text: "Friendship, Dating")
+    expect(page).to have_current_path(profile_path(@slug1)).and have_css("td", text: "Friendship, Dating")
   end
 
   it "autofills Looking For on subsequent edit" do
@@ -248,7 +248,7 @@ RSpec.describe "New profile", type: :feature do
     edit_profile
     fill_in "profile_interested_in", with: "Androids"
     submit_edits
-    expect(page).to have_current_path(profile_path(@slug1)).and have_css("li", text: "Interested In: Androids")
+    expect(page).to have_current_path(profile_path(@slug1)).and have_css("td", text: "Interested In: Androids")
   end
 
   it "autofills Interested In on subsequent edit" do
@@ -263,7 +263,7 @@ RSpec.describe "New profile", type: :feature do
     edit_profile
     page.select("Pirate Party", from: "profile_political_view_id")
     submit_edits
-    expect(page).to have_current_path(profile_path(@slug1)).and have_css("li", text: "Political Views: Pirate Party")
+    expect(page).to have_current_path(profile_path(@slug1)).and have_css("td", text: "Political Views: Pirate Party")
   end
 
   it "autofills Political Views on subsequent edit" do
@@ -279,7 +279,7 @@ RSpec.describe "New profile", type: :feature do
     edit_profile
     fill_in "profile_interests", with: "Learning"
     submit_edits
-    expect(page).to have_current_path(profile_path(@slug1)).and have_css("li", text: "Interests: Learning")
+    expect(page).to have_current_path(profile_path(@slug1)).and have_css("td", text: "Interests: Learning")
   end
 
   it "autofills Interests on subsequent edit" do
@@ -294,7 +294,7 @@ RSpec.describe "New profile", type: :feature do
     edit_profile
     fill_in "profile_books", with: "C++ For Dummies"
     submit_edits
-    expect(page).to have_current_path(profile_path(@slug1)).and have_css("li", text: "Books: C++ For Dummies")
+    expect(page).to have_current_path(profile_path(@slug1)).and have_css("td", text: "Books: C++ For Dummies")
   end
 
   it "autofills Favorite Books on subsequent edit" do
@@ -309,7 +309,7 @@ RSpec.describe "New profile", type: :feature do
     edit_profile
     fill_in "profile_movies", with: "The Matrix"
     submit_edits
-    expect(page).to have_current_path(profile_path(@slug1)).and have_css("li", text: "Movies: The Matrix")
+    expect(page).to have_current_path(profile_path(@slug1)).and have_css("td", text: "Movies: The Matrix")
   end
 
   it "autofills Favorite Movies on subsequent edit" do
@@ -324,7 +324,7 @@ RSpec.describe "New profile", type: :feature do
     edit_profile
     fill_in "profile_music", with: "The Social Network Soundtrack"
     submit_edits
-    expect(page).to have_current_path(profile_path(@slug1)).and have_css("li", text: "Music: The Social Network Soundtrack")
+    expect(page).to have_current_path(profile_path(@slug1)).and have_css("td", text: "Music: The Social Network Soundtrack")
   end
 
   it "autofills Favorite Music on subsequent edit" do
@@ -339,7 +339,7 @@ RSpec.describe "New profile", type: :feature do
     edit_profile
     fill_in "profile_about_me", with: "Test bot bleep bloop"
     submit_edits
-    expect(page).to have_current_path(profile_path(@slug1)).and have_css("li", text: "About Me: Test bot bleep bloop")
+    expect(page).to have_current_path(profile_path(@slug1)).and have_css("td", text: "About Me: Test bot bleep bloop")
   end
 
   it "autofills About Me on subsequent edit" do
