@@ -17,7 +17,7 @@
                 <div class="user-info-preview-container"> 
                     <div class="user-preview-text-container">
                         <h2 class="user-preview-name-header">
-                            <%= user.name%> 
+                            <%= link_to user.name, profile_path(user.profile.slug), class: "invisible-link"%> 
                         </h2>
                         <h3 class="user-preview-mod-header">
                             <%= user.mod.name %>
