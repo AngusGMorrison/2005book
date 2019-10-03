@@ -1,14 +1,71 @@
-<h1>My Messages</h1>
 
-<% if @chains.empty? %>
-    You don't have any messages.
-<% else %>
-    <% @chains.each do |chain| %>
-        <img src=<%= chain.users.reject{ |user| user == current_user}[0].profile.photo_url %> width="25"> <br>
-        <%= link_to chain.users.reject{ |user| user == current_user}[0].name, chain_path(chain) %> <br>
-        <%= "#{chain.last_message.content[0,30]}..." %> <br>
-        <small><%= I18n.l(chain.messages.max_by{ |message| message.created_at }.created_at, format: :long) %></small>
-        <br><br>
-    <% end %>
-<% end %>
+<header class="widget-header">
+    <h1 class="widget-heading">Inbox</h1> 
+</header>
 
+<div class="primary-widget-body">
+
+    <div class="new-message-button-container">
+        <button class="primary-button">
+            <%= link_to "New Message", new_message_path %> 
+        </button>
+    </div>
+    
+    <div class="display-user-previews-container">
+    
+      
+
+        <% if @chains.empty? %>
+            <div class="notice-container">
+                You don't have any messages.
+            </div>
+            
+        <% else %>
+            <% @chains.each do |chain| %>
+
+                <div class="message-preview-container">
+                    
+                    <div class="user-img-preview-container">
+                         <img class="receiver-profile-img" src=<%= chain.users.reject{ |user| user == current_user}[0].profile.photo_url %> > 
+                    </div>
+
+                    <div class="message-date-receiver-preview-content-container">
+
+                        <div class="message-receiver-date-container">
+                            
+                            <div class="receiver-name-container">
+                               
+                                <h2 class="message-from-header">
+                                    <%= link_to chain.users.reject{ |user| user == current_user}[0].name, chain_path(chain) %> 
+                                </h2>
+                                
+                            </div>
+
+                            <div class="message-date-container">
+                                <h3 class="message-date">
+                                    <%= I18n.l(chain.messages.max_by{ |message| message.created_at }.created_at, format: :long) %>
+                                </h3>
+                            </div>
+                            
+                            
+                        </div>
+
+                        <div class="message-content-preview-container"> 
+                            <%= "#{chain.last_message.content[0,50]}..." %> 
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+            <% end %>
+
+        <% end %>
+
+    </div>
+    
+
+
+
+
+</div>

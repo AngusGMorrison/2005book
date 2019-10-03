@@ -1,0 +1,17 @@
+<%= form_for new_message do |f| %>
+
+    <%# if this is a new message... %>
+    <% if friend.nil? && chain.id.nil? %>
+      <%= f.label "To:" %>
+      <%= f.collection_select(:receiver_id, current_user.friends.sort_by{ |friend| friend.name }, :id, :name)%>
+      <br>
+    <% else %>
+        <%= f.hidden_field :receiver_id, value: friend.id %> <br>
+        <%= f.hidden_field :chain_id, value: chain.id %> <br>
+    <% end %>
+    <%= f.hidden_field :sender_id, value: current_user.id %> <br>
+    <%= f.text_area :content %> <br>
+    <%= f.submit "Send"%>
+
+    
+<% end %>

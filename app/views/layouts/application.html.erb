@@ -21,6 +21,9 @@
             <div class="logo-container">
               <%= link_to image_tag("logo-right.jpg"), root_path %>
             </div>
+
+            <%# NOTE: CHANGED @CURRENT_USER to CURRENT_USER for building messages (@ was breaking it) - need to change this back %>
+
             <nav class="banner-nav-container">
               <% if @current_user.id %>
                 <%= render partial: "layouts/partials/logged_in_nav", locals: { current_user: @current_user } %>

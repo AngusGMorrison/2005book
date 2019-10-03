@@ -11,4 +11,9 @@ class Chain < ApplicationRecord
         [User.find(self.last_message.receiver_id), User.find(self.last_message.sender_id)]
     end
 
+    # given two user ids, find an existing message chain
+    def self.get_message_chain(user1_id, user2_id)
+        Chain.all.find{ |chain| ( chain.last_message.sender_id == user1_id && chain.last_message.receiver_id == user2_id ) || ( chain.last_message.sender_id == user2_id && chain.last_message.receiver_id == user1_id )  } 
+    end
+
 end
