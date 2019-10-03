@@ -52,7 +52,14 @@
   <h3 class="profile-info-subheading">Personal Info:</h3>
   <table class="profile-info-table">
     <tr>
-      <td>Looking For:</td><td><%= profile.get_formatted_looking_for_options %></td>
+      <td>Looking For:</td>
+      <% if profile.looking_for_options %>
+        <td>
+          <% profile.looking_for_options.each do |lfo| %>
+            <%= lfo.name %><br>
+          <% end %>      
+        </td>
+      <% end %>
     </tr>
     <tr>
       <td>Interested In:</td><td><%= profile.interested_in %></td>

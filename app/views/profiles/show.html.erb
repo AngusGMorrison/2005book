@@ -8,13 +8,22 @@
 <div class="primary-widget-body">
   <div class="inner-profile-container">
     <div class="left-inner-profile-container">
+
       <div class="profile-picture-widget widget">
         <%= render partial: "profile_picture", locals: { current_user: @current_user, profile: @profile} %>
       </div>
-      <div class="profile-menu">
-        <%# if  %>
+
+      <div class="profile-menu-container">
+        <% if @current_user.owns_profile?(@profile) %>
+          <%= render partial: "owner_profile_menu", locals: { profile: @profile } %> 
+        <% end %>
       </div>
-      <div class="profile-connection-widget widget"></div>
+
+      <div class="profile-connection-widget widget">
+        <%= render partial: "connection_widget", locals: { current_user: @current_user, profile_owner: @profile_owner, profile: @profile } %>
+      </div>
+
+      <% if @current_user.friends.include?(@profile_owner) %>
       <div class="mutual-friends-widget widget"></div>
       <div class="profile-connection-widget widget"></div>
       <div class="profile-friends-widget widget"></div>

@@ -1,0 +1,11 @@
+<%= render partial: "profile_widget_header", locals: { current_user: current_user, profile: profile, editable: false, heading: "Connection" }  %>
+
+<div class="widget-body">
+  <% if current_user.owns_profile?(profile) %>
+    <p>This is you.</p>
+  <% elsif current_user.friends.include?(profile.user) %>
+    <p>You are friends with <%= profile_owner.name %></p>
+  <% else %>
+    <p>You and <%= @profile_owner.name %> aren't friends yet.</p>
+  <% end %>
+</div>

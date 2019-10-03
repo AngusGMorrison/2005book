@@ -36,6 +36,10 @@ class User < ApplicationRecord
         self.friend_ids.map{ |friend_id| User.find(friend_id) }
     end
 
+    def friends_with?(user)
+      self.friends.include?(user)
+    end
+
     # Methods for FriendRequests
 
     def friend_requests 

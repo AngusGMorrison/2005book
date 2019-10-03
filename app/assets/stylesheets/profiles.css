@@ -29,11 +29,35 @@ h3.profile-info-subheading {
   font-weight: 700;
 }
 
-.profile-info-table {
-  display: table;
+.profile-info-table, .profile-menu {
   width: 100%;
 }
 
 .profile-info-table td:first-child {
   width: 33%;
+}
+
+.profile-info-table td:last-child {
+  line-height: 1.3;
+}
+
+.profile-menu {
+  font-size: 11px;
+  line-height: 1.6;
+  margin-right: 0px;
+  margin-bottom: 18px;
+  border-collapse: collapse;
+}
+
+.profile-menu tr {
+  border: var(--primary-border);
+}
+
+.profile-menu td {
+  padding: 0 5px;
+}
+
+.widget-body p {
+  font-size: 11px;
+  text-align: center;
 }
