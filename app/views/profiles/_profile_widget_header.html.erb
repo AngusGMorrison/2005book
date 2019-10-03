@@ -1,0 +1,13 @@
+<header class="widget-header">
+  <div class="widget-heading-container">
+    <h2 class="widget-heading"><%= heading %></h2>
+
+    <% if editable %>
+      <p class="widget-subheading">
+        <% if current_user == profile_owner %>
+          <%= link_to "[ edit ]", edit_profile_path(current_user.profile.slug) %>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
+</header>

@@ -1,9 +1,30 @@
-<h1><%= @profile_owner.name %></h1>
-<%= @profile_owner.mod.name %>
+<header class="widget-header">
+  <div class="widget-heading-container">
+    <h1 class="widget-heading"><%= @profile_owner.name %> <%= "(This is you)" if @current_user == @profile_owner %></h1>
+    <p class="widget-subheading"><%= @profile_owner.mod.name %></span>
+  </div>
+</header>
 
-<%= render partial: "profile_information",
-          locals: {
-            current_user: @current_user,
-            profile_owner: @profile_owner,
-            profile: @profile
-          } %>
+<div class="primary-widget-body">
+  <div class="inner-profile-container">
+    <div class="left-inner-profile-container">
+      <div class="profile-picture-widget widget">
+        <%= render partial: "profile_picture", locals: { current_user: @current_user, profile_owner: @profile_owner, profile: @profile} %>
+      </div>
+      <div class="profile-menu">
+        <% if  %>
+      </div>
+      <div class="profile-connection-widget widget"></div>
+      <div class="mutual-friends-widget widget"></div>
+      <div class="profile-connection-widget widget"></div>
+      <div class="profile-friends-widget widget"></div>
+    </div>
+  
+    <div class="right-inner-profile-container">
+      <div class="profile-information-widget widget">
+        <%= render partial: "profile_information", locals: { current_user: @current_user, profile_owner: @profile_owner, profile: @profile } %>
+      </div>
+    </div>
+  </div>
+</div>
+  

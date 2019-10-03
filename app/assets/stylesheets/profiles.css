@@ -1,0 +1,39 @@
+.left-inner-profile-container {
+  display: inline-block;
+  vertical-align: top;
+  width: 203px;
+  margin-right: 12px;
+}
+
+.right-inner-profile-container {
+  display: inline-block;
+  width: 326px;
+}
+
+.picture-container {
+  max-width: 195px;
+}
+
+.profile-picture {
+  max-width: 100%;
+  margin: auto;
+}
+
+.profile-info-body {
+  font-size: 11px;
+  line-height: 1.6;
+  margin: 0 2px;
+}
+
+h3.profile-info-subheading {
+  font-weight: 700;
+}
+
+.profile-info-table {
+  display: table;
+  width: 100%;
+}
+
+.profile-info-table td:first-child {
+  width: 33%;
+}
