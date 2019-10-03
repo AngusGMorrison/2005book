@@ -5,73 +5,68 @@
 
 <div class="primary-widget-body">
 
-    <div class="inner-profile-container"> 
-        
-        <div class="new-message-button-container">
-                <button class="primary-button">
-                    <%= link_to "New Message", new_message_path %> 
-                </button>
+    <div class="my-messages-widget">
+    
+        <div class="widget-heading-container">
+            <header class="widget-header">
+                <h1 class="widget-heading">
+                    Inbox
+                </h1> 
+                <p class="widget-subheading">
+                    <%= link_to "[ new message ]", new_message_path %>
+                </p>
+            </header>
+        </div>
+
+
+
+        <% if @chains.empty? %>
+            <div class="notice-container">
+                You don't have any messages.
             </div>
             
-            <div class="display-user-previews-container">
-            
-            
+        <% else %>
+            <% @chains.each do |chain| %>
 
-                <% if @chains.empty? %>
-                    <div class="notice-container">
-                        You don't have any messages.
-                    </div>
+                <div class="message-preview-container">
                     
-                <% else %>
-                    <% @chains.each do |chain| %>
+                    <div class="user-img-preview-container">
+                        <img class="receiver-profile-img" src=<%= chain.users.reject{ |user| user == current_user}[0].profile.photo_url %> > 
+                    </div>
 
-                        <div class="message-preview-container">
+                    <div class="message-date-receiver-preview-content-container">
+
+                        <div class="message-receiver-date-container">
                             
-                            <div class="user-img-preview-container">
-                                <img class="receiver-profile-img" src=<%= chain.users.reject{ |user| user == current_user}[0].profile.photo_url %> > 
-                            </div>
-
-                            <div class="message-date-receiver-preview-content-container">
-
-                                <div class="message-receiver-date-container">
-                                    
-                                    <div class="receiver-name-container">
-                                    
-                                        <h2 class="message-from-header">
-                                            <%= link_to chain.users.reject{ |user| user == current_user}[0].name, chain_path(chain), class: "invisible-link" %> 
-                                        </h2>
-                                        
-                                    </div>
-
-                                    <div class="message-date-container">
-                                        <h3 class="message-date">
-                                            <%= I18n.l(chain.messages.max_by{ |message| message.created_at }.created_at, format: :long) %>
-                                        </h3>
-                                    </div>
-                                    
-                                    
-                                </div>
-
-                                <div class="message-content-preview-container"> 
-                                    <%= "#{chain.last_message.content[0,50]}..." %> 
-                                </div>
+                            <div class="receiver-name-container">
+                            
+                                <h2 class="message-from-header">
+                                    <%= link_to chain.users.reject{ |user| user == current_user}[0].name, chain_path(chain), class: "invisible-link" %> 
+                                </h2>
                                 
                             </div>
 
+                            <div class="message-date-container">
+                                <h3 class="message-date">
+                                    <%= I18n.l(chain.messages.max_by{ |message| message.created_at }.created_at, format: :long) %>
+                                </h3>
+                            </div>
+                            
+                            
                         </div>
 
-                    <% end %>
+                        <div class="message-content-preview-container"> 
+                            <%= "#{chain.last_message.content[0,50]}..." %> 
+                        </div>
+                        
+                    </div>
 
-                <% end %>
+                </div>
 
-            </div>
+            <% end %>
+
+        <% end %>
 
     </div>
-
-    
-    
-
-
-
 
 </div>

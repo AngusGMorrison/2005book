@@ -1,19 +1,57 @@
-<h1>Message with <%= @friend.name %></h1>
+<header class="widget-header">
+    <h1 class="widget-heading">My Messages</h1> 
+</header>
 
-<% @messages.each do |message| %>
+<div class="primary-widget-body">
 
-    <img src=<%= message.sender.profile.photo_url %> alt="" width="25" title=<%=message.sender.name%>}> <br>
-    <%= message.content %> <br>
-    <small><%= I18n.l(message.created_at, format: :long) %></small>
-    <br><br>
-<% end %>
+    <div class="my-messages-widget">
+        
+        <header class="widget-header">
+            <h2 class="widget-heading">
+                Message with <%= @friend.name %>
+            </h2> 
+        </header>
 
-<br><br>
+        <div class="my-messages-widget-content-container">
 
-<%= form_for @new_message do |f| %>
-    <%= f.hidden_field :sender_id, value: current_user.id %> <br>
-    <%= f.hidden_field :receiver_id, value: @friend.id %> <br>
-    <%= f.hidden_field :chain_id, value: @chain.id %> <br>
-    <%= f.text_area :content %> <br>
-    <%= f.submit "Send"%>
-<% end %>
+            <div class="previous-messages-container">
+                
+                <% @messages.each do |message| %>
+
+                    <div class="previous-message-container">
+                        <img src=<%= message.sender.profile.photo_url %> alt="" width="25" title=<%=message.sender.name%>}> 
+                        <%= message.content %> 
+                        <%= I18n.l(message.created_at, format: :long) %>
+                    </div>
+                    
+                <% end %>
+
+            </div>
+
+            <div class="message-response-container">
+                <%= form_for @new_message do |f| %>
+                <%= f.hidden_field :sender_id, value: current_user.id %> 
+                <%= f.hidden_field :receiver_id, value: @friend.id %> 
+                <%= f.hidden_field :chain_id, value: @chain.id %> 
+                <%= f.text_area :content %> 
+                <%= f.submit "Send"%>
+            <% end %>
+            </div>
+
+
+            
+
+            
+
+        </div>
+
+        
+
+
+
+    </div>
+
+
+
+</div>
+

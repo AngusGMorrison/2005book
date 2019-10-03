@@ -1,3 +1,7 @@
+.my-messages-widget {
+    border: var(--primary-border);
+ }
+
 .new-message-button-container {
     margin-bottom: 10px;
     margin-left: 450px;
@@ -45,8 +49,13 @@
 }
 
 .message-from-header {
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 13px;
 }
 
+.new-message-body-container {
+    margin: 10px;
+    padding: 2px;
+}
 
 
