@@ -1,15 +1,29 @@
 require "rails_helper"
 
 RSpec.describe "Sessions", type: :feature do
-  let(:fill_email) { fill_in "user_email", with: "test2@test.com" }
-  let(:fill_password) { fill_in "user_password", with: "password" }
-  let(:submit) { click_on "Login" }
-
   def login
     visit login_path
     fill_email
     fill_password
     submit
+  end
+
+  def fill_email
+    within(".login-form") do
+      fill_in "user_email", with: "test2@test.com"
+    end
+  end
+
+  def fill_password
+    within(".login-form") do
+      fill_in "user_password", with: "password"
+    end
+  end
+
+  def submit
+    within(".login-form") do
+      click_on "Login"
+    end
   end
 
   before do
@@ -43,7 +57,7 @@ RSpec.describe "Sessions", type: :feature do
 
   it "prevents users with invalid emails from logging in" do
     visit login_path
-    fill_in "user_email", with: "fake@notexist.com"
+    find(".login-form").fill_in("user_email", with: "fake@notexist.com")
     fill_password
     submit
     expect(current_path).to eq(login_path)
@@ -59,7 +73,7 @@ RSpec.describe "Sessions", type: :feature do
   it "prevents users with invalid passwords from logging in" do
     visit login_path
     fill_email
-    fill_in "user_password", with: "invalid"
+    find(".login-form").fill_in("user_password", with: "invalid")
     submit
     expect(current_path).to eq(login_path)
   end

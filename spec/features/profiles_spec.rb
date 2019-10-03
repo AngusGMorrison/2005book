@@ -1,9 +1,6 @@
 require "rails_helper"
 
 RSpec.describe "New profile", type: :feature do
-  let(:fill_email) { fill_in "user_email", with: "test@test.com" }
-  let(:fill_password) { fill_in "user_password", with: "password" }
-  let(:submit_login) { click_on "Login" }
   let(:submit_edits) { click_on "Update Profile" }
 
   def create_test_objects
@@ -34,6 +31,24 @@ RSpec.describe "New profile", type: :feature do
     fill_email
     fill_password
     submit_login
+  end
+
+  def fill_email
+    within(".login-form") do
+      fill_in "user_email", with: "test@test.com"
+    end
+  end
+
+  def fill_password
+    within(".login-form") do
+      fill_in "user_password", with: "password"
+    end
+  end
+
+  def submit_login
+    within(".login-form") do
+      click_on "Login"
+    end
   end
 
   def edit_profile
@@ -79,7 +94,7 @@ RSpec.describe "New profile", type: :feature do
     fill_in "profile_user_name", with: "Passed Test User"
     submit_edits
     edit_profile
-    expect(page).to have_current_path(edit_profile_path(@slug1)).and have_content(@user1.name)
+    expect(page).to have_current_path(edit_profile_path(@slug1)).and have_selector("input[value='Passed Test User']")
   end
 
   it "allows mod to be edited correctly" do
