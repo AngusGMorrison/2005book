@@ -3,10 +3,20 @@ require "rails_helper"
 RSpec.describe "Users", type: :feature do
   let(:fill_name) { fill_in "user_name", with: "Test User" }
   let(:select_mod) { page.select("Test Mod", from: "user_mod_id") }
-  let(:fill_email) { fill_in "user_email", with: "test@test.com" }
-  let(:fill_password) { fill_in "user_password", with: "password" }
   let(:check_terms) { check "user_accepted_terms" }
-  let(:submit) { click_on "Register Now!" } 
+  let(:submit) { click_on "Register Now!" }
+
+  def fill_email
+    within(".registration-form") do
+      fill_in "user_email", with: "test2@test.com"
+    end
+  end
+
+  def fill_password
+    within(".registration-form") do
+      fill_in "user_password", with: "password"
+    end
+  end
 
   before do
     Mod.create(name: "Test Mod")

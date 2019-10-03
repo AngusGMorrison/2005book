@@ -6,12 +6,12 @@ RSpec.describe "Homepage", type: :feature do
   end
 
   it "has a link to log in" do
-    click_on "Login"
+    find(".banner-nav-container").click_on("login")
     expect(page).to have_current_path(login_path)
   end
 
   it "has a link to register" do
-    click_on "Register"
+    find(".banner-nav-container").click_on("register")
     expect(page).to have_current_path(register_path)
   end
 
