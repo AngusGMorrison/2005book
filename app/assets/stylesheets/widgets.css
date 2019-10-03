@@ -37,6 +37,14 @@ p.widget-subheading a {
   padding: 18px 12px;  
 }
 
+.sidebar-widget {
+  margin-bottom: 2px;
+}
+
+.search-form-container {
+  padding: 8px;
+}
+
 .sidebar-nav {
   padding: 8px;
 }
@@ -48,5 +56,30 @@ p.widget-subheading a {
 
 .sidebar-nav-link.sidebar-profile-link {
   display: inline-block;
+}
+
+.search-form-container {
+  font-size: 11px;
+}
+
+.search-form-container .text-field {
+  width: 90px;
+}
+
+.highlight-button {
+  height: 19px;
+  background-color: var(--secondary-blue);
+  color: white;
+  font: normal 11px Tahoma, Arial, sans-serif;
+
+  padding: 0 8px;
+  border-top: var(--button-highlight-border);
+  border-left: var(--button-highlight-border);
+  border-bottom: var(--primary-border);
+  border-right: var(--primary-border);
+}
+
+input[type=submit].highlight-submit {
+  background-color: var(--secondary-blue);
 }
 
