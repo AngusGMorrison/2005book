@@ -23,8 +23,6 @@ Rails.application.routes.draw do
   get "/chains/:id", to: "chains#show", as: "chain"
 
   # Friend Requests
-  get "/friend_requests", to: "friend_requests#index", as: "friend_requests"
-  get "/friend_requests/:id", to: "friend_requests#show", as: "friend_request"
   post "/friend_requests", to: "friend_requests#create", as: "create_friend_request"
   delete "/friend_requests/:id", to: "friend_requests#destroy", as: "destroy_friend_request"
 
