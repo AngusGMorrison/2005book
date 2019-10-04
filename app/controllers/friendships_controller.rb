@@ -9,7 +9,6 @@ class FriendshipsController < ApplicationController
     # end
 
     def create
-      byebug
         @friendship = Friendship.new(friendship_params)
         if @friendship.valid?
             @friendship.save
