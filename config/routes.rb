@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   delete "/friendships/:id", to: "friendships#destroy", as: "destroy_friendship"
 
   # Messages
-  get "/messages", to: "messages#user_messages", as: "user_messages"
+  get "/messages", to: "chains#index", as: "user_messages"
   get "/messages/new", to: "messages#new", as: "new_message"
   
   resources :groups

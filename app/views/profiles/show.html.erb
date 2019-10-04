@@ -16,6 +16,12 @@
       <div class="profile-menu-container">
         <% if @current_user.owns_profile?(@profile) %>
           <%= render partial: "owner_profile_menu", locals: { profile: @profile } %> 
+        <% elsif @current_user.friends_with?(@profile_owner) %>
+          <%= render partial: "friend_profile_menu", locals: { profile_owner: @profile_owner }  %>
+        <% elsif @sent_friend_request || @received_friend_request %>
+          <%= render partial: "request_pending_profile_menu" , locals: { sent_friend_request: @sent_friend_request, received_friend_request: @received_friend_request, profile_owner: @profile_owner } %>
+        <% else %>
+          <%= render partial: "stranger_profile_menu", locals: {current_user: @current_user, profile_owner: @profile_owner } %>
         <% end %>
       </div>
 

@@ -1,0 +1,11 @@
+<table class="profile-menu">
+  <tr>
+    <td>
+      <%= form_with scope: :friend_request, url: "/friend_requests" do |f| %>
+        <%= f.hidden_field :requestor_id, value: current_user.id %>
+        <%= f.hidden_field :receiver_id, value: profile_owner.id %>
+        <%= f.submit "Send #{profile_owner.first_name} a Friend Request", class: "link-button" %>
+      <% end %>
+    </td>
+  </tr>
+</table>
