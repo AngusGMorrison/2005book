@@ -240,3 +240,60 @@ puts "#{eduardo.name} has been created with #{eduardo.friend_ids.length} friends
 
 
 
+cameron = User.create(
+    name: "Cameron Winklevoss",
+    email: "c.winklevoss@harvard.edu",
+    password: "password1",
+    mod_id: 1,
+    accepted_terms: true
+)
+
+cameron_profile = Profile.create(
+  user_id: cameron.id,
+  sex: "Male",
+  studies: "The Science of Dating",
+  phone_number: Faker::PhoneNumber.phone_number,
+  screenname: "i_row-crew-81",
+  interested_in: "Women",
+  relationship_status: "Single",
+  political_view_id: 5,
+  interests: "Rowing, lifting, rowing, girls, lifting, rowing",
+  movies: "#{Faker::Movies::HarryPotter.book}",
+  music: "#{Faker::Music.band}, #{Faker::Music.band}, #{Faker::Music.band}",
+  websites: "#{Faker::Internet.url}",
+  about_me: "I'm 6'5, 220 and there's two of me.",
+  photo_url: "https://s.hdnux.com/photos/01/52/21/435295/3/920x920.jpg"
+)
+
+cameron_profile.generate_slug
+
+
+
+tyler = User.create(
+    name: "Tyler Winklevoss",
+    email: "t.winklevoss@harvard.edu",
+    password: "password1",
+    mod_id: 1,
+    accepted_terms: true
+)
+
+tyler_profile = Profile.create(
+  user_id: tyler.id,
+  sex: "Male",
+  studies: "How to get rich off my parents' money",
+  phone_number: Faker::PhoneNumber.phone_number,
+  screenname: "i_also_row-crew-81",
+  interested_in: "Women",
+  relationship_status: "Single",
+  political_view_id: 5,
+  interests: "Rowing, lifting, rowing, girls, lifting, rowing",
+  movies: "#{Faker::Movies::HarryPotter.book}",
+  music: "#{Faker::Music.band}, #{Faker::Music.band}, #{Faker::Music.band}",
+  websites: "#{Faker::Internet.url}",
+  about_me: "I am a gentleman of Harvard - I don't sue people",
+  photo_url: "https://media.workandmoney.com/23/52/2352bf5fa0534febb412b69b8e77c9e3.png"
+)
+
+tyler_profile.generate_slug
+
+
