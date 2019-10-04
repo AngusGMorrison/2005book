@@ -7,10 +7,10 @@
   <% else %>
     <tr>
       <td>
-        <%= form_with scope: :friendship, url: "/friendships", method: :post, id: "accept-friend-request-form" do |f| %>
+        <%= form_with scope: :friendship, url: "/friendships", method: :post do |f| %>
           <%= f.hidden_field :user_1_id, value: current_user.id %>
           <%= f.hidden_field :user_2_id, value: profile_owner.id %>
-          <%= f.submit "Accept Friend Request"%>
+          <%= f.submit "Accept Friend Request", class: "link-button"%>
         <% end %>
       </td>
     </tr>
