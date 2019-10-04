@@ -16,12 +16,12 @@
                 
                 <div class="user-info-preview-container"> 
                     <div class="user-preview-text-container">
-                        <h2 class="user-preview-name-header">
+                        <h3 class="profile-info-subheading">
                             <%= link_to user.name, profile_path(user.profile.slug), class: "invisible-link"%> 
-                        </h2>
-                        <h3 class="user-preview-mod-header">
-                            <%= user.mod.name %>
                         </h3>
+                        <h4 class="message-text">
+                            <%= user.mod.name %>
+                        </h4>
                     </div>
                     
                     <div class="user-preview-buttons-container">
