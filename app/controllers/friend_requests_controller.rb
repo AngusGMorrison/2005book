@@ -14,9 +14,13 @@ class FriendRequestsController < ApplicationController
     end
 
     def destroy
-        @friend_request = FriendRequest.find(params[:id])
-        @friend_request.destroy
-        flash[:notice] = "Friend Request from #{@friend_request.get_requestor.name} has been deleted."
+        friend_request = FriendRequest.find(params[:id])
+        if friend_request.get_requestor == current_user
+          flash[:notice] = "Friend Request to #{friend_request.get_receiver.name} has been deleted."
+        else
+          flash[:notice] = "Friend Request from #{friend_request.get_requestor.name} has been deleted."
+        end
+        friend_request.destroy
         redirect_to friends_path(current_user)
     end
 
