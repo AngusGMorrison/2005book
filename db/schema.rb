@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_01_160901) do
+ActiveRecord::Schema.define(version: 2019_10_04_080636) do
 
   create_table "chains", force: :cascade do |t|
     t.string "subject"
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 2019_10_01_160901) do
     t.string "music"
     t.string "websites"
     t.string "about_me"
-    t.string "photo_url"
+    t.string "photo_url", default: "http://www.baytekent.com/wp-content/uploads/2016/12/facebook-default-no-profile-pic1-600x600.jpg"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "hometown"
