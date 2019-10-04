@@ -1,6 +1,8 @@
 <%= render partial: "form_errors", locals: { errors: errors } %>
 
 <%= form_with url: create_user_path, model: user, local: true, class: "registration-form" do |registration_form| %>
+  
+  <table class="form-table">
   <div class="justified-fields-container registration">   
     <div class="single-field-container">          
       <%= registration_form.label :name, "Name:", class: "field-label-left registration" %>
@@ -33,6 +35,7 @@
       </div>
     </div>
   </div>
+  </table>
 
   <p class="small-print password">* You can choose any password. <span class="password-warning">It should not be your school password.</span></p>
 
