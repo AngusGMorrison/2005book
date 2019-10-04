@@ -34,7 +34,7 @@ h3.profile-info-subheading {
   width: 100%;
 }
 
-.profile-info-table td:first-child, .edit-profile-table td:first-child {
+.profile-info-table td:first-child, .form-table td:first-child {
   width: 100px;
 }
 
@@ -94,12 +94,12 @@ p.profile-center {
   text-align: center;
 }
 
-.edit-profile-table {
+.form-table {
   border-collapse: separate;
   border-spacing: 0 5px;
 }
 
-.edit-profile-table td {
+.form-table td {
   font-size: 11px;
 }
 

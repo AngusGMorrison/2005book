@@ -19,6 +19,15 @@ p.static-body {
   margin-bottom: 12px;
 }
 
+.form-table.registration-form {
+  margin-top: 8px;
+  margin-left: 60px;
+}
+
+.registration-form td {
+  max-width: 160px;
+}
+
 .mod-list {
   text-align: center;
   margin-bottom: 12px;
