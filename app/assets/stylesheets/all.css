@@ -154,3 +154,8 @@ p.small-print {
   font-size: 11px;
   margin: 0;
 }
+
+.footer-link {
+  padding-left: 3px;
+  padding-right: 3px;
+}
