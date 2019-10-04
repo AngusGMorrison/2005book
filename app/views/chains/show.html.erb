@@ -10,7 +10,7 @@
         
         <header class="widget-header">
             <h2 class="widget-heading">
-                Message with <%= @friend.name %>
+               Message with <%= link_to @friend.name, profile_path(@friend.profile.slug), class: "white-link" %> 
             </h2> 
         </header>
 
