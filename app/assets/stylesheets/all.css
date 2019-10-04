@@ -8,7 +8,9 @@
   --primary-border: 1px solid var(--primary-blue);
   --secondary-border: 1px dashed var(--primary-blue);
   --field-border: 1px solid var(--primary-grey);
-  --button-highlight-border: 1px solid var(--highlight-blue)
+  --button-highlight-border: 1px solid var(--highlight-blue);
+  --secondary-highlight-border: 2px solid var( --secondary-blue);
+  --grey-highlight-border: 2px solid var(--primary-grey)
 }
 
 a {
@@ -157,4 +159,9 @@ select {
 p.small-print {
   font-size: 11px;
   margin: 0;
+}
+
+.footer-link {
+  padding-left: 3px;
+  padding-right: 3px;
 }

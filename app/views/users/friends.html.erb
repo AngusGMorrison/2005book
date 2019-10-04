@@ -8,68 +8,73 @@
 <div class="primary-widget-body">
 
     <% if notice %>
-        <div class="notice-container">
-            <p class="notice-text"> <%= notice %> </p> 
+        <div class="top-notice-container">
+            <p class="message-text"> <%= notice %> </p> 
         </div>
     <% end %>
 
-    <div class="friends-widget">
+    <% if !@requests.empty? %>
+        
+        <div class="friends-widget">
 
-        <header class="widget-header"> 
-            <h1 class="widget-heading">
-                Pending Friend Requests
-            </h1>
-        </header>
+            <header class="widget-header"> 
+                <h1 class="widget-heading">
+                    Pending Friend Requests
+                </h1>
+            </header>
 
-        <% if @requests.empty? %>
-            <div class="notice-container">
-                <p class="notice-text">You don't have any pending friend requests!</p>           
-            </div>
-        <% else %>
-                <div class="display-user-previews-container"> 
+            <% if @requests.empty? %>
+                <div class="notice-container">
+                    <p class="message-text">You don't have any pending friend requests!</p>           
+                </div>
+            <% else %>
+                    <div class="display-user-previews-container"> 
 
-                    <% @requests.each do |request| %>
+                        <% @requests.each do |request| %>
 
-                        <div class="user-preview-container">
+                            <div class="user-preview-container">
 
-                            <div class="user-img-preview-container">
-                                <a href=<%=profile_path(request.get_requestor.profile.slug)%>> <img class="profile-photo-preview-img" src=<%= request.get_requestor.profile.photo_url %> alt=<%= "profile photo for #{request.get_requestor.name}"%>> </a> 
-                            </div>
-                            
-                            <div class="user-info-preview-container">
+                                <div class="user-img-preview-container">
+                                    <a href=<%=profile_path(request.get_requestor.profile.slug)%>> <img class="profile-photo-preview-img" src=<%= request.get_requestor.profile.photo_url %> alt=<%= "profile photo for #{request.get_requestor.name}"%>> </a> 
+                                </div>
+                                
+                                <div class="user-info-preview-container">
 
-                                <div class="user-preview-text-container">
-                                    
-                                    <h3 class="profile-info-subheading">
-                                        <%= link_to request.get_requestor.name, profile_path(request.get_requestor.profile.slug), class: "invisible-link" %> 
-                                    </h3>
+                                    <div class="user-preview-text-container">
+                                        
+                                        <h3 class="profile-info-subheading">
+                                            <%= link_to request.get_requestor.name, profile_path(request.get_requestor.profile.slug), class: "invisible-link" %> 
+                                        </h3>
 
-                                    <h4 class="message-text"> 
-                                        <%= request.get_requestor.mod.name %> 
-                                    </h4>
+                                        <h4 class="message-text"> 
+                                            <%= request.get_requestor.mod.name %> 
+                                        </h4>
+                                        
+                                    </div>
+
+                                    <div class="user-preview-buttons-container">
+                                        <div class="user-preview-button-container">
+                                                <%= render partial: "/friend_requests/accept_form", locals: {friendship: Friendship.new, user_1_id: request.get_requestor.id, user_2_id: request.get_receiver.id }%>
+                                        </div>
+
+                                        <div class="delete-button-container">   
+                                            <%= render partial: "/friend_requests/delete_form", locals: {id: request.id} %>
+                                        </div>
+                                        
+                                    </div>                             
                                     
                                 </div>
 
-                                <div class="user-preview-buttons-container">
-                                    <div class="user-preview-button-container">
-                                            <%= render partial: "/friend_requests/accept_form", locals: {friendship: Friendship.new, user_1_id: request.get_requestor.id, user_2_id: request.get_receiver.id }%>
-                                    </div>
-
-                                    <div class="delete-button-container">   
-                                        <%= render partial: "/friend_requests/delete_form", locals: {id: request.id} %>
-                                    </div>
-                                    
-                                </div>                             
-                                
                             </div>
+                        <% end %>
 
-                        </div>
-                    <% end %>
+                    </div>
+                <% end %>
+        </div>
 
-                </div>
-            <% end %>
-    </div>
+    <% end %>
 
+    
     <div class="friends-widget">
 
         <header class="widget-header"> 
@@ -81,7 +86,7 @@
         <% if @friends.empty? %>
 
              <div class="notice-container">
-                <p class="notice-text">You don't have any friends yet!</p>           
+                <p class="message-text">You don't have any friends yet!</p>           
             </div>
 
         <% end %>
