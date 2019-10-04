@@ -16,8 +16,9 @@ class Friendship < ApplicationRecord
         User.find(self.user_2_id)
     end
 
-    def get_friend
-        
+    def get_friend(user)
+      #Improve this method to throw an exeption if the user argument is not in the friendship
+      self.user_1_id == user.id ? User.find(user_2_id) : User.find(user_1_id)
     end
     
 end

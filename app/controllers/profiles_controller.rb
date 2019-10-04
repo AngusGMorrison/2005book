@@ -6,6 +6,8 @@ class ProfilesController < ApplicationController
     @current_user = current_user
     @profile = find_profile_from_slug
     @profile_owner = @profile.user
+    @sent_friend_request = @current_user.sent_pending_friend_request(@profile_owner)
+    @received_friend_request = @current_user.received_pending_friend_request(@profile_owner)
   end
 
   def edit

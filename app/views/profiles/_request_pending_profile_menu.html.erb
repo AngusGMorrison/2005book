@@ -1,0 +1,21 @@
+<table class="profile-menu">
+  <% if sent_friend_request %>
+    <tr>
+      <td><%= link_to "Cancel Friend Request", destroy_friend_request_path(sent_friend_request.id), :method => :delete %></td>
+    </tr>
+
+  <% else %>
+    <tr>
+      <td>
+        <%= form_with scope: :friendship, url: "/friendships", method: :post, id: "accept-friend-request-form" do |f| %>
+          <%= f.hidden_field :user_1_id, value: current_user.id %>
+          <%= f.hidden_field :user_2_id, value: profile_owner.id %>
+          <%= f.submit "Accept Friend Request"%>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  
+
+
+</table>

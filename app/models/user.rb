@@ -72,6 +72,14 @@ class User < ApplicationRecord
         self.friend_requests.map{ |friend_request| [friend_request.requestor_id, friend_request.receiver_id] }.flatten.reject{ |id| id == self.id }
     end
 
+    def sent_pending_friend_request(receiver)
+      FriendRequest.find_by(requestor_id: self.id, receiver_id: receiver.id)
+    end
+
+    def received_pending_friend_request(sender)
+      FriendRequest.find_by(requestor_id: sender.id, receiver_id: self.id)
+    end
+
     # Methods for Messages
 
     def messages
@@ -87,6 +95,10 @@ class User < ApplicationRecord
     end
 
     # Other methods
+
+    def first_name
+      self.name.split(" ").first
+    end
 
     def mod_name
         self.mod.name
