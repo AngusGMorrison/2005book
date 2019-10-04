@@ -1,0 +1,9 @@
+.form-error-list {
+  margin: 12px 0 12px 12px;
+}
+
+.form-error {
+  color: red;
+  list-style-type: disc;
+  list-style-position: inside;
+}
