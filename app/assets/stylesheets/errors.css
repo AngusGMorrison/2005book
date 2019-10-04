@@ -3,6 +3,7 @@
 }
 
 .form-error {
+  font-size: 11px;
   color: red;
   list-style-type: disc;
   list-style-position: inside;
