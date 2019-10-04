@@ -33,20 +33,18 @@ p.static-body {
   margin-bottom: 12px;
 }
 
-.justified-fields-container {
-  margin: auto;
-  margin-bottom: 10px;
-}
-
-.justified-fields-container.login {
-  max-width: 45%;
-}
-
-.justified-fields-container.registration {
-  margin-top: 18px;
-  margin-bottom: 18px;
+.single-field-container {
   max-width: 60%;
+  margin-left: 66px;
+  margin-bottom: 14px;
 }
+
+.terms-and-conditions-container {
+  max-width: 60%;
+  margin-left: 66px;
+  margin-bottom: 14px;
+}
+
 
 .field-label-left.login {
   width: 54px;
@@ -65,7 +63,7 @@ p.static-body {
   
 }
 
-.terms-conditions-container {
+.terms-conditions-label-container {
   display: inline-block;
   width: 90%;
 }

@@ -23,12 +23,16 @@
       <td><%= registration_form.password_field :password, class: "text-field" %></td>
     </tr>
 
-    <tr>
-        <td><%= registration_form.check_box :accepted_terms, class: "terms-conditions-checkbox" %></td>
-        <td><%= registration_form.label :accepted_terms, "I have read and understood the Terms of Use, and I agree to them.", class: "terms-conditions-label" %></td>
-    </tr>
-
   </table>
+
+  <div class="terms-and-conditions-container"> 
+    <div class="checkbox-container">
+      <%= registration_form.check_box :accepted_terms, class: "terms-conditions-checkbox" %>
+    </div>
+    <div class="terms-conditions-label-container">
+      <%= registration_form.label :accepted_terms, "I have read and understood the Terms of Use, and I agree to them.", class: "terms-conditions-label" %>
+    </div>
+  </div>
 
   <p class="small-print password">* You can choose any password. <span class="password-warning">It should not be your school password.</span></p>
 
