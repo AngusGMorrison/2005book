@@ -9,7 +9,7 @@
 
     <% if notice %>
         <div class="top-notice-container">
-            <p class="notice-text"> <%= notice %> </p> 
+            <p class="message-text"> <%= notice %> </p> 
         </div>
     <% end %>
 
@@ -25,7 +25,7 @@
 
             <% if @requests.empty? %>
                 <div class="notice-container">
-                    <p class="notice-text">You don't have any pending friend requests!</p>           
+                    <p class="message-text">You don't have any pending friend requests!</p>           
                 </div>
             <% else %>
                     <div class="display-user-previews-container"> 
@@ -86,7 +86,7 @@
         <% if @friends.empty? %>
 
              <div class="notice-container">
-                <p class="notice-text">You don't have any friends yet!</p>           
+                <p class="message-text">You don't have any friends yet!</p>           
             </div>
 
         <% end %>
