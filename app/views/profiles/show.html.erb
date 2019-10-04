@@ -16,6 +16,8 @@
       <div class="profile-menu-container">
         <% if @current_user.owns_profile?(@profile) %>
           <%= render partial: "owner_profile_menu", locals: { profile: @profile } %> 
+        <% elsif @current_user.friends_with?(@profile_owner) %>
+          <%= render partial: "friend_profile_menu", locals: { profile: @profile }  %>
         <% end %>
       </div>
 
