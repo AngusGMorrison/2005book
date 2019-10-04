@@ -7,6 +7,12 @@
 
 <div class="primary-widget-body">
 
+    <% if notice %>
+        <div class="top-notice-container">
+            <p class="message-text"> <%= notice %> </p> 
+        </div>
+    <% end %>
+
     <div class="my-messages-widget">
     
         <div class="widget-heading-container">

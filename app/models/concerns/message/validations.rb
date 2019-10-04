@@ -15,11 +15,11 @@ module Message::Validations
             end
         end
 
-        # def chain_doesnt_already_exist?
-        #     if Chain.get_message_chain(self.sender_id, self.receiver_id)
-        #         self.errors.add(:sender_id, "You already have a message chain with this person!")
-        #     end
-        # end
+        def message_is_not_empty?
+            if self.content.empty? || self.content.nil? || self.content == "" 
+                self.errors.add(:content, "Message must have some content")
+            end
+        end
 
         validates :sender_id, presence: true
 
@@ -33,7 +33,7 @@ module Message::Validations
 
         validate :message_not_with_oneself?
 
-        # validate :chain_doesnt_already_exist?
+        validate :message_is_not_empty?
 
     end
 
