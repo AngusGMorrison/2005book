@@ -1,4 +1,6 @@
 class Profile < ApplicationRecord
+  include Profile::Validations
+
   belongs_to :user
   has_many :profile_looking_for_options
   has_many :looking_for_options, through: :profile_looking_for_options

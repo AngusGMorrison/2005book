@@ -1,42 +1,28 @@
-module User::Validations
+module Profile::Validations
   extend ActiveSupport::Concern
 
   included do
-    validates :mod, :email, {
-                presence: true
-              }
+    validates :studies, :sex, :hometown, :screenname, :interested_in, {
+      length: {
+        maximum: 30,
+        message: "can't be longer than 30 characters"
+      }
+    }
 
-    validates :name, {
-                presence: {
-                  message: "must be at least 2 characters"
-                },
-                length: {
-                  in: 2..30,
-                  message: "must be 2-30 characters long"
-                },
-                format: {
-                  with: /\A([a-zA-Z]+[ \-']?)+[a-zA-Z]+\z/,
-                  message: "should start and end with a letter and contain only letters, - or '"
-                }
-              }
-
-    validates :email, {
-                uniqueness: {
-                  message: "is already in use"
-                },
-                format: {
-                  with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
-                  message: "format is invalid"
-                },
-              }
-
-    validates :accepted_terms, {
-                acceptance: true
-              }
-
-    validates :password, {
+    validates :photo_url, {
       presence: true,
-      on: :create
+      format: {
+        with: /jpg|jpeg|png\z/,
+        message: "must link to a jpg or png image"
+      }
+    }
+
+    validates :websites, :interests, :books, :movies, :music, :about_me, {
+      length: {
+        maximum: 300,
+        message: "can't be longer than 300 characters"
+      }
     }
   end
+
 end
