@@ -11,9 +11,16 @@ class MessagesController < ApplicationController
     end
 
     def create
+
         if params[:message][:chain_id] # if this is a message reply to an existing chain... 
             @message = Message.new(message_params)
-            @message.save
+            if @message.valid?
+                @message.save
+                redirect_to chain_path(@message.chain_id)
+            else
+                redirect_to chain_path(@message.chain_id)
+            end
+
         else #else, if this is a new message NOT responding to a chain...
             @sender_id = params[:message][:sender_id].to_i
             @receiver_id = params[:message][:receiver_id].to_i
@@ -24,11 +31,19 @@ class MessagesController < ApplicationController
                 # else, create a new chain
                 @chain = Chain.create()
             end
+
             @message = Message.new(message_params)
             @message.chain_id = @chain.id
-            @message.save
+
+            if @message.valid?
+                @message.save
+                redirect_to chain_path(@message.chain_id)
+            else
+                flash[:notice] = "You cannot send an empty message."
+                redirect_to "/messages"
+            end
+
         end
-        redirect_to chain_path(@message.chain_id)
     end
 
     #working
