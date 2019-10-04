@@ -85,7 +85,10 @@
 
 .previous-messages-container { /*SCROLLING BOX*/
     height:300px;
-    overflow: scroll;
+    overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
+
 }
 
 .previous-message-container {

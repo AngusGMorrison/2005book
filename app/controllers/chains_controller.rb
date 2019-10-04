@@ -17,7 +17,7 @@ class ChainsController < ApplicationController
         @current_user = current_user
         @chain = Chain.find(params[:id])
         @friend = @chain.users.reject{ |user| user == current_user}[0]
-        @messages = @chain.messages.order("created_at ASC")
+        @messages = @chain.messages.order("created_at DESC")
         @new_message = Message.new
     end
 

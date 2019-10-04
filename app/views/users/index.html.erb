@@ -1,74 +1,99 @@
 
 <header class="widget-header"> 
-    <h1 class="widget-heading">People</h1>
+    <h1 class="widget-heading">
+        Search Results
+    </h1>
 </header>
 
 <div class="primary-widget-body">
 
     <% if @users.empty? %>
-          <div class="top-notice-container">
-             <p class="message-text"> No results. Please try your search again. </p> 
-          </div>
-        <% end %>
+        <div class="top-notice-container">
+            <p class="message-text"> No results. Please try your search again. </p> 
+        </div>
+    <% else %>
 
-    <div class="display-user-previews-container">
+        <div class="friends-widget">
 
-        <% @users.each do |user| %>
-            <div class="user-preview-container"> 
-                
-                <div class="user-img-preview-container">
-                    <a href=<%=profile_path(user.profile.slug)%>> <img class="profile-photo-preview-img" src=<%= user.profile.photo_url %> alt=<%= "profile photo for #{user.name}"%>> </a> 
-                </div>
-                
-                <div class="user-info-preview-container"> 
-                    <div class="user-preview-text-container">
-                        <h3 class="profile-info-subheading">
-                            <%= link_to user.name, profile_path(user.profile.slug), class: "invisible-link"%> 
-                        </h3>
-                        <h4 class="message-text">
-                            <%= user.mod.name %>
-                        </h4>
-                    </div>
+            <header class="widget-header"> 
+                <h1 class="widget-heading">
+                    People
+                </h1>
+            </header>
+
+            <div class="display-user-previews-container">
+            
+                <% @users.each do |user| %>
                     
-                    <div class="user-preview-buttons-container">
-                        <div class="user-preview-button-container">
-                            <% if @friendship = Friendship.get_friendship(current_user, user) %>
-                                <%= render partial: "/friendships/delete_form", locals: {friendship: @friendship}%>
-                            <% end %>
+                    <div class="user-preview-container"> 
+                        
+                        <div class="user-img-preview-container">
+                            <a href=<%=profile_path(user.profile.slug)%>> <img class="profile-photo-preview-img" src=<%= user.profile.photo_url %> alt=<%= "profile photo for #{user.name}"%>> </a> 
                         </div>
-
-
-                        <% if @friend_request = FriendRequest.get_friend_request(current_user.id, user.id)%>
-                            <% if current_user.id == @friend_request.requestor_id %>
-                                <button class="pending-request-button">Friend Request Pending</button> 
-                            <% else %>
-                                <div class="user-preview-button-container">
-                                    <%= render partial: "/friend_requests/accept_form", locals: {friendship: Friendship.new, user_1_id: @friend_request.get_requestor.id, user_2_id: @friend_request.get_receiver.id }%>
-                                </div>
-
-                                <div class="user-preview-button-container">
-                                    <%= render partial: "/friend_requests/delete_form", locals: {id: @friend_request.id} %>
-                                </div>
+                        
+                        <div class="user-info-preview-container"> 
+                            
+                            <div class="user-preview-text-container">
                                 
-                                
-                                
-                            <% end %>
-                        <% end %>
+                                <h3 class="profile-info-subheading">
+                                    <%= link_to user.name, profile_path(user.profile.slug), class: "invisible-link"%> 
+                                </h3>
 
-                        <% if Friendship.get_friendship(current_user, user).nil? && FriendRequest.get_friend_request(current_user.id, user.id).nil? %>
-                            <%= render partial: "/friend_requests/new_form", locals: {friend_request: FriendRequest.new, requestor_id: current_user.id, receiver_id: user.id }%>
-                        <% end %>
+                                <h4 class="message-text">
+                                    <%= user.mod.name %>
+                                </h4>
+
+                            </div>
+                            
+                            <div class="user-preview-buttons-container">
+                                
+                                <% if @friendship = Friendship.get_friendship(current_user, user) %>
+                                    
+                                    <div class="user-preview-button-container">
+                                        <%= render partial: "/friendships/delete_form", locals: {friendship: @friendship} %>
+                                    </div>
+
+                                <% elsif @friend_request = FriendRequest.get_friend_request(current_user.id, user.id) %>
+                                    
+                                    <% if current_user.id == @friend_request.requestor_id %>
+
+                                        <div class="user-preview-button-container">
+                                            <button class="pending-request-button">Friend Request Pending</button> 
+                                        </div>
+
+                                    <% else %>
+
+                                        <div class="user-preview-button-container">
+                                            <%= render partial: "/friend_requests/accept_form", locals: {friendship: Friendship.new, user_1_id: @friend_request.get_requestor.id, user_2_id: @friend_request.get_receiver.id }%>
+                                        </div>
+
+                                        <div class="delete-button-container">
+                                            <%= render partial: "/friend_requests/delete_form", locals: {id: @friend_request.id} %>
+                                        </div>
+                                        
+                                    <% end %>
+
+                                <% else  %>
+                                  
+                                   <div class="user-preview-button-container">
+                                        <%= render partial: "/friend_requests/new_form", locals: {friend_request: FriendRequest.new, requestor_id: current_user.id, receiver_id: user.id }%>
+                                   </div>
+                                
+                                <% end %>
+
+                            </div>
+
+                        </div>
+                        
                     </div>
 
-                    
-                </div>
-                
+                <% end %>
 
             </div>
-        <% end %>
 
-    </div>
-   
+        </div>
+    
+    <% end %>
 
 </div>
 
@@ -76,3 +101,4 @@
 
 
 
+<%# Friendship.get_friendship(current_user, user).nil? && FriendRequest.get_friend_request(current_user.id, user.id).nil? %>
