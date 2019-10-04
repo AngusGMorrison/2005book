@@ -33,12 +33,6 @@ p.static-body {
   margin-bottom: 12px;
 }
 
-.single-field-container {
-  max-width: 60%;
-  margin-left: 66px;
-  margin-bottom: 14px;
-}
-
 .terms-and-conditions-container {
   max-width: 60%;
   margin-left: 66px;
@@ -53,10 +47,6 @@ p.static-body {
 .form-table.login-form tr td {
   width: auto;
   padding-right: 3px;
-}
-
-.field-label-left.registration {
-  width: 109px;
 }
 
 .checkbox-container {
