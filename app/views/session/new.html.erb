@@ -2,20 +2,22 @@
   <h1 class="widget-heading-no-header">[ Login ]</h1>
 
   <% if flash[:login_error] %>
-    <%= flash[:login_error] %>
+    <ul class="form-error-list"></ul>
+      <li class="form-error"><%= flash[:login_error] %><li>
+    </ul>
   <% end %>
 
   <%= form_with scope: :user, url: login_path, local: true, class: "login-form" do |login_form| %>
-    <div class="justified-fields-container login">
-      <div class="single-field-container">
-        <%= login_form.label :email, "Email:", class: "field-label-left login" %>
-        <%= login_form.text_field :email, class: "text-field" %>
-      </div>
-      <div class="single-field-container">
-        <%= login_form.label :password, "Password:", class: "field-label-left login" %>
-        <%= login_form.password_field :password, class: "text-field" %>
-      </div>
-    </div>
+    <table class="form-table login-form">
+      <tr>
+        <td><%= login_form.label :email, "Email:", class: "field-label-left login" %></td>
+        <td><%= login_form.text_field :email, class: "text-field" %></td>
+      </tr>
+      <tr>
+        <td><%= login_form.label :password, "Password:", class: "field-label-left login" %></td>
+        <td><%= login_form.password_field :password, class: "text-field" %></td>
+      </tr>
+    </table>
 
     <div class="primary-widget-button-container">
       <button class="primary-button master-login"><%= login_form.submit "Login" %></button>

@@ -7,7 +7,7 @@
 
     <h3 class="profile-info-subheading">Account Info:</h3>
 
-    <table class="edit-profile-table">
+    <table class="form-table">
       <tr>      
       <%= edit_form.fields_for :user do |user_form| %>
         <td><%= user_form.label :name, "Name:" %></td>
@@ -19,7 +19,7 @@
 
     <h3 class="profile-info-subheading">Basic Info:</h3>
 
-    <table class="edit-profile-table">
+    <table class="form-table">
       <tr>
         <%= edit_form.fields_for :user do |user_form| %>
           <td><%= user_form.label :mod_id, "Mod:" %></td>
@@ -65,7 +65,7 @@
 
     <h3 class="profile-info-subheading">Contact Info:</h3>
 
-    <table class="edit-profile-table">
+    <table class="form-table">
       <tr>    
         <%= edit_form.fields_for :user do |user_form| %>
           <td><%= user_form.label :email, "Email:" %></td>
@@ -89,7 +89,7 @@
 
     <h3 class="profile-info-subheading">Profile Picture:</h3>
 
-    <table class="edit-profile-table">
+    <table class="form-table">
       <tr>
         <td><%= edit_form.label :photo_url, "Picture URL:" %></td>
         <td><%= edit_form.url_field :photo_url, class: "text-field" %></td>
@@ -99,7 +99,7 @@
 
     <h3 class="profile-info-subheading">Personal Info:</h3>
 
-    <table class="edit-profile-table">
+    <table class="form-table">
       <tr>
         <td><%= edit_form.label :looking_for_options, "Looking For:" %></td>
         <td>

@@ -99,8 +99,16 @@ p.profile-center {
   border-spacing: 0 5px;
 }
 
+.form-table.login-form, .form-table.registration-form {
+  border-spacing: 0 2px;
+}
+
 .form-table td {
   font-size: 11px;
+}
+
+.form-table.registration-form select {
+  margin-top: 2px;
 }
 
 .profile-edit-button-container {

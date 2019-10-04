@@ -45,9 +45,14 @@ p.static-body {
   margin-bottom: 14px;
 }
 
+.login-form {
+  margin: auto;
+  margin-bottom: 6px;
+}
 
-.field-label-left.login {
-  width: 54px;
+.form-table.login-form tr td {
+  width: auto;
+  padding-right: 3px;
 }
 
 .field-label-left.registration {
