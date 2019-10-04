@@ -127,7 +127,7 @@ cameron = User.create(
 )
 
 cameron_profile = Profile.create(
-  user_id: cameron.id,
+  user_id: User.last.id,
   sex: "Male",
   studies: "The Science of Dating",
   phone_number: Faker::PhoneNumber.phone_number,
@@ -156,9 +156,9 @@ tyler = User.create(
 )
 
 tyler_profile = Profile.create(
-  user_id: tyler.id,
+  user_id: User.last.id,
   sex: "Male",
-  studies: "How to get rich off my parents' money",
+  studies: "Spending my parents' money",
   phone_number: Faker::PhoneNumber.phone_number,
   screenname: "i_also_row-crew-81",
   interested_in: "Women",
@@ -166,7 +166,7 @@ tyler_profile = Profile.create(
   political_view_id: 5,
   interests: "Rowing, lifting, rowing, girls, lifting, rowing",
   movies: "#{Faker::Movies::HarryPotter.book}",
-  music: "#{Faker::Music.band}, #{Faker::Music.band}, #{Faker::Music.band}",
+  music: "The screams of Mark Zuckerberg",
   websites: "#{Faker::Internet.url}",
   about_me: "I am a gentleman of Harvard - I don't sue people",
   photo_url: "https://media.workandmoney.com/23/52/2352bf5fa0534febb412b69b8e77c9e3.png"
