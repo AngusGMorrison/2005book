@@ -1,7 +1,6 @@
 require "rails_helper"
 
-
-RSpec.describe "Profile", type: :feature do
+RSpec.describe "New profile", type: :feature do
   before(:all) do
     create_test_objects
   end
@@ -9,11 +8,6 @@ RSpec.describe "Profile", type: :feature do
   before(:each) do
     login
   end
-
-  let(:user) { User.all.first }
-  let(:slug) { user.profile.slug }
-  let(:edit_profile) { visit edit_profile_path(Profile.first.slug) }
-  let(:submit_edits) { click_on "Update Profile" }
 
   it "displays the profile owner's name" do
     expect(page).to have_content("Test User")
@@ -24,13 +18,33 @@ RSpec.describe "Profile", type: :feature do
   end
 
   it "displays the profile owner's mod" do
-    expect(page).to have_content("#{user.mod.name}")
+    expect(page).to have_content(User.first.mod.name)
   end
 
   it "has a link to edit the profile" do
-    find(".primary-content-container").click_on("[ edit ]")
-    expect(current_path).to eq(edit_profile_path(slug))
+    within(".profile-information-widget") do
+      click_on("[ edit ]")
+    end
+    expect(current_path).to eq(edit_profile_path(Profile.first.slug))
   end
+
+end
+
+RSpec.describe "Edit profile", type: :feature do
+  before(:all) do
+    create_test_objects
+  end
+
+  before(:each) do
+    login
+  end
+
+  let(:user) { User.first }
+  let(:slug) { user.profile.slug }
+  let(:edit_profile) { visit edit_profile_path(slug) }
+  let(:submit_edits) { click_on "Update Profile" }
+
+
 
   it "allows name to be edited correctly" do
     edit_profile
@@ -301,11 +315,6 @@ RSpec.describe "Profile", type: :feature do
     edit_profile
     expect(page).to have_current_path(edit_profile_path(slug)).and have_content("Test bot bleep bloop")
   end
-
-
-
-
-
 
 
 end
