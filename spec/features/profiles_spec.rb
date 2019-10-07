@@ -37,6 +37,7 @@ RSpec.describe "Edit profile", type: :feature do
 
   before(:each) do
     login
+    edit_profile
   end
 
   let(:user) { User.first }
@@ -44,15 +45,30 @@ RSpec.describe "Edit profile", type: :feature do
   let(:edit_profile) { visit edit_profile_path(slug) }
   let(:submit_edits) { click_on "Update Profile" }
 
-
-
-  it "allows name to be edited correctly" do
-    edit_profile
-    fill_in "profile_user_name", with: ""
-    fill_in "profile_user_name", with: "Passed Test User"
+  def text_field_test(field_id, value)
+    fill_in field_id, with: value
     submit_edits
-    expect(page).to have_current_path(profile_path(slug)).and have_css("td", text: "Passed Test User")
+    expect(page).to have_current_path(profile_path(slug)).and have_content(value)
   end
+
+  def dropdown_test(field_id, value)
+    page.select(value, from: field_id)
+    submit_edits
+
+  def expect_correct_path_and_value(value)
+    expect(page).to have_current_path(profile_path(slug)).and have_content(value)
+  end
+
+
+  it "allows Name to be edited correctly" do
+    test_text_field("profile_user_name", "Passed Test User")
+  end
+
+  it "allows Mod to be edited correctly" do
+    Mod.create(name: "Test Mod 2")
+
+
+
 
   it "autofills the edited name on subsequent edit" do
     edit_profile
