@@ -1,4 +1,4 @@
-module ProfilesHelper
+module ProfilesSpecSupport
 
   def create_test_objects
     Mod.create(name: "Test Mod")
