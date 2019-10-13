@@ -25,15 +25,14 @@ RSpec.describe "Users", type: :feature do
       fill_in "user_password", with: "password"
     end
   end
-
+  
   it "allows site visitors to register" do  
     fill_name
     select_mod
     fill_email
     fill_password
     check_terms
-    submit
-    
+    submit    
     expect(current_path).to include("test-user-1")
   end
 
@@ -43,7 +42,6 @@ RSpec.describe "Users", type: :feature do
     fill_password
     check_terms
     submit
-
     expect(current_path).to eq(register_path)
   end
 
@@ -53,7 +51,6 @@ RSpec.describe "Users", type: :feature do
     fill_password
     check_terms
     submit
-
     expect(current_path).to eq(register_path)
   end
 
@@ -63,7 +60,6 @@ RSpec.describe "Users", type: :feature do
     fill_email
     check_terms
     submit
-    
     expect(current_path).to eq(register_path)
   end
 
@@ -72,8 +68,7 @@ RSpec.describe "Users", type: :feature do
     select_mod
     fill_email
     fill_password
-    submit
-    
+    submit  
     expect(current_path).to eq(register_path)
   end
 
