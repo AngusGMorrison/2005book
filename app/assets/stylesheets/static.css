@@ -39,12 +39,12 @@ p.static-body {
   margin-bottom: 14px;
 }
 
-.login-form {
+.login-form-table {
   margin: auto;
   margin-bottom: 6px;
 }
 
-.form-table.login-form tr td {
+.form-table.login-form-table tr td {
   width: auto;
   padding-right: 3px;
 }
