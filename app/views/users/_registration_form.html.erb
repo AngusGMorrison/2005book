@@ -1,6 +1,6 @@
 <%= render partial: "form_errors", locals: { errors: errors } %>
 
-<%= form_with url: create_user_path, model: user, local: true, class: "registration-form" do |registration_form| %>
+<%= form_with url: create_user_path, model: current_user, local: true, class: "registration-form" do |registration_form| %>
   
   <table class="form-table registration-form">
     <tr>        

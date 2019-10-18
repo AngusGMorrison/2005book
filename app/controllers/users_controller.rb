@@ -8,7 +8,6 @@ class UsersController < ApplicationController
   end
 
   def new
-    @current_user = current_user
     @mods = Mod.all
   end
 
