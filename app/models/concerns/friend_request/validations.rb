@@ -4,8 +4,14 @@ module FriendRequest::Validations
     included do 
         
         def friend_request_doesnt_already_exist?
-            if FriendRequest.find_by(requestor_id: self.requestor_id, receiver_id: self.receiver_id) || FriendRequest.find_by(requestor_id: self.receiver_id, receiver_id: self.requestor_id)
+            if FriendRequest.get_friend_request(self.requestor_id, self.receiver_id)
                 self.errors.add(:requestor_id, "A friend_request already exists between these two users")
+            end
+        end
+
+        def friendship_doesnt_already_exist?
+            if Friendship.get_friendship(self.requestor_id, self.receiver_id)
+                self.errors.add(:requestor_id, "There users are already friends")
             end
         end
 
