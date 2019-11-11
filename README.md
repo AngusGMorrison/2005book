@@ -1,4 +1,4 @@
-# Welcome to 2005book
+# 2005book
 
 2005book is a pixel-for-pixel recreation of a popular social networking site during its innaugural year. Although the tech stack may have changed (Rails vs. PHP), the thrill of the experience has not! This was a paired project between Angus Morrison and Elizabeth Prendergast.
 
@@ -10,7 +10,7 @@ To start the application, fork and clone this repo. Next, run the following in y
 
 ```rails db:migrate```
 
-``rails db:seed``` 
+```rails db:seed``` 
 
 ```rails s```
 
