@@ -1,24 +1,16 @@
-# README
+# Welcome to 2005book
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+2005book recreates the experience of using a popular 2005 social networking site. This is a paired project between Angus Morrison and Elizabeth Prendergast.
 
-Things you may want to cover:
+Thanks to Wayback Machine for providing us with an excellent reference: https://web.archive.org/web/20050810001425/http://thefacebook.com/login.php 
 
-* Ruby version
+To start the application, fork and clone this repo. Next, run the following in your terminal:
 
-* System dependencies
+```bundle install```
 
-* Configuration
+```rails db:migrate```
 
-* Database creation
+``rails db:seed```
 
-* Database initialization
+```rails s```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
